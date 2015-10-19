@@ -1,0 +1,15 @@
+{
+  "name": "spice-sass",
+  "version": "0.1.2",
+  "description": "Add a little spice to your UI",
+  "main": "src/_spice.scss",
+  "license": "MIT",
+  "ignore": [
+    "dev",
+    "docs",
+    "node_modules",
+    "*.md",
+    "gulpfile.js",
+    "package.json"
+  ]
+}
