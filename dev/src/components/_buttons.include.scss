@@ -1,0 +1,1444 @@
+// =========================================================================================================================
+// @includes - Buttons
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+
+/// Add styles for an old school gradient button for that retro vibe.
+/// Arguments allow you to control colour, gradient contrast, text contrast, optional
+/// icon styles and rounding.
+/// @name roundedButton
+/// @group buttons
+/// @param {String} classname [] *Required - class name for the element
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {pixel value} rounding [18px] Border radius of the button
+/// @param {Percent} contrast [45%] Percentage of contrast to be applied to text
+/// @param {Boolean} icons [true] If set to true additional icon classes will be added
+/// @param {Pixel Value} rounding [3px] Border-radius value
+/// @example scss - Include
+///  @include roundedButton('round-primary',#289e83);
+///  @include roundedButton('round-secondary',#1b8898);
+///  @include roundedButton('round-warning',#d7861e);
+///  @include roundedButton('round-danger',#ac2828);
+///  @include roundedButton('round-submit',#54A03A);
+/// @example css - Output
+///  button.round-primary, .button.round-primary {
+///    display: inline-block;
+///    outline: none;
+///    padding: 10px 20px;
+///    margin-bottom: 10px;
+///    cursor: pointer;
+///    color: #bdeee3;
+///    position: relative;
+///    background-color: #289e83;
+///    border-radius: 18px;
+///    border: none;
+///    font-weight: 600;
+///    line-height: inherit;
+///    font-family: inherit;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  button.round-primary.large, .button.round-primary.large {
+///    padding: 12px 25px;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+///  button.round-primary.small, .button.round-primary.small {
+///    padding: 5px 10px;
+///    font-size: 14px;
+///    font-size: 0.875rem;
+///  }
+///  button.round-primary:hover, button.round-primary:focus, .button.round-primary:hover, .button.round-primary:focus {
+///    color: #f4fcfa;
+///    background-color: #238a72;
+///  }
+///  button.round-primary:active, .button.round-primary:active {
+///    border-bottom-width: 1px;
+///    margin-bottom: 2px;
+///    top: 3px;
+///  }
+///  button.round-primary[class^="block-icon-"]:before, button.round-primary[class*=" block-icon-"]:before, .button.round-primary[class^="block-icon-"]:before, .button.round-primary[class*=" block-icon-"]:before {
+///    font-family: 'block-icon-set';
+///  }
+///  button.round-primary[class^="line-icon-"]:before, button.round-primary[class*=" line-icon-"]:before, .button.round-primary[class^="line-icon-"]:before, .button.round-primary[class*=" line-icon-"]:before {
+///    font-family: 'line-icon-set';
+///  }
+///  button.round-primary[class^="block-icon-"], button.round-primary[class*=" block-icon-"], button.round-primary[class^="line-icon-"], button.round-primary[class*=" line-icon-"], .button.round-primary[class^="block-icon-"], .button.round-primary[class*=" block-icon-"], .button.round-primary[class^="line-icon-"], .button.round-primary[class*=" line-icon-"] {
+///    padding-right: 50px;
+///  }
+///  button.round-primary[class^="block-icon-"]:before, button.round-primary[class*=" block-icon-"]:before, button.round-primary[class^="line-icon-"]:before, button.round-primary[class*=" line-icon-"]:before, .button.round-primary[class^="block-icon-"]:before, .button.round-primary[class*=" block-icon-"]:before, .button.round-primary[class^="line-icon-"]:before, .button.round-primary[class*=" line-icon-"]:before {
+///    text-transform: none;
+///    line-height: 1;
+///    position: absolute;
+///    top: 50%;
+///    right: 10px;
+///    margin-top: -10px;
+///    font-weight: normal;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  button.round-primary[class^="block-icon-"]:after, button.round-primary[class*=" block-icon-"]:after, button.round-primary[class^="line-icon-"]:after, button.round-primary[class*=" line-icon-"]:after, .button.round-primary[class^="block-icon-"]:after, .button.round-primary[class*=" block-icon-"]:after, .button.round-primary[class^="line-icon-"]:after, .button.round-primary[class*=" line-icon-"]:after {
+///    content: "";
+///    position: absolute;
+///    width: 1px;
+///    background: #1e7561;
+///    right: 35px;
+///    top: 0;
+///    bottom: 0;
+///  }
+///  
+///  button.round-secondary, .button.round-secondary {
+///    display: inline-block;
+///    outline: none;
+///    padding: 10px 20px;
+///    margin-bottom: 10px;
+///    cursor: pointer;
+///    color: #a9e7f0;
+///    position: relative;
+///    background-color: #1b8898;
+///    border-radius: 18px;
+///    border: none;
+///    font-weight: 600;
+///    line-height: inherit;
+///    font-family: inherit;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  button.round-secondary.large, .button.round-secondary.large {
+///    padding: 12px 25px;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+///  button.round-secondary.small, .button.round-secondary.small {
+///    padding: 5px 10px;
+///    font-size: 14px;
+///    font-size: 0.875rem;
+///  }
+///  button.round-secondary:hover, button.round-secondary:focus, .button.round-secondary:hover, .button.round-secondary:focus {
+///    color: #e3f7fa;
+///    background-color: #177582;
+///  }
+///  button.round-secondary:active, .button.round-secondary:active {
+///    border-bottom-width: 1px;
+///    margin-bottom: 2px;
+///    top: 3px;
+///  }
+///  button.round-secondary[class^="block-icon-"]:before, button.round-secondary[class*=" block-icon-"]:before, .button.round-secondary[class^="block-icon-"]:before, .button.round-secondary[class*=" block-icon-"]:before {
+///    font-family: 'block-icon-set';
+///  }
+///  button.round-secondary[class^="line-icon-"]:before, button.round-secondary[class*=" line-icon-"]:before, .button.round-secondary[class^="line-icon-"]:before, .button.round-secondary[class*=" line-icon-"]:before {
+///    font-family: 'line-icon-set';
+///  }
+///  button.round-secondary[class^="block-icon-"], button.round-secondary[class*=" block-icon-"], button.round-secondary[class^="line-icon-"], button.round-secondary[class*=" line-icon-"], .button.round-secondary[class^="block-icon-"], .button.round-secondary[class*=" block-icon-"], .button.round-secondary[class^="line-icon-"], .button.round-secondary[class*=" line-icon-"] {
+///    padding-right: 50px;
+///  }
+///  button.round-secondary[class^="block-icon-"]:before, button.round-secondary[class*=" block-icon-"]:before, button.round-secondary[class^="line-icon-"]:before, button.round-secondary[class*=" line-icon-"]:before, .button.round-secondary[class^="block-icon-"]:before, .button.round-secondary[class*=" block-icon-"]:before, .button.round-secondary[class^="line-icon-"]:before, .button.round-secondary[class*=" line-icon-"]:before {
+///    text-transform: none;
+///    line-height: 1;
+///    position: absolute;
+///    top: 50%;
+///    right: 10px;
+///    margin-top: -10px;
+///    font-weight: normal;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  button.round-secondary[class^="block-icon-"]:after, button.round-secondary[class*=" block-icon-"]:after, button.round-secondary[class^="line-icon-"]:after, button.round-secondary[class*=" line-icon-"]:after, .button.round-secondary[class^="block-icon-"]:after, .button.round-secondary[class*=" block-icon-"]:after, .button.round-secondary[class^="line-icon-"]:after, .button.round-secondary[class*=" line-icon-"]:after {
+///    content: "";
+///    position: absolute;
+///    width: 1px;
+///    background: #13616d;
+///    right: 35px;
+///    top: 0;
+///    bottom: 0;
+///  }
+///  
+///  button.round-warning, .button.round-warning {
+///    display: inline-block;
+///    outline: none;
+///    padding: 10px 20px;
+///    margin-bottom: 10px;
+///    cursor: pointer;
+///    color: #fbefe0;
+///    position: relative;
+///    background-color: #d7861e;
+///    border-radius: 18px;
+///    border: none;
+///    font-weight: 600;
+///    line-height: inherit;
+///    font-family: inherit;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  button.round-warning.large, .button.round-warning.large {
+///    padding: 12px 25px;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+///  button.round-warning.small, .button.round-warning.small {
+///    padding: 5px 10px;
+///    font-size: 14px;
+///    font-size: 0.875rem;
+///  }
+///  button.round-warning:hover, button.round-warning:focus, .button.round-warning:hover, .button.round-warning:focus {
+///    color: white;
+///    background-color: #c1781b;
+///  }
+///  button.round-warning:active, .button.round-warning:active {
+///    border-bottom-width: 1px;
+///    margin-bottom: 2px;
+///    top: 3px;
+///  }
+///  button.round-warning[class^="block-icon-"]:before, button.round-warning[class*=" block-icon-"]:before, .button.round-warning[class^="block-icon-"]:before, .button.round-warning[class*=" block-icon-"]:before {
+///    font-family: 'block-icon-set';
+///  }
+///  button.round-warning[class^="line-icon-"]:before, button.round-warning[class*=" line-icon-"]:before, .button.round-warning[class^="line-icon-"]:before, .button.round-warning[class*=" line-icon-"]:before {
+///    font-family: 'line-icon-set';
+///  }
+///  button.round-warning[class^="block-icon-"], button.round-warning[class*=" block-icon-"], button.round-warning[class^="line-icon-"], button.round-warning[class*=" line-icon-"], .button.round-warning[class^="block-icon-"], .button.round-warning[class*=" block-icon-"], .button.round-warning[class^="line-icon-"], .button.round-warning[class*=" line-icon-"] {
+///    padding-right: 50px;
+///  }
+///  button.round-warning[class^="block-icon-"]:before, button.round-warning[class*=" block-icon-"]:before, button.round-warning[class^="line-icon-"]:before, button.round-warning[class*=" line-icon-"]:before, .button.round-warning[class^="block-icon-"]:before, .button.round-warning[class*=" block-icon-"]:before, .button.round-warning[class^="line-icon-"]:before, .button.round-warning[class*=" line-icon-"]:before {
+///    text-transform: none;
+///    line-height: 1;
+///    position: absolute;
+///    top: 50%;
+///    right: 10px;
+///    margin-top: -10px;
+///    font-weight: normal;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  button.round-warning[class^="block-icon-"]:after, button.round-warning[class*=" block-icon-"]:after, button.round-warning[class^="line-icon-"]:after, button.round-warning[class*=" line-icon-"]:after, .button.round-warning[class^="block-icon-"]:after, .button.round-warning[class*=" block-icon-"]:after, .button.round-warning[class^="line-icon-"]:after, .button.round-warning[class*=" line-icon-"]:after {
+///    content: "";
+///    position: absolute;
+///    width: 1px;
+///    background: #aa6a18;
+///    right: 35px;
+///    top: 0;
+///    bottom: 0;
+///  }
+///  
+///  button.round-danger, .button.round-danger {
+///    display: inline-block;
+///    outline: none;
+///    padding: 10px 20px;
+///    margin-bottom: 10px;
+///    cursor: pointer;
+///    color: #f2c7c7;
+///    position: relative;
+///    background-color: #ac2828;
+///    border-radius: 18px;
+///    border: none;
+///    font-weight: 600;
+///    line-height: inherit;
+///    font-family: inherit;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  button.round-danger.large, .button.round-danger.large {
+///    padding: 12px 25px;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+///  button.round-danger.small, .button.round-danger.small {
+///    padding: 5px 10px;
+///    font-size: 14px;
+///    font-size: 0.875rem;
+///  }
+///  button.round-danger:hover, button.round-danger:focus, .button.round-danger:hover, .button.round-danger:focus {
+///    color: white;
+///    background-color: #972323;
+///  }
+///  button.round-danger:active, .button.round-danger:active {
+///    border-bottom-width: 1px;
+///    margin-bottom: 2px;
+///    top: 3px;
+///  }
+///  button.round-danger[class^="block-icon-"]:before, button.round-danger[class*=" block-icon-"]:before, .button.round-danger[class^="block-icon-"]:before, .button.round-danger[class*=" block-icon-"]:before {
+///    font-family: 'block-icon-set';
+///  }
+///  button.round-danger[class^="line-icon-"]:before, button.round-danger[class*=" line-icon-"]:before, .button.round-danger[class^="line-icon-"]:before, .button.round-danger[class*=" line-icon-"]:before {
+///    font-family: 'line-icon-set';
+///  }
+///  button.round-danger[class^="block-icon-"], button.round-danger[class*=" block-icon-"], button.round-danger[class^="line-icon-"], button.round-danger[class*=" line-icon-"], .button.round-danger[class^="block-icon-"], .button.round-danger[class*=" block-icon-"], .button.round-danger[class^="line-icon-"], .button.round-danger[class*=" line-icon-"] {
+///    padding-right: 50px;
+///  }
+///  button.round-danger[class^="block-icon-"]:before, button.round-danger[class*=" block-icon-"]:before, button.round-danger[class^="line-icon-"]:before, button.round-danger[class*=" line-icon-"]:before, .button.round-danger[class^="block-icon-"]:before, .button.round-danger[class*=" block-icon-"]:before, .button.round-danger[class^="line-icon-"]:before, .button.round-danger[class*=" line-icon-"]:before {
+///    text-transform: none;
+///    line-height: 1;
+///    position: absolute;
+///    top: 50%;
+///    right: 10px;
+///    margin-top: -10px;
+///    font-weight: normal;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  button.round-danger[class^="block-icon-"]:after, button.round-danger[class*=" block-icon-"]:after, button.round-danger[class^="line-icon-"]:after, button.round-danger[class*=" line-icon-"]:after, .button.round-danger[class^="block-icon-"]:after, .button.round-danger[class*=" block-icon-"]:after, .button.round-danger[class^="line-icon-"]:after, .button.round-danger[class*=" line-icon-"]:after {
+///    content: "";
+///    position: absolute;
+///    width: 1px;
+///    background: #831e1e;
+///    right: 35px;
+///    top: 0;
+///    bottom: 0;
+///  }
+///  
+///  button.round-submit, .button.round-submit {
+///    display: inline-block;
+///    outline: none;
+///    padding: 10px 20px;
+///    margin-bottom: 10px;
+///    cursor: pointer;
+///    color: #d9eed1;
+///    position: relative;
+///    background-color: #54A03A;
+///    border-radius: 18px;
+///    border: none;
+///    font-weight: 600;
+///    line-height: inherit;
+///    font-family: inherit;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  button.round-submit.large, .button.round-submit.large {
+///    padding: 12px 25px;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+///  button.round-submit.small, .button.round-submit.small {
+///    padding: 5px 10px;
+///    font-size: 14px;
+///    font-size: 0.875rem;
+///  }
+///  button.round-submit:hover, button.round-submit:focus, .button.round-submit:hover, .button.round-submit:focus {
+///    color: white;
+///    background-color: #4a8d33;
+///  }
+///  button.round-submit:active, .button.round-submit:active {
+///    border-bottom-width: 1px;
+///    margin-bottom: 2px;
+///    top: 3px;
+///  }
+///  button.round-submit[class^="block-icon-"]:before, button.round-submit[class*=" block-icon-"]:before, .button.round-submit[class^="block-icon-"]:before, .button.round-submit[class*=" block-icon-"]:before {
+///    font-family: 'block-icon-set';
+///  }
+///  button.round-submit[class^="line-icon-"]:before, button.round-submit[class*=" line-icon-"]:before, .button.round-submit[class^="line-icon-"]:before, .button.round-submit[class*=" line-icon-"]:before {
+///    font-family: 'line-icon-set';
+///  }
+///  button.round-submit[class^="block-icon-"], button.round-submit[class*=" block-icon-"], button.round-submit[class^="line-icon-"], button.round-submit[class*=" line-icon-"], .button.round-submit[class^="block-icon-"], .button.round-submit[class*=" block-icon-"], .button.round-submit[class^="line-icon-"], .button.round-submit[class*=" line-icon-"] {
+///    padding-right: 50px;
+///  }
+///  button.round-submit[class^="block-icon-"]:before, button.round-submit[class*=" block-icon-"]:before, button.round-submit[class^="line-icon-"]:before, button.round-submit[class*=" line-icon-"]:before, .button.round-submit[class^="block-icon-"]:before, .button.round-submit[class*=" block-icon-"]:before, .button.round-submit[class^="line-icon-"]:before, .button.round-submit[class*=" line-icon-"]:before {
+///    text-transform: none;
+///    line-height: 1;
+///    position: absolute;
+///    top: 50%;
+///    right: 10px;
+///    margin-top: -10px;
+///    font-weight: normal;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  button.round-submit[class^="block-icon-"]:after, button.round-submit[class*=" block-icon-"]:after, button.round-submit[class^="line-icon-"]:after, button.round-submit[class*=" line-icon-"]:after, .button.round-submit[class^="block-icon-"]:after, .button.round-submit[class*=" block-icon-"]:after, .button.round-submit[class^="line-icon-"]:after, .button.round-submit[class*=" line-icon-"]:after {
+///    content: "";
+///    position: absolute;
+///    width: 1px;
+///    background: #407b2c;
+///    right: 35px;
+///    top: 0;
+///    bottom: 0;
+///  }
+/// @example markup - HTML
+///  <button class="round-primary block-icon-add-user">
+///  	Primary
+///  </button>
+///  
+///  <button class="round-secondary block-icon-chat">
+///  	Secondary
+///  </button>
+///  
+///  <button class="round-warning block-icon-block">
+///  	Warning
+///  </button>
+///  
+///  <button class="round-danger block-icon-cross">
+///  	Danger
+///  </button>
+///  
+///  <button class="round-submit block-icon-check">
+///  	Submit
+///  </button>
+
+@mixin roundedButton($className,$bgCol:#f3f3f3,$rounding:18px,$contrast:45%,$icons:true){
+
+	$bgCol : Col($bgCol);
+
+	button.#{$className}, .button.#{$className}{
+
+		display: inline-block; 			
+		outline:none;
+		padding: 10px 20px;
+		margin-bottom: 10px;
+		cursor: pointer;
+		color: contrast($bgCol,$contrast);
+		position:relative;
+		background-color:$bgCol;
+		border-radius:$rounding;
+		border:none;
+		font-weight: 600;
+		line-height: inherit;
+		font-family: inherit;
+		@include fontSize(16);
+
+		&.large{
+			
+			padding: 12px 25px;
+			@include fontSize(20);
+		}
+
+		&.small{
+			
+			padding: 5px 10px;
+			@include fontSize(14);
+		}
+
+		&:hover, &:focus{
+			
+			color: contrast($bgCol,($contrast * 1.3));
+			background-color:darken($bgCol,5%);
+		}
+
+		&:active{
+
+			border-bottom-width:1px;
+			margin-bottom: 2px;
+			top: 3px;
+		}
+
+		@if($icons){
+
+			&[class^="block-icon-"]:before, &[class*=" block-icon-"]:before {
+				font-family: 'block-icon-set';
+			}
+
+			&[class^="line-icon-"]:before, &[class*=" line-icon-"]:before{
+				font-family: 'line-icon-set';
+			}
+
+			&[class^="block-icon-"], &[class*=" block-icon-"], &[class^="line-icon-"], &[class*=" line-icon-"] {
+
+				padding-right: 50px;
+
+				&:before{
+
+					text-transform: none;
+					line-height: 1;
+					position: absolute;
+					top:50%;
+					right:10px;
+					margin-top:-10px;
+					font-weight: normal;
+					@include fontSize(18);
+				}
+
+				&:after{
+
+					content: "";
+					position: absolute;
+					width:1px;
+					background: darken($bgCol,10%);
+					right:35px;
+					top:0;
+					bottom:0;
+				}
+			}
+
+		}
+	}
+
+}
+
+/// Add styles for an old school gradient button for that retro vibe.
+/// Arguments allow you to control colour, gradient contrast, text contrast, optional
+/// icon styles and rounding.
+/// @name gradientButton
+/// @group buttons
+/// @param {String} classname [] *Required - class name for the element
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {percent} amount [10%] Percentage of contrast for either side of the gradient
+/// @param {Percent} contrast [45%] Percentage of contrast to be applied to text
+/// @param {Boolean} icons [true] If set to true additional icon classes will be added
+/// @param {Pixel Value} rounding [3px] Border-radius value
+/// @example scss - Include
+///  @include gradientButton('grad-primary',#289e83);
+///  @include gradientButton('grad-secondary',#1b8898);
+///  @include gradientButton('grad-warning',#d7861e);
+///  @include gradientButton('grad-danger',#ac2828);
+///  @include gradientButton('grad-submit',#54A03A);
+/// @example css - Output
+///  button.grad-primary, .button.grad-primary {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #bdeee3;
+///      position: relative;
+///      border-radius: 3px;
+///      border: 1px solid #1e7561;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #32c7a5), color-stop(100%, #1e7561));
+///      background-image: -moz-linear-gradient(#32c7a5, #1e7561);
+///      background-image: -webkit-linear-gradient(#32c7a5, #1e7561);
+///      background-image: linear-gradient(#32c7a5, #1e7561);
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.grad-primary.large, .button.grad-primary.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.grad-primary.small, .button.grad-primary.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.grad-primary:hover, button.grad-primary:focus, .button.grad-primary:hover, .button.grad-primary:focus {
+///      color: #f4fcfa;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2db294), color-stop(100%, #196150));
+///      background-image: -moz-linear-gradient(#2db294, #196150);
+///      background-image: -webkit-linear-gradient(#2db294, #196150);
+///      background-image: linear-gradient(#2db294, #196150);
+///  }
+///  button.grad-primary:active, .button.grad-primary:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.grad-primary[class^="block-icon-"]:before, button.grad-primary[class*=" block-icon-"]:before, .button.grad-primary[class^="block-icon-"]:before, .button.grad-primary[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.grad-primary[class^="line-icon-"]:before, button.grad-primary[class*=" line-icon-"]:before, .button.grad-primary[class^="line-icon-"]:before, .button.grad-primary[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.grad-primary[class^="block-icon-"], button.grad-primary[class*=" block-icon-"], button.grad-primary[class^="line-icon-"], button.grad-primary[class*=" line-icon-"], .button.grad-primary[class^="block-icon-"], .button.grad-primary[class*=" block-icon-"], .button.grad-primary[class^="line-icon-"], .button.grad-primary[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.grad-primary[class^="block-icon-"]:before, button.grad-primary[class*=" block-icon-"]:before, button.grad-primary[class^="line-icon-"]:before, button.grad-primary[class*=" line-icon-"]:before, .button.grad-primary[class^="block-icon-"]:before, .button.grad-primary[class*=" block-icon-"]:before, .button.grad-primary[class^="line-icon-"]:before, .button.grad-primary[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.grad-primary[class^="block-icon-"]:after, button.grad-primary[class*=" block-icon-"]:after, button.grad-primary[class^="line-icon-"]:after, button.grad-primary[class*=" line-icon-"]:after, .button.grad-primary[class^="block-icon-"]:after, .button.grad-primary[class*=" block-icon-"]:after, .button.grad-primary[class^="line-icon-"]:after, .button.grad-primary[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #1e7561;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.grad-secondary, .button.grad-secondary {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #a9e7f0;
+///      position: relative;
+///      border-radius: 3px;
+///      border: 1px solid #13616d;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #23afc3), color-stop(100%, #13616d));
+///      background-image: -moz-linear-gradient(#23afc3, #13616d);
+///      background-image: -webkit-linear-gradient(#23afc3, #13616d);
+///      background-image: linear-gradient(#23afc3, #13616d);
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.grad-secondary.large, .button.grad-secondary.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.grad-secondary.small, .button.grad-secondary.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.grad-secondary:hover, button.grad-secondary:focus, .button.grad-secondary:hover, .button.grad-secondary:focus {
+///      color: #e3f7fa;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1f9bae), color-stop(100%, #0f4e57));
+///      background-image: -moz-linear-gradient(#1f9bae, #0f4e57);
+///      background-image: -webkit-linear-gradient(#1f9bae, #0f4e57);
+///      background-image: linear-gradient(#1f9bae, #0f4e57);
+///  }
+///  button.grad-secondary:active, .button.grad-secondary:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.grad-secondary[class^="block-icon-"]:before, button.grad-secondary[class*=" block-icon-"]:before, .button.grad-secondary[class^="block-icon-"]:before, .button.grad-secondary[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.grad-secondary[class^="line-icon-"]:before, button.grad-secondary[class*=" line-icon-"]:before, .button.grad-secondary[class^="line-icon-"]:before, .button.grad-secondary[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.grad-secondary[class^="block-icon-"], button.grad-secondary[class*=" block-icon-"], button.grad-secondary[class^="line-icon-"], button.grad-secondary[class*=" line-icon-"], .button.grad-secondary[class^="block-icon-"], .button.grad-secondary[class*=" block-icon-"], .button.grad-secondary[class^="line-icon-"], .button.grad-secondary[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.grad-secondary[class^="block-icon-"]:before, button.grad-secondary[class*=" block-icon-"]:before, button.grad-secondary[class^="line-icon-"]:before, button.grad-secondary[class*=" line-icon-"]:before, .button.grad-secondary[class^="block-icon-"]:before, .button.grad-secondary[class*=" block-icon-"]:before, .button.grad-secondary[class^="line-icon-"]:before, .button.grad-secondary[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.grad-secondary[class^="block-icon-"]:after, button.grad-secondary[class*=" block-icon-"]:after, button.grad-secondary[class^="line-icon-"]:after, button.grad-secondary[class*=" line-icon-"]:after, .button.grad-secondary[class^="block-icon-"]:after, .button.grad-secondary[class*=" block-icon-"]:after, .button.grad-secondary[class^="line-icon-"]:after, .button.grad-secondary[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #13616d;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.grad-warning, .button.grad-warning {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #fbefe0;
+///      position: relative;
+///      border-radius: 3px;
+///      border: 1px solid #aa6a18;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e59e43), color-stop(100%, #aa6a18));
+///      background-image: -moz-linear-gradient(#e59e43, #aa6a18);
+///      background-image: -webkit-linear-gradient(#e59e43, #aa6a18);
+///      background-image: linear-gradient(#e59e43, #aa6a18);
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.grad-warning.large, .button.grad-warning.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.grad-warning.small, .button.grad-warning.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.grad-warning:hover, button.grad-warning:focus, .button.grad-warning:hover, .button.grad-warning:focus {
+///      color: white;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e2922d), color-stop(100%, #945c15));
+///      background-image: -moz-linear-gradient(#e2922d, #945c15);
+///      background-image: -webkit-linear-gradient(#e2922d, #945c15);
+///      background-image: linear-gradient(#e2922d, #945c15);
+///  }
+///  button.grad-warning:active, .button.grad-warning:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.grad-warning[class^="block-icon-"]:before, button.grad-warning[class*=" block-icon-"]:before, .button.grad-warning[class^="block-icon-"]:before, .button.grad-warning[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.grad-warning[class^="line-icon-"]:before, button.grad-warning[class*=" line-icon-"]:before, .button.grad-warning[class^="line-icon-"]:before, .button.grad-warning[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.grad-warning[class^="block-icon-"], button.grad-warning[class*=" block-icon-"], button.grad-warning[class^="line-icon-"], button.grad-warning[class*=" line-icon-"], .button.grad-warning[class^="block-icon-"], .button.grad-warning[class*=" block-icon-"], .button.grad-warning[class^="line-icon-"], .button.grad-warning[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.grad-warning[class^="block-icon-"]:before, button.grad-warning[class*=" block-icon-"]:before, button.grad-warning[class^="line-icon-"]:before, button.grad-warning[class*=" line-icon-"]:before, .button.grad-warning[class^="block-icon-"]:before, .button.grad-warning[class*=" block-icon-"]:before, .button.grad-warning[class^="line-icon-"]:before, .button.grad-warning[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.grad-warning[class^="block-icon-"]:after, button.grad-warning[class*=" block-icon-"]:after, button.grad-warning[class^="line-icon-"]:after, button.grad-warning[class*=" line-icon-"]:after, .button.grad-warning[class^="block-icon-"]:after, .button.grad-warning[class*=" block-icon-"]:after, .button.grad-warning[class^="line-icon-"]:after, .button.grad-warning[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #aa6a18;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.grad-danger, .button.grad-danger {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #f2c7c7;
+///      position: relative;
+///      border-radius: 3px;
+///      border: 1px solid #831e1e;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d03737), color-stop(100%, #831e1e));
+///      background-image: -moz-linear-gradient(#d03737, #831e1e);
+///      background-image: -webkit-linear-gradient(#d03737, #831e1e);
+///      background-image: linear-gradient(#d03737, #831e1e);
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.grad-danger.large, .button.grad-danger.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.grad-danger.small, .button.grad-danger.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.grad-danger:hover, button.grad-danger:focus, .button.grad-danger:hover, .button.grad-danger:focus {
+///      color: white;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c12d2d), color-stop(100%, #6e1a1a));
+///      background-image: -moz-linear-gradient(#c12d2d, #6e1a1a);
+///      background-image: -webkit-linear-gradient(#c12d2d, #6e1a1a);
+///      background-image: linear-gradient(#c12d2d, #6e1a1a);
+///  }
+///  button.grad-danger:active, .button.grad-danger:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.grad-danger[class^="block-icon-"]:before, button.grad-danger[class*=" block-icon-"]:before, .button.grad-danger[class^="block-icon-"]:before, .button.grad-danger[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.grad-danger[class^="line-icon-"]:before, button.grad-danger[class*=" line-icon-"]:before, .button.grad-danger[class^="line-icon-"]:before, .button.grad-danger[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.grad-danger[class^="block-icon-"], button.grad-danger[class*=" block-icon-"], button.grad-danger[class^="line-icon-"], button.grad-danger[class*=" line-icon-"], .button.grad-danger[class^="block-icon-"], .button.grad-danger[class*=" block-icon-"], .button.grad-danger[class^="line-icon-"], .button.grad-danger[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.grad-danger[class^="block-icon-"]:before, button.grad-danger[class*=" block-icon-"]:before, button.grad-danger[class^="line-icon-"]:before, button.grad-danger[class*=" line-icon-"]:before, .button.grad-danger[class^="block-icon-"]:before, .button.grad-danger[class*=" block-icon-"]:before, .button.grad-danger[class^="line-icon-"]:before, .button.grad-danger[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.grad-danger[class^="block-icon-"]:after, button.grad-danger[class*=" block-icon-"]:after, button.grad-danger[class^="line-icon-"]:after, button.grad-danger[class*=" line-icon-"]:after, .button.grad-danger[class^="block-icon-"]:after, .button.grad-danger[class*=" block-icon-"]:after, .button.grad-danger[class^="line-icon-"]:after, .button.grad-danger[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #831e1e;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.grad-submit, .button.grad-submit {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #d9eed1;
+///      position: relative;
+///      border-radius: 3px;
+///      border: 1px solid #407b2c;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6bbf4e), color-stop(100%, #407b2c));
+///      background-image: -moz-linear-gradient(#6bbf4e, #407b2c);
+///      background-image: -webkit-linear-gradient(#6bbf4e, #407b2c);
+///      background-image: linear-gradient(#6bbf4e, #407b2c);
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.grad-submit.large, .button.grad-submit.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.grad-submit.small, .button.grad-submit.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.grad-submit:hover, button.grad-submit:focus, .button.grad-submit:hover, .button.grad-submit:focus {
+///      color: white;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5eb341), color-stop(100%, #376826));
+///      background-image: -moz-linear-gradient(#5eb341, #376826);
+///      background-image: -webkit-linear-gradient(#5eb341, #376826);
+///      background-image: linear-gradient(#5eb341, #376826);
+///  }
+///  button.grad-submit:active, .button.grad-submit:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.grad-submit[class^="block-icon-"]:before, button.grad-submit[class*=" block-icon-"]:before, .button.grad-submit[class^="block-icon-"]:before, .button.grad-submit[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.grad-submit[class^="line-icon-"]:before, button.grad-submit[class*=" line-icon-"]:before, .button.grad-submit[class^="line-icon-"]:before, .button.grad-submit[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.grad-submit[class^="block-icon-"], button.grad-submit[class*=" block-icon-"], button.grad-submit[class^="line-icon-"], button.grad-submit[class*=" line-icon-"], .button.grad-submit[class^="block-icon-"], .button.grad-submit[class*=" block-icon-"], .button.grad-submit[class^="line-icon-"], .button.grad-submit[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.grad-submit[class^="block-icon-"]:before, button.grad-submit[class*=" block-icon-"]:before, button.grad-submit[class^="line-icon-"]:before, button.grad-submit[class*=" line-icon-"]:before, .button.grad-submit[class^="block-icon-"]:before, .button.grad-submit[class*=" block-icon-"]:before, .button.grad-submit[class^="line-icon-"]:before, .button.grad-submit[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.grad-submit[class^="block-icon-"]:after, button.grad-submit[class*=" block-icon-"]:after, button.grad-submit[class^="line-icon-"]:after, button.grad-submit[class*=" line-icon-"]:after, .button.grad-submit[class^="block-icon-"]:after, .button.grad-submit[class*=" block-icon-"]:after, .button.grad-submit[class^="line-icon-"]:after, .button.grad-submit[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #407b2c;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+/// @example markup - HTML
+///  <button class="grad-primary block-icon-add-user">
+///  	Primary
+///  </button>
+///  
+///  <button class="grad-secondary block-icon-chat">
+///  	Secondary
+///  </button>
+///  
+///  <button class="grad-warning block-icon-block">
+///  	Warning
+///  </button>
+///  
+///  <button class="grad-danger block-icon-cross">
+///  	Danger
+///  </button>
+///  
+///  <button class="grad-submit block-icon-check">
+///  	Submit
+///  </button>
+
+@mixin gradientButton($className,$bgCol:#f3f3f3,$amount:10%,$contrast:45%,$icons:true,$rounding:3px){
+
+	$bgCol : Col($bgCol);
+
+	button.#{$className}, .button.#{$className}{
+
+		$top    : lighten($bgCol,$amount);
+		$bottom : darken($bgCol,$amount);
+
+		display: inline-block; 			
+		outline:none;
+		padding: 10px 20px;
+		margin-bottom: 10px;
+		cursor: pointer;
+		color: contrast($bgCol,$contrast);
+		position:relative;
+		border-radius:$rounding;
+		border:1px solid $bottom;
+		font-weight: 600;
+		line-height: inherit;
+		font-family: inherit;
+		@include linearGradient($top,$bottom);
+		@include fontSize(16);
+
+		&.large{
+			
+			padding: 12px 25px;
+			@include fontSize(20);
+		}
+
+		&.small{
+			
+			padding: 5px 10px;
+			@include fontSize(14);
+		}
+
+		&:hover, &:focus{
+
+			$hovert : darken($top,5%);
+			$hoverb : darken($bottom,5%);
+			
+			color: contrast($bgCol,($contrast * 1.3));
+			@include linearGradient($hovert,$hoverb);
+		}
+
+		&:active{
+
+			border-bottom-width:1px;
+			margin-bottom: 2px;
+			top: 3px;
+		}
+
+		@if($icons){
+
+			&[class^="block-icon-"]:before, &[class*=" block-icon-"]:before {
+				font-family: 'block-icon-set';
+			}
+
+			&[class^="line-icon-"]:before, &[class*=" line-icon-"]:before{
+				font-family: 'line-icon-set';
+			}
+
+			&[class^="block-icon-"], &[class*=" block-icon-"], &[class^="line-icon-"], &[class*=" line-icon-"] {
+
+				padding-right: 50px;
+
+				&:before{
+
+					text-transform: none;
+					line-height: 1;
+					position: absolute;
+					top:50%;
+					right:10px;
+					margin-top:-10px;
+					font-weight: normal;
+					@include fontSize(18);
+				}
+
+				&:after{
+
+					content: "";
+					position: absolute;
+					width:1px;
+					background: darken($bgCol,10%);
+					right:35px;
+					top:0;
+					bottom:0;
+				}
+			}
+
+		}
+	}
+
+}
+
+/// Add styles for a flat button with a bottom border to give an embossed effect.
+/// Arguments allow you to control colour, border thickness, text contrast, optional
+/// icon styles and rounding.
+/// @name flatButton
+/// @group buttons
+/// @param {String} classname [] *Required - class name for the element
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {Pixel Value} thickness [5px] Thickness of the bottom border
+/// @param {Percent} contrast [45%] Percentage of contrast to be applied to text
+/// @param {Pixel Value} rounding [3px] Border-radius value
+/// @example scss - Include
+///  @include flatButton('flat-primary',#289e83);
+///  @include flatButton('flat-secondary',#1b8898);
+///  @include flatButton('flat-warning',#d7861e);
+///  @include flatButton('flat-danger', #ac2828);
+///  @include flatButton('flat-submit',#54A03A);
+/// @example css - Output
+///  button.flat-primary, .button.flat-primary {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #bdeee3;
+///      position: relative;
+///      background-color: #289e83;
+///      border-radius: 3px;
+///      border-style: solid;
+///      border-width: 5px;
+///      border-top: none;
+///      border-left: none;
+///      border-right: none;
+///      border-bottom-color: #1e7561;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.flat-primary.large, .button.flat-primary.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.flat-primary.small, .button.flat-primary.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.flat-primary:hover, button.flat-primary:focus, .button.flat-primary:hover, .button.flat-primary:focus {
+///      color: #f4fcfa;
+///      background-color: #238a72;
+///  }
+///  button.flat-primary:active, .button.flat-primary:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.flat-primary[class^="block-icon-"]:before, button.flat-primary[class*=" block-icon-"]:before, .button.flat-primary[class^="block-icon-"]:before, .button.flat-primary[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.flat-primary[class^="line-icon-"]:before, button.flat-primary[class*=" line-icon-"]:before, .button.flat-primary[class^="line-icon-"]:before, .button.flat-primary[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.flat-primary[class^="block-icon-"], button.flat-primary[class*=" block-icon-"], button.flat-primary[class^="line-icon-"], button.flat-primary[class*=" line-icon-"], .button.flat-primary[class^="block-icon-"], .button.flat-primary[class*=" block-icon-"], .button.flat-primary[class^="line-icon-"], .button.flat-primary[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.flat-primary[class^="block-icon-"]:before, button.flat-primary[class*=" block-icon-"]:before, button.flat-primary[class^="line-icon-"]:before, button.flat-primary[class*=" line-icon-"]:before, .button.flat-primary[class^="block-icon-"]:before, .button.flat-primary[class*=" block-icon-"]:before, .button.flat-primary[class^="line-icon-"]:before, .button.flat-primary[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.flat-primary[class^="block-icon-"]:after, button.flat-primary[class*=" block-icon-"]:after, button.flat-primary[class^="line-icon-"]:after, button.flat-primary[class*=" line-icon-"]:after, .button.flat-primary[class^="block-icon-"]:after, .button.flat-primary[class*=" block-icon-"]:after, .button.flat-primary[class^="line-icon-"]:after, .button.flat-primary[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #1e7561;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.flat-secondary, .button.flat-secondary {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #a9e7f0;
+///      position: relative;
+///      background-color: #1b8898;
+///      border-radius: 3px;
+///      border-style: solid;
+///      border-width: 5px;
+///      border-top: none;
+///      border-left: none;
+///      border-right: none;
+///      border-bottom-color: #13616d;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.flat-secondary.large, .button.flat-secondary.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.flat-secondary.small, .button.flat-secondary.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.flat-secondary:hover, button.flat-secondary:focus, .button.flat-secondary:hover, .button.flat-secondary:focus {
+///      color: #e3f7fa;
+///      background-color: #177582;
+///  }
+///  button.flat-secondary:active, .button.flat-secondary:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.flat-secondary[class^="block-icon-"]:before, button.flat-secondary[class*=" block-icon-"]:before, .button.flat-secondary[class^="block-icon-"]:before, .button.flat-secondary[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.flat-secondary[class^="line-icon-"]:before, button.flat-secondary[class*=" line-icon-"]:before, .button.flat-secondary[class^="line-icon-"]:before, .button.flat-secondary[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.flat-secondary[class^="block-icon-"], button.flat-secondary[class*=" block-icon-"], button.flat-secondary[class^="line-icon-"], button.flat-secondary[class*=" line-icon-"], .button.flat-secondary[class^="block-icon-"], .button.flat-secondary[class*=" block-icon-"], .button.flat-secondary[class^="line-icon-"], .button.flat-secondary[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.flat-secondary[class^="block-icon-"]:before, button.flat-secondary[class*=" block-icon-"]:before, button.flat-secondary[class^="line-icon-"]:before, button.flat-secondary[class*=" line-icon-"]:before, .button.flat-secondary[class^="block-icon-"]:before, .button.flat-secondary[class*=" block-icon-"]:before, .button.flat-secondary[class^="line-icon-"]:before, .button.flat-secondary[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.flat-secondary[class^="block-icon-"]:after, button.flat-secondary[class*=" block-icon-"]:after, button.flat-secondary[class^="line-icon-"]:after, button.flat-secondary[class*=" line-icon-"]:after, .button.flat-secondary[class^="block-icon-"]:after, .button.flat-secondary[class*=" block-icon-"]:after, .button.flat-secondary[class^="line-icon-"]:after, .button.flat-secondary[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #13616d;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.flat-warning, .button.flat-warning {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #fbefe0;
+///      position: relative;
+///      background-color: #d7861e;
+///      border-radius: 3px;
+///      border-style: solid;
+///      border-width: 5px;
+///      border-top: none;
+///      border-left: none;
+///      border-right: none;
+///      border-bottom-color: #aa6a18;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.flat-warning.large, .button.flat-warning.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.flat-warning.small, .button.flat-warning.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.flat-warning:hover, button.flat-warning:focus, .button.flat-warning:hover, .button.flat-warning:focus {
+///      color: white;
+///      background-color: #c1781b;
+///  }
+///  button.flat-warning:active, .button.flat-warning:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.flat-warning[class^="block-icon-"]:before, button.flat-warning[class*=" block-icon-"]:before, .button.flat-warning[class^="block-icon-"]:before, .button.flat-warning[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.flat-warning[class^="line-icon-"]:before, button.flat-warning[class*=" line-icon-"]:before, .button.flat-warning[class^="line-icon-"]:before, .button.flat-warning[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.flat-warning[class^="block-icon-"], button.flat-warning[class*=" block-icon-"], button.flat-warning[class^="line-icon-"], button.flat-warning[class*=" line-icon-"], .button.flat-warning[class^="block-icon-"], .button.flat-warning[class*=" block-icon-"], .button.flat-warning[class^="line-icon-"], .button.flat-warning[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.flat-warning[class^="block-icon-"]:before, button.flat-warning[class*=" block-icon-"]:before, button.flat-warning[class^="line-icon-"]:before, button.flat-warning[class*=" line-icon-"]:before, .button.flat-warning[class^="block-icon-"]:before, .button.flat-warning[class*=" block-icon-"]:before, .button.flat-warning[class^="line-icon-"]:before, .button.flat-warning[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.flat-warning[class^="block-icon-"]:after, button.flat-warning[class*=" block-icon-"]:after, button.flat-warning[class^="line-icon-"]:after, button.flat-warning[class*=" line-icon-"]:after, .button.flat-warning[class^="block-icon-"]:after, .button.flat-warning[class*=" block-icon-"]:after, .button.flat-warning[class^="line-icon-"]:after, .button.flat-warning[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #aa6a18;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.flat-danger, .button.flat-danger {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #f2c7c7;
+///      position: relative;
+///      background-color: #ac2828;
+///      border-radius: 3px;
+///      border-style: solid;
+///      border-width: 5px;
+///      border-top: none;
+///      border-left: none;
+///      border-right: none;
+///      border-bottom-color: #831e1e;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.flat-danger.large, .button.flat-danger.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.flat-danger.small, .button.flat-danger.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.flat-danger:hover, button.flat-danger:focus, .button.flat-danger:hover, .button.flat-danger:focus {
+///      color: white;
+///      background-color: #972323;
+///  }
+///  button.flat-danger:active, .button.flat-danger:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.flat-danger[class^="block-icon-"]:before, button.flat-danger[class*=" block-icon-"]:before, .button.flat-danger[class^="block-icon-"]:before, .button.flat-danger[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.flat-danger[class^="line-icon-"]:before, button.flat-danger[class*=" line-icon-"]:before, .button.flat-danger[class^="line-icon-"]:before, .button.flat-danger[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.flat-danger[class^="block-icon-"], button.flat-danger[class*=" block-icon-"], button.flat-danger[class^="line-icon-"], button.flat-danger[class*=" line-icon-"], .button.flat-danger[class^="block-icon-"], .button.flat-danger[class*=" block-icon-"], .button.flat-danger[class^="line-icon-"], .button.flat-danger[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.flat-danger[class^="block-icon-"]:before, button.flat-danger[class*=" block-icon-"]:before, button.flat-danger[class^="line-icon-"]:before, button.flat-danger[class*=" line-icon-"]:before, .button.flat-danger[class^="block-icon-"]:before, .button.flat-danger[class*=" block-icon-"]:before, .button.flat-danger[class^="line-icon-"]:before, .button.flat-danger[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.flat-danger[class^="block-icon-"]:after, button.flat-danger[class*=" block-icon-"]:after, button.flat-danger[class^="line-icon-"]:after, button.flat-danger[class*=" line-icon-"]:after, .button.flat-danger[class^="block-icon-"]:after, .button.flat-danger[class*=" block-icon-"]:after, .button.flat-danger[class^="line-icon-"]:after, .button.flat-danger[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #831e1e;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+///  
+///  button.flat-submit, .button.flat-submit {
+///      display: inline-block;
+///      outline: none;
+///      padding: 10px 20px;
+///      margin-bottom: 10px;
+///      cursor: pointer;
+///      color: #d9eed1;
+///      position: relative;
+///      background-color: #54A03A;
+///      border-radius: 3px;
+///      border-style: solid;
+///      border-width: 5px;
+///      border-top: none;
+///      border-left: none;
+///      border-right: none;
+///      border-bottom-color: #407b2c;
+///      font-weight: 600;
+///      line-height: inherit;
+///      font-family: inherit;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  button.flat-submit.large, .button.flat-submit.large {
+///      padding: 12px 25px;
+///      font-size: 20px;
+///      font-size: 1.25rem;
+///  }
+///  button.flat-submit.small, .button.flat-submit.small {
+///      padding: 5px 10px;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  button.flat-submit:hover, button.flat-submit:focus, .button.flat-submit:hover, .button.flat-submit:focus {
+///      color: white;
+///      background-color: #4a8d33;
+///  }
+///  button.flat-submit:active, .button.flat-submit:active {
+///      border-bottom-width: 1px;
+///      margin-bottom: 2px;
+///      top: 3px;
+///  }
+///  button.flat-submit[class^="block-icon-"]:before, button.flat-submit[class*=" block-icon-"]:before, .button.flat-submit[class^="block-icon-"]:before, .button.flat-submit[class*=" block-icon-"]:before {
+///      font-family: 'block-icon-set';
+///  }
+///  button.flat-submit[class^="line-icon-"]:before, button.flat-submit[class*=" line-icon-"]:before, .button.flat-submit[class^="line-icon-"]:before, .button.flat-submit[class*=" line-icon-"]:before {
+///      font-family: 'line-icon-set';
+///  }
+///  button.flat-submit[class^="block-icon-"], button.flat-submit[class*=" block-icon-"], button.flat-submit[class^="line-icon-"], button.flat-submit[class*=" line-icon-"], .button.flat-submit[class^="block-icon-"], .button.flat-submit[class*=" block-icon-"], .button.flat-submit[class^="line-icon-"], .button.flat-submit[class*=" line-icon-"] {
+///      padding-right: 50px;
+///  }
+///  button.flat-submit[class^="block-icon-"]:before, button.flat-submit[class*=" block-icon-"]:before, button.flat-submit[class^="line-icon-"]:before, button.flat-submit[class*=" line-icon-"]:before, .button.flat-submit[class^="block-icon-"]:before, .button.flat-submit[class*=" block-icon-"]:before, .button.flat-submit[class^="line-icon-"]:before, .button.flat-submit[class*=" line-icon-"]:before {
+///      text-transform: none;
+///      line-height: 1;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      margin-top: -10px;
+///      font-weight: normal;
+///      font-size: 18px;
+///      font-size: 1.125rem;
+///  }
+///  button.flat-submit[class^="block-icon-"]:after, button.flat-submit[class*=" block-icon-"]:after, button.flat-submit[class^="line-icon-"]:after, button.flat-submit[class*=" line-icon-"]:after, .button.flat-submit[class^="block-icon-"]:after, .button.flat-submit[class*=" block-icon-"]:after, .button.flat-submit[class^="line-icon-"]:after, .button.flat-submit[class*=" line-icon-"]:after {
+///      content: "";
+///      position: absolute;
+///      width: 1px;
+///      background: #407b2c;
+///      right: 35px;
+///      top: 0;
+///      bottom: 0;
+///  }
+/// @example markup - HTML
+///  <button class="flat-primary block-icon-add-user">
+///  	Primary
+///  </button>
+///  
+///  <button class="flat-secondary block-icon-chat">
+///  	Secondary
+///  </button>
+///  
+///  <button class="flat-warning block-icon-block">
+///  	Warning
+///  </button>
+///  
+///  <button class="flat-danger block-icon-cross">
+///  	Danger
+///  </button>
+///  
+///  <button class="flat-submit block-icon-check">
+///  	Submit
+///  </button>
+
+@mixin flatButton($className,$bgCol:#f3f3f3,$thickness:5px,$contrast:45%,$icons:true,$rounding:3px){
+
+	$bgCol : Col($bgCol);
+
+	button.#{$className}, .button.#{$className}{
+
+		display: inline-block; 			
+		outline:none;
+		padding: 10px 20px;
+		margin-bottom: 10px;
+		cursor: pointer;
+		color: contrast($bgCol,$contrast);
+		position:relative;
+		background-color:$bgCol;
+		border-radius:$rounding;
+		border-style: solid;
+		border-width:$thickness;
+		border-top:none;
+		border-left:none;
+		border-right: none;
+		border-bottom-color: darken($bgCol,10%);
+		font-weight: 600;
+		line-height: inherit;
+		font-family: inherit;
+		@include fontSize(16);
+
+		&.large{
+			
+			padding: 12px 25px;
+			@include fontSize(20);
+		}
+
+		&.small{
+			
+			padding: 5px 10px;
+			@include fontSize(14);
+		}
+
+		&:hover, &:focus{
+			
+			color: contrast($bgCol,($contrast * 1.3));
+			background-color:darken($bgCol,5%);
+		}
+
+		&:active{
+
+			border-bottom-width:1px;
+			margin-bottom: 2px;
+			top: 3px;
+		}
+
+		@if($icons){
+
+			&[class^="block-icon-"]:before, &[class*=" block-icon-"]:before {
+				font-family: 'block-icon-set';
+			}
+
+			&[class^="line-icon-"]:before, &[class*=" line-icon-"]:before{
+				font-family: 'line-icon-set';
+			}
+
+			&[class^="block-icon-"], &[class*=" block-icon-"], &[class^="line-icon-"], &[class*=" line-icon-"] {
+
+				padding-right: 50px;
+
+				&:before{
+
+					text-transform: none;
+					line-height: 1;
+					position: absolute;
+					top:50%;
+					right:10px;
+					margin-top:-10px;
+					font-weight: normal;
+					@include fontSize(18);
+				}
+
+				&:after{
+
+					content: "";
+					position: absolute;
+					width:1px;
+					background: darken($bgCol,10%);
+					right:35px;
+					top:0;
+					bottom:0;
+				}
+			}
+
+		}
+	}
+
+}

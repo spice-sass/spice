@@ -1,0 +1,71 @@
+// =========================================================================================================================
+// @includes - Tables
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+@mixin tables($padding:10px,$fontSize:16px){
+
+	table {
+
+		width:100%;
+	    display: table;
+	    border-collapse: separate;
+
+	    tbody {
+
+			display: table-row-group;
+			vertical-align: middle;
+			border-color: inherit;
+		}
+
+		tr {
+
+		    display: table-row;
+		    vertical-align: inherit;
+		    border-color: inherit;
+		}
+
+		th{
+
+			font-weight: 600;
+		}
+
+		th, td{
+			
+			padding: $padding;
+			line-height: 1.5;
+			vertical-align: top;
+			display: table-cell;
+		}
+	}	
+}
+
+
+@mixin themeTables($themeColour){
+	
+	table{
+
+		td{
+
+			border-top-width: 1px;
+			border-style: solid;
+			border-color:contrast($themeColour,10%);
+		}
+
+		th{
+
+			color: contrast($themeColour,60%);
+			border-color:contrast($themeColour,10%);
+		}
+
+		tbody tr{
+
+			&:nth-child(odd){
+				background-color: lighten($themeColour,2%);
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 {
   "name": "spice",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Add a little spice to your UI",
   "main": "src/_spice.scss",
   "scripts": {
@@ -26,11 +26,13 @@
     "url": "https://github.com/spice-sass/spice/issues"
   },
   "homepage": "https://github.com/spice-sass/spice#readme",
-  "dependencies": {
+  "devDependencies": {
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-bump": "^1.0.0",
+    "gulp-express": "^0.3.5",
     "gulp-sass": "^2.0.4",
-    "sassdoc": "^2.1.15"
+    "sassdoc": "^2.1.15",
+    "yargs": "^3.27.0"
   }
 }

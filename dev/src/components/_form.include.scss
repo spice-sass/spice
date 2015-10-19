@@ -1,0 +1,985 @@
+// =========================================================================================================================
+// @includes - Forms
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+// ------------------------------------------------------
+
+/// Styling HTML5 range inputs
+/// @name rangeInput
+/// @group forms
+/// @param {Integer} rounding [0] Rounding in pixels
+/// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
+/// @param {Array}inputs [list] List of input types to apply styles to
+/// @example scss - Include
+///  @include rangeInput(15px,15px,20px);
+///
+/// @example css - Output
+///  input[type=range] {
+///    -webkit-appearance: none;
+///    width: 100%;
+///    margin: 20px 0;
+///    background-color: transparent;
+///  }
+///  input[type=range]::-webkit-slider-thumb {
+///    -webkit-appearance: none;
+///    height: 20px;
+///    width: 15px;
+///    cursor: pointer;
+///    margin-top: -2.5px;
+///    border-radius: 5px;
+///  }
+///  input[type=range]::-moz-range-thumb {
+///    height: 20px;
+///    width: 15px;
+///    cursor: pointer;
+///    border-radius: 5px;
+///  }
+///  input[type=range]::-ms-thumb {
+///    height: 20px;
+///    width: 15px;
+///    cursor: pointer;
+///    border-radius: 5px;
+///  }
+///  input[type=range]::-moz-range-track {
+///    width: 100%;
+///    height: 15px;
+///    cursor: pointer;
+///    border-radius: 5px;
+///  }
+///  input[type=range]::-webkit-slider-runnable-track {
+///    width: 100%;
+///    height: 15px;
+///    cursor: pointer;
+///    border-radius: 5px;
+///  }
+///  input[type=range]::-ms-track {
+///    width: 100%;
+///    height: 15px;
+///    cursor: pointer;
+///    background: transparent;
+///    border-color: transparent;
+///    color: transparent;
+///  }
+///  
+
+@mixin rangeInput($trackHeight:15px,$sliderWidth:15px,$sliderHeight:20px,$knobRounding:5,$margin:20px){
+
+	input{
+
+		&[type=range]{
+
+			// Normalise range slider
+			-webkit-appearance: none;
+  			width: 100%;
+  			margin: $margin 0; 
+  			background-color: rgba(0,0,0,0);
+
+
+  			// Thumb styling --
+  			// -------------------------
+
+  			&::-webkit-slider-thumb{
+  				
+  				-webkit-appearance: none;
+				height: $sliderHeight;
+				width: $sliderWidth;
+				cursor: pointer;
+				margin-top: sliderShift($trackHeight,$sliderHeight);
+
+				@if $knobRounding > 0{
+
+					border-radius: #{$knobRounding}px;
+				} 
+  			}
+
+  			&::-moz-range-thumb {
+
+			  	height: $sliderHeight;
+			  	width: $sliderWidth;
+			  	cursor: pointer;
+
+			  	@if $knobRounding > 0{
+
+					border-radius: #{$knobRounding}px;
+				}
+			}
+
+
+			&::-ms-thumb {
+
+			    height: $sliderHeight;
+			    width: $sliderWidth;
+			    cursor: pointer;
+
+			    @if $knobRounding > 0{
+
+					border-radius: #{$knobRounding}px;
+				}
+			}
+
+			// Track styling --
+  			// -------------------------
+
+
+			&::-moz-range-track {
+
+			    width: 100%;
+			    height: $trackHeight;
+			    cursor: pointer;
+			    border-radius: 5px;
+			}
+
+			&::-webkit-slider-runnable-track {
+
+				width: 100%;
+				height: $trackHeight;
+				cursor: pointer;
+				border-radius: 5px;
+			}
+
+			&::-ms-track {
+
+			    width: 100%;
+			    height: $trackHeight;
+			    cursor: pointer;
+			    background: transparent;
+			    border-color: transparent;
+			    color: transparent;
+			}
+			
+
+			
+		}
+	}
+}
+
+// ------------------------------------------------------
+
+/// Theming HTML5 range inputs
+/// @name themeRangeInput
+/// @group forms
+/// @param {#hex/rgba} themeColour [] Base colour for the input
+/// @param {#hex/rgba} knob [] Colour of the slider knob
+/// @param {#hex/rgba} focus [] Focus colour
+/// @example scss - Include
+///  @include themeRangeInput(#e9e9e9,#f3f3f3,#dd5a6f);
+///
+/// @example css - Output
+///  input[type=range]::-webkit-slider-thumb {
+///    background: #f3f3f3;
+///    border: 1px solid silver;
+///  }
+///  input[type=range]::-moz-range-thumb {
+///    background: #f3f3f3;
+///    border: 1px solid silver;
+///  }
+///  input[type=range]::-ms-thumb {
+///    background: #f3f3f3;
+///    border: 1px solid silver;
+///  }
+///  input[type=range]::-moz-range-track {
+///    background-color: #f6f6f6;
+///    border: 1px solid #d0d0d0;
+///  }
+///  input[type=range]::-webkit-slider-runnable-track {
+///    background-color: #f6f6f6;
+///    border: 1px solid #d0d0d0;
+///  }
+///  input[type=range]::-ms-track {
+///    background-color: #f6f6f6;
+///    border: 1px solid #d0d0d0;
+///  }
+///  input[type=range]::-ms-fill-lower {
+///    background: #dd5a6f;
+///    border: 1px solid #d4304a;
+///  }
+///  input[type=range]:focus::-webkit-slider-thumb {
+///    background: #dd5a6f;
+///    border: 1px solid #ad243a;
+///  }
+///  input[type=range]:focus::-moz-range-thumb {
+///    background: #dd5a6f;
+///    border: 1px solid #ad243a;
+///  }
+///  input[type=range]:focus::-ms-thumb {
+///    background: #dd5a6f;
+///    border: 1px solid #ad243a;
+///  }
+///  input[type=range]:focus::-moz-range-track {
+///    border: 1px solid #dd5a6f;
+///  }
+///  input[type=range]:focus::-webkit-slider-runnable-track {
+///    border: 1px solid #dd5a6f;
+///  }
+///  input[type=range]:focus::-ms-track {
+///    border: 1px solid #dd5a6f;
+///  }
+/// 
+
+@mixin themeRangeInput($themeColour,$knob,$focus){
+	
+
+	input{
+
+		&[type=range]{
+
+  			// Thumb styling --
+  			// -------------------------
+
+  			&::-webkit-slider-thumb{
+  				
+  				background:$knob;
+  				border: 1px solid darken($knob,20%);
+  				
+  			}
+
+  			&::-moz-range-thumb {
+
+			  	background:$knob;
+			  	border: 1px solid darken($knob,20%);
+			}
+
+
+			&::-ms-thumb {
+
+			    background:$knob;
+			    border: 1px solid darken($knob,20%);
+			}
+
+			// Track styling --
+  			// -------------------------
+
+
+			&::-moz-range-track {
+
+			    background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-webkit-slider-runnable-track {
+
+				background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-ms-track {
+
+			    background-color: lighten($themeColour,5%);
+				border: 1px solid darken($themeColour,10%);
+			}
+
+			&::-ms-fill-lower {
+
+			    background: $focus;
+			    border: 1px solid darken($focus,10%);
+			}
+
+			&:focus{
+				
+				&::-webkit-slider-thumb{
+  				
+	  				background:$focus;
+	  				border: 1px solid darken($focus,20%);
+	  				
+	  			}
+
+	  			&::-moz-range-thumb {
+
+				  	background:$focus;
+				  	border: 1px solid darken($focus,20%);
+				}
+
+
+				&::-ms-thumb {
+
+				    background:$focus;
+				    border: 1px solid darken($focus,20%);
+				}
+
+				&::-moz-range-track {
+
+					border: 1px solid $focus;
+				}
+
+				&::-webkit-slider-runnable-track {
+
+					border: 1px solid $focus;
+				}
+
+				&::-ms-track {
+
+					border: 1px solid $focus;
+				}
+			}
+		}
+	}
+}
+
+// ------------------------------------------------------
+
+/// Include styles for a form with rounded inputs and textareas. Arguments 
+/// Allow you to control the rounding amount, padding and font size of elements.
+/// @name formRounded
+/// @group forms
+/// @param {Pixel value} rounding [5px] Rounding value of the elements
+/// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
+/// @param {Integer} font-size [18] Pt size of the font
+/// @example scss - Include
+///  @include formRounded(12px);
+///
+/// @example css - Output
+///  form.rounded label {
+///    	display: block;
+///    	margin: 0 0 15px 5px;
+///    	font-size: 18px;
+///    	font-size: 1.125rem;
+///  }
+///  form.rounded textarea, form.rounded input[type=text], form.rounded input[type=email], form.rounded input[type=password], form.rounded input[type=url], form.rounded input[type=tel], form.rounded input[type=search], form.rounded input[type=date], form.rounded input[type=time], form.rounded input[type=number], form.rounded input.text, form.rounded select {
+///    	width: 100%;
+///   	max-width: 100%;
+///    	margin: 0;
+///    	outline: none;
+///    	margin-bottom: 20px;
+///    	padding: 10px 20px;
+///    	border-style: solid;
+///    	border-width: 1px;
+///    	font-size: 18px;
+///    	font-size: 1.125rem;
+///    	border-radius: 12px;
+///  }
+///  form.rounded input:focus {
+///    	outline: none;
+///  }
+///  form.rounded fieldset {
+///    	width: 100%;
+///  }
+/// @example markup - HTML
+///  <form class="rounded">
+///  
+///  	<div class="grid-row">
+///  
+///  		<div class="grid-col-6">
+///  			
+///  			<label for="name">Name</label>
+///  			<input class="text" id="name" type="text">
+///  
+///  		</div>
+///  
+///  		<div class="grid-col-6">
+///  			
+///  			<label for="name">Email</label>
+///  			<input id="name" type="email">
+///  
+///  		</div>
+///  
+///  	</div>
+///  
+///  	<div class="grid-row">
+///  
+///  		<div class="grid-col-6">
+///  
+///  			<label for="password">Password</label>
+///  			<input id="password" type="password">
+///  
+///  		</div>
+///  
+///  		<div class="grid-col-6">
+///  
+///  			<label for="repeat">Repeat Password</label>
+///  			<input id="repeat" type="password">
+///  
+///  		</div>
+///  
+///  	</div>
+///  
+///  	<div class="grid-row">
+///  		
+///  		<label for="message">Message</label>
+///  		<textarea name="Message" id="message" rows="10"></textarea>
+///  		
+///  	</div>
+///  	
+///  	<input class="button submit align-centre" type="submit" value="Send Message">
+///  
+///  </form>  
+
+
+@mixin formRounded($rounding:5px,$padding:10px 20px,$font-size:18) {
+	
+	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
+
+	form.rounded{
+
+		label{
+
+			display: block;
+			margin: 0 0 15px 5px;
+			@include fontSize($font-size);
+		}
+
+		textarea {
+
+			width:100%;
+			max-width:100%;
+			margin:0;
+			outline: none;
+			margin-bottom: 20px;
+			padding: $padding;
+			border-style: solid;
+			border-width:1px;
+			@include fontSize($font-size);
+
+			@if $rounding != 0px {
+
+				border-radius : #{$rounding};
+			}
+		}
+
+		input{
+			
+			@each $input in $inputs {
+				&[type=#{$input}]{
+					@extend textarea;
+				}
+			}
+
+			&.text{
+				@extend textarea;
+			}
+
+			&:focus{
+
+				outline: none;
+			}
+
+		}
+
+		select{
+
+			@extend textarea;
+		}
+
+		fieldset{
+
+			width:100%;
+		}
+
+	}
+}
+
+// ------------------------------------------------------
+
+/// Include styles for a form with bottom-bordered inputs and textareas. Arguments 
+/// Allow you to control the border thickness, padding and font size of elements.
+/// @name formLined
+/// @group forms
+/// @param {Pixel value} thickness [4px] Bottom border thickness 
+/// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
+/// @param {Integer} font-size [18] Pt size of the font
+/// @example scss - Include
+///  @include formLined(6px,15px 20px,18);
+///
+/// @example css - Output
+///  form.lined label {
+///    	display: block;
+///    	margin: 0 0 15px 0;
+///    	font-size: 18px;
+///    	font-size: 1.125rem;
+///  }
+///  form.lined textarea, form.lined input[type=text], form.lined input[type=email], form.lined input[type=password], form.lined input[type=url], form.lined input[type=tel], form.lined input[type=search], form.lined input[type=date], form.lined input[type=time], form.lined input[type=number], form.lined input.text, form.lined select {
+///    	width: 100%;
+///    	max-width: 100%;
+///    	margin: 0;
+///    	outline: none;
+///    	margin-bottom: 20px;
+///    	padding: 15px 20px;
+///    	border-bottom-style: solid;
+///    	border-bottom-width: 6px;
+///    	border-top: none;
+///    	border-left: none;
+///    	border-right: none;
+///    	font-size: 18px;
+///    	font-size: 1.125rem;
+///  }
+///  form.lined input:focus {
+///    	outline: none;
+///  }
+///  form.lined fieldset {
+///    	width: 100%;
+///  }
+///  
+/// @example markup - HTML
+///  <form class="lined">
+///  
+///  	<div class="grid-row">
+///  
+///  		<div class="grid-col-6">
+///  			
+///  			<label for="name">Name</label>
+///  			<input class="text" id="name" type="text">
+///  
+///  		</div>
+///  
+///  		<div class="grid-col-6">
+///  			
+///  			<label for="name">Email</label>
+///  			<input id="name" type="email">
+///  
+///  		</div>
+///  
+///  	</div>
+///  
+///  	<div class="grid-row">
+///  
+///  		<div class="grid-col-6">
+///  
+///  			<label for="password">Password</label>
+///  			<input id="password" type="password">
+///  
+///  		</div>
+///  
+///  		<div class="grid-col-6">
+///  
+///  			<label for="repeat">Repeat Password</label>
+///  			<input id="repeat" type="password">
+///  
+///  		</div>
+///  
+///  	</div>
+///  
+///  	<div class="grid-row">
+///  		
+///  		<label for="message">Message</label>
+///  		<textarea name="Message" id="message" rows="10"></textarea>
+///  		
+///  	</div>
+///  
+///  	<input class="button submit align-centre" type="submit" value="Send Message">
+///  	
+///  
+///  </form>
+
+@mixin formLined($thickness:4px,$padding:10px 20px,$font-size:18){
+
+
+	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
+	
+	form.lined{
+
+		label{
+
+			display: block;
+			margin: 0 0 15px 0;
+			@include fontSize($font-size);
+		}
+
+		textarea {
+
+			width:100%;
+			max-width:100%;
+			margin:0;
+			outline: none;
+			margin-bottom: 20px;
+			padding: $padding;
+			border-bottom-style: solid;
+			border-bottom-width:$thickness;
+			border-top: none;
+			border-left:none;
+			border-right:none;
+			@include fontSize($font-size);
+		}
+
+		input{
+			
+			@each $input in $inputs {
+				&[type=#{$input}]{
+					@extend textarea;
+				}
+			}
+
+			&.text{
+				@extend textarea;
+			}
+
+			&:focus{
+
+				outline: none;
+			}
+
+		}
+
+		select{
+
+			@extend textarea;
+		}
+
+		fieldset{
+
+			width:100%;
+		}
+
+	}
+}
+
+// ------------------------------------------------------
+
+/// Control the colours of form elements by passing in arguments for
+/// text, background and focus colours.
+/// @name formsTheme
+/// @group forms
+/// @param {#hex/rgba} textCol [] Text colour for the form elements
+/// @param {#hex/rgba} bgCol [] Background colour for the form elements
+/// @param {#hex/rgba} focus [] Focus highlight colour
+/// @example scss - Includes
+///  @include formsTheme(#333,#e9e9e9,#407b2c);
+///
+/// @example css - Output
+///  textarea, select, input[type=text], input[type=email], input[type=password], input[type=url], input[type=tel], input[type=search], input[type=date], input[type=time], input[type=number], input.text {
+///    background-color: #e9e9e9;
+///    border-color: #d0d0d0;
+///    color: #333;
+///  }
+///  textarea:hover, select:hover, input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, input[type=url]:hover, input[type=tel]:hover, input[type=search]:hover, input[type=date]:hover, input[type=time]:hover, input[type=number]:hover, input.text:hover {
+///    border-color: #b6b6b6;
+///  }
+///  textarea:focus, select:focus, input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=url]:focus, input[type=tel]:focus, input[type=search]:focus, input[type=date]:focus, input[type=time]:focus, input[type=number]:focus, input.text:focus {
+///    color: black;
+///    border-color: #407b2c;
+///  }
+///  
+
+@mixin formsTheme($textCol,$bgColour,$focus){
+
+	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
+
+	textarea{
+
+		background-color:$bgColour;
+		border-color:contrast($bgColour,10%);
+		color: $textCol;
+
+		&:hover{
+
+			border-color: contrast($bgColour,20%);;
+		}
+
+		&:focus{
+			
+			color:contrast($bgColour,100%);
+			border-color: $focus;
+		}
+	} 
+
+	select{
+
+		@extend textarea;
+	}
+
+	@each $input in $inputs {
+		input[type=#{$input}]{
+
+			@extend textarea;
+		}
+	}
+
+	input.text{
+		@extend textarea;
+	}
+}
+
+// ------------------------------------------------------
+
+/// Include styles for a modern looking javascript form switch with this mixin.
+/// A class name is required for the first argument. Optional arguments allow
+/// you to control on colour, off colour, width and font size.
+/// **Note:** the javascript for this is yet to be included. See below for expected markup.
+/// @name switch
+/// @group forms
+/// @param {String} className [] The class to be applied to the switch
+/// @param {#hex/rgba} on [#289e83] Background colour of the switch when on
+/// @param {#hex/rgba} off [#fff] Background colour of the switch when off
+/// @param {Pixel val} width [80px] Width of the switch
+/// @param {Integer} fontSize [18] Font size in pixels
+/// @example scss - Includes
+///  @include switch('green', #54A03A,#777);
+///
+/// @example css - Output
+///  .switch.green {
+///    width: 80px;
+///    overflow: hidden;
+///    padding: 0;
+///    margin: 0;
+///    border: none;
+///    outline: none;
+///    height: 36px;
+///    position: relative;
+///    cursor: pointer;
+///    border-radius: 18px;
+///    font-size: 18px;
+///    font-size: 1.125rem;
+///  }
+///  .switch.green:before {
+///    content: "";
+///    left: 5px;
+///    z-index: 1;
+///    background-color: #919191;
+///    position: absolute;
+///    top: 50%;
+///    -webkit-transform: translateY(-50%);
+///    -moz-transform: translateY(-50%);
+///    -ms-transform: translateY(-50%);
+///    transform: translateY(-50%);
+///    -webkit-transition: all 0.3s ease;
+///    -moz-transition: all 0.3s ease;
+///    -o-transition: all 0.3s ease;
+///    transition: all 0.3s ease;
+///    width: 25.2px;
+///    height: 25.2px;
+///    border-radius: 25.2px;
+///  }
+///  .switch.green span {
+///    position: absolute;
+///    line-height: 36px;
+///    height: 36px;
+///    display: block;
+///    width: 80px;
+///    top: 0;
+///    padding: 0 20px;
+///    color: #eaeaea;
+///    background-color: #777;
+///    -webkit-transition: all 0.3s ease;
+///    -moz-transition: all 0.3s ease;
+///    -o-transition: all 0.3s ease;
+///    transition: all 0.3s ease;
+///  }
+///  .switch.green span.on {
+///    left: -100%;
+///    text-align: left;
+///  }
+///  .switch.green span.off {
+///    left: 0%;
+///    text-align: right;
+///  }
+///  .switch.green.selected span {
+///    color: #d9eed1;
+///    background-color: #54A03A;
+///    left: -100%;
+///  }
+///  .switch.green.selected span.on {
+///    left: 0%;
+///  }
+///  .switch.green.selected span.off {
+///    left: 100%;
+///  }
+///  .switch.green.selected:before {
+///    background-color: #6bbf4e;
+///    left: 49.8px;
+///  }
+/// @example markup - html 
+///  <div class="switch green" ng-class="{selected:switchoneOn}" ng-click="switchoneOn = !switchoneOn">
+///  	 <span class="on">On</span>
+///  	 <span class="off">Off</span>
+///  </div>
+
+@mixin switch($className,$on:$col-primary,$off:#fff,$width:80px,$fontSize:18){
+
+	$height : #{$fontSize*2}px;
+
+	.switch.#{$className}{
+
+		width:$width;
+		overflow: hidden;
+		padding:0;
+		margin:0;
+		border:none;
+		outline: none;
+		height: $height;
+		position:relative;
+		cursor: pointer;
+		border-radius:#{$fontSize}px;
+		@include fontSize($fontSize);
+
+		&:before{
+
+			content: "";
+			left: 5px;
+			z-index: 1;
+			background-color: contrast($off,10%);
+			@include centre(y);
+			@include vendorPrefix(transition,all 0.3s ease);
+			@include circle(#{$fontSize*1.4}px);
+		}
+
+		span{
+
+			position:absolute;
+			line-height: $height;
+			height: $height;
+			display: block;
+			width: $width;
+			top:0;
+			padding:0 20px;
+			color: contrast($off,45%);
+			background-color:$off;
+			@include vendorPrefix(transition,all 0.3s ease);
+
+			&.on{
+
+				left: -100%;
+				text-align:left;
+			}
+
+			&.off{
+
+				left: 0%;
+				text-align:right;
+			}
+		}
+
+		&.selected{
+
+			span{
+
+				color: contrast($on,45%);
+				background-color:$on;
+				left: -100%;
+
+				&.on{
+
+					left: 0%;
+				}
+
+				&.off{
+
+					left: 100%;
+				}
+			}
+
+			&:before{
+
+				$shift : ($fontSize*1.4) + 5;
+				background-color: contrast($on,10%);
+				left:$width - $shift;
+			}
+		}
+	}
+}
+
+// ------------------------------------------------------
+
+/// Include styles for a modern looking javascript range slider element.
+/// A class name is required for the first argument. Optional arguments allow
+/// you to control slide colour, track colour, and height.
+/// **Note:** the javascript for this is yet to be included. See below for expected markup.
+/// @name slider
+/// @group forms
+/// @param {String} className [] The class to be applied to the slider
+/// @param {#hex/rgba} col [#289e83] Colour of the range & knob
+/// @param {#hex/rgba} track [#d8d8d8] Background colour of the slider track
+/// @param {Pixel val} height [15px] Height of the slider
+/// @example scss - Includes
+///  @include slider('primary',#289e83);
+///
+/// @example css - Output
+///  .slider.primary {
+///      display: block;
+///      height: 15px;
+///      border-radius: 15px;
+///      background-color: #d8d8d8;
+///      position: relative;
+///      cursor: pointer;
+///      margin: 15px 0;
+///  }
+///  .slider.primary .slider-knob {
+///      position: absolute;
+///      z-index: 5;
+///      height: 15px;
+///      width: 15px;
+///      border-radius: 15px;
+///      margin-top: 0;
+///      margin-left: -15px;
+///      background-color: #2baa8d;
+///      -webkit-transition: all 0.3s ease;
+///      -moz-transition: all 0.3s ease;
+///      -o-transition: all 0.3s ease;
+///      transition: all 0.3s ease;
+///  }
+///  .slider.primary .slider-track-val {
+///      position: absolute;
+///      z-index: 1;
+///      top: 0;
+///      left: 0;
+///      height: 15px;
+///      background-color: #289e83;
+///      border-radius: 15px;
+///  }
+///  .slider.primary:hover .slider-knob {
+///      height: 30px;
+///      width: 30px;
+///      margin-top: -7.5px;
+///      margin-left: -22.5px;
+///      background-color: #32c7a5;
+///  }
+/// @example markup - HTML
+///  <div class="slider primary">
+///  	<div class="slider-knob" style="left:70%"></div>
+///  	<div class="slider-track-val" style="width:70%"></div>
+///  </div>
+///  
+
+@mixin slider($className,$col:$col-primary,$track:#d8d8d8,$height:15px){
+
+	.slider.#{$className}{
+
+		display: block;
+		height: $height;
+		border-radius: $height;
+		background-color: $track;
+		position: relative;
+		cursor: pointer;
+		margin: $height 0;
+
+		.slider-knob{
+
+			position:absolute;
+			z-index: 5;
+			height: $height;
+			width: $height;
+			border-radius: $height;
+			margin-top: 0;
+			margin-left: -$height;
+			background-color:contrast($col,3%);
+			@include vendorPrefix(transition,all 0.3s ease);
+
+		}
+
+		.slider-track-val{
+
+			position: absolute;
+			z-index: 1;
+			top:0;
+			left:0;
+			height:$height;
+			background-color:$col;
+			border-radius:$height;
+		}
+
+		&:hover{
+
+			.slider-knob{
+
+				$multiple : 2;
+
+				height: $height*$multiple;
+				width: $height*$multiple;
+				margin-top: -$height/$multiple;
+				margin-left: -($height + ($height/$multiple));
+				background-color:contrast($col,10%);
+			}
+		}
+	}
+}

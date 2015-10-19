@@ -1,0 +1,725 @@
+// =========================================================================================================================
+// @includes - Layout mixins
+// masonry | sidebars | helpers
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+/// Modern masonry css layout. Uses *column-count to arange content 
+/// This mixin can be used with the @include cardClass; mixin
+/// to create "Pinterest" style layouts. Html5 browser support only.
+/// See caniuse for more info on column-count browser support.
+/// @link http://caniuse.com/#search=flexbox Browser support for column-count
+/// @see cardClass
+/// @name masonryClasses
+/// @group Layout
+/// @param {Integer} ammount [4] Amount of masonry columns
+/// @param {Pixel/em value} gutter-width [1em] Width between and below masonry items
+/// @param {Integer} padding [0] Padding in pixels
+/// @param {Integer} rounding [0] Rounding in pixels
+/// @example scss - Include
+///  @include masonryClasses(4);
+///
+/// @example css - Output
+///  .masonry {
+///  	-moz-column-count: 4;
+///  	-webkit-column-count: 4;
+///  	column-count: 4;
+///  	margin: 1em 0;
+///  	-moz-column-gap: 1em;
+///  	-webkit-column-gap: 1em;
+///  	column-gap: 1em;
+///  }
+///  
+///  .masonry .masonry-item {
+///    	display: inline-block;
+///    	margin: 0 0 1em;
+///    	width: 100%;
+///    	overflow: hidden;
+///    	border-radius: 5;
+///  }
+///  .masonry .masonry-item img {
+///    		display: block;
+///    		width: 100%;
+///  }
+///  
+///
+
+
+@mixin masonryClasses($col-count:4,$gutter-width:1em,$padding:0,$rounding:5) {
+
+	$vendors : "-webkit-" "-moz-" "";
+
+	.masonry{
+
+		margin: $gutter-width 0;
+
+		@each $vendor in $vendors {
+
+			#{$vendor}column-count : $col-count;
+			#{$vendor}column-gap : $gutter-width;
+
+		}
+
+		.masonry-item{
+
+			display: inline-block;
+			margin: 0 0 $gutter-width;
+			width: 100%;
+			overflow: hidden;
+
+			@if $padding > 0{
+
+				padding:#{$padding}px;
+			}
+
+			@if $rounding > 0{
+
+				border-radius:#{$rounding}px;
+			}
+
+			img{
+
+				display: block;
+				width: 100%;
+			}
+		}
+
+	}
+}
+
+
+// ------------------------------------------------------
+
+/// Adds a .container class
+/// @name containerClass
+/// @group Layout
+/// @param {Pixel value} maxWidth [1024px] The maximum width of the container
+/// @param {Integer} padding [20] Padding left & right in pixels
+/// @example scss - Include
+///  @include containerClass(1024px,30)
+///
+/// @example css - Output
+///  .container {
+///      	margin: 0 auto;
+///      	max-width: 1024px;
+///      	padding: 0 30px;
+///  }
+///
+
+@mixin containerClass($maxWidth:1024px,$padding:20){
+
+	.container{
+
+		margin: 0 auto;
+		max-width: $maxWidth;
+		
+		@if $padding > 0{
+			padding:0 #{$padding}px;
+		}
+	}
+}
+
+
+
+// ------------------------------------------------------
+
+/// Nested include to apply full screen styles to a selector. 
+/// Uses the vh css property see caniuse for more information
+/// @link http://caniuse.com/#search=vh Browser support info for vh property
+/// @name fullScreen
+/// @group Layout
+/// @example scss - Include
+///  section#intro {
+///  	@include fullScreen;
+///  }
+///
+/// @example css - Output
+///  section#intro {
+///    position: relative;
+///    width: 100%;
+///    height: 100vh;
+///  }
+///
+
+@mixin fullScreen{
+
+	position: relative;
+	width:100%;
+	height:100vh;
+}
+
+// ------------------------------------------------------
+
+/// Apply sticky header styles to a selector with this mixin.
+/// Arguments allow you to specify the height of the header and css positioning.
+/// @name stickyHeader
+/// @group Layout
+/// @param {Pixel value} height [50px] Height of the header
+/// @param {#hex/rgba} bgCol [] Optional background colour for the header
+/// @example scss - Include
+///  header.sticky{
+///  
+///  	@include stickyHeader(60px);
+///  }
+/// @example css - Output
+///  header.sticky {
+///    position: fixed;
+///    top: 0;
+///    height: 60px;
+///    width: 100%;
+///    z-index: 9999;
+///  }
+///
+
+@mixin stickyHeader($height:50px,$bgCol:false){
+	
+	position: fixed;
+	top:0;
+	height:$height;
+	width:100%;
+	z-index: 9999;
+
+	@if $bgCol {
+		background-color: Col($bgCol);
+	}
+}
+
+
+
+// ------------------------------------------------------
+
+/// Absolutely position an element to the nearest releatively positioned ancestor with this mixin.
+/// It takes a single argument for the css box model - e.g. **10px 20px 10px 20px** would refer to
+/// **top right bottom left** in the same way as padding or magin shorthands. Accepted values are
+/// pixel values, em values, percentages or 'auto'.
+/// @name fitContainer
+/// @group Layout
+/// @param {css box model} boxmodel [0px] Css box model shorthand
+/// @example scss - Include
+///  .main{
+///  
+///  	@include fitContainer;
+///  
+///  	.sidebar{
+///  
+///  		width:300px;
+///  		@include fitContainer(0px auto 0px 0px);
+///  	}
+///  }
+///  
+/// @example css - Output
+///  .main {
+///      position: absolute;
+///      top: 0;
+///      right: 0;
+///      bottom: 0;
+///      left: 0;
+///  }
+///  .main .sidebar {
+///      width: 300px;
+///      position: absolute;
+///      top: 0px;
+///      right: auto;
+///      bottom: 0px;
+///      left: 0px;
+///  }
+
+@mixin fitContainer($boxmodel:0px){
+
+	position:absolute;
+
+	@if length($boxmodel) == 1{
+
+		top:#{$boxmodel};
+		right:#{$boxmodel};
+		bottom:#{$boxmodel};
+		left:#{$boxmodel};
+	}
+
+	@if length($boxmodel) == 2{
+		
+		top:nth($boxmodel,1);
+		right:nth($boxmodel,2);
+		bottom:nth($boxmodel,1);
+		left:nth($boxmodel,2);
+	}
+
+	@if length($boxmodel) == 3{
+		
+		top:nth($boxmodel,1);
+		right:nth($boxmodel,2);
+		bottom:nth($boxmodel,3);
+		left:nth($boxmodel,2);
+	}
+
+	@if length($boxmodel) == 4{
+		
+		top:nth($boxmodel,1);
+		right:nth($boxmodel,2);
+		bottom:nth($boxmodel,3);
+		left:nth($boxmodel,4);
+	}
+
+	@if length($boxmodel) > 4{
+		@error "too many values passed as arguments for the box model - 4 value maximun array. e.g. 10px 20px 30px 10px."
+	}
+
+	@for $i from 1 through length($boxmodel){
+
+		$entry : nth($boxmodel,$i);
+		
+		@if type-of($entry) != number and $entry != "auto" {
+			@error "#{$entry} is not a valid value for the fitContainer box model. Please use a pixel, percentage or em value.";
+		}
+	}
+}
+
+
+
+// ------------------------------------------------------
+
+/// Generates styles for an absolutely positioned sidebar scaling to the
+/// nearest relative parent's height.
+/// Arguments allow you to specify the width and position of the sidebar.
+/// Used in the
+/// 	<a href="/demo/dash">Dash demo.</a> 
+/// @name sideBar
+/// @group Layout
+/// @param {Pixel value} width [300px] Width of the side-bar
+/// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
+/// @example scss - Include
+///  #side-bar{
+///  
+///  	@include sideBar(340px);
+///  }
+/// @example css - Output
+///  #side-bar {
+///    position: absolute;
+///    top: 0;
+///    bottom: 0;
+///    width: 340px;
+///    left: 0;
+///  }
+///
+
+@mixin sideBar($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:$width;
+
+	@if $side == "left"{
+		left:0;
+	}
+
+	@if $side == "right"{
+		right:0;
+	}
+}
+
+/// This mixin can be used to absolutely position an element to fit the remainder
+/// of the screen if a sidebar has been included. Best used with the sideBar mixin, see
+/// 	<a href="/demo/dash">Dash demo</a>
+///  for an example of usage.
+/// @name sideBarAppend
+/// @group Layout
+/// @param {Pixel value} width [300px] Width of the side-bar
+/// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
+/// @example scss - Include
+///  .sidebar{
+///  
+///  	 @include sideBar($sidebarWidth);
+///  }
+///  
+///  .main{
+///  
+///  	 @include sideBarAppend($sidebarWidth);
+///  }
+/// @example css - Output
+///  .sidebar {
+///      position: absolute;
+///      top: 0;
+///      bottom: 0;
+///      width: 300px;
+///      left: 0;
+///  }
+///  
+///  .main {
+///      position: absolute;
+///      top: 0;
+///      bottom: 0;
+///      left: 300px;
+///      right: 0;
+///  }
+///
+
+@mixin sideBarAppend($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+
+	@if $side == "left"{
+		left:$width;
+		right:0;
+	}
+
+	@if $side == "right"{
+		right:$width;
+		left:0;
+	}
+}
+
+// ------------------------------------------------------
+/// Centralises a fluid container element to its nearest relatively posisiotned parent. 
+/// Can be used within an element with the fullscreen class.
+/// @name centre
+/// @param {String} axis ["both"] The axis to center the content on. 'both' | 'y' | 'x'
+/// @example scss - Include
+///  .centre{
+///  	 @include centre;
+///  }
+/// @example css - Output
+///  .centre {
+///      position: absolute;
+///      top: 50%;
+///      left: 50%;
+///      -webkit-transform: translate(-50%, -50%);
+///      -moz-transform: translate(-50%, -50%);
+///      -ms-transform: translate(-50%, -50%);
+///      transform: translate(-50%, -50%);
+///  }
+///
+
+@mixin centre($axis: "both"){
+	position:absolute;
+	@if $axis == "y"{
+		top:50%;
+		@include transforms("translateY(-50%)");
+	}
+	@if $axis == "x"{
+		left:50%;
+		@include transforms("translateX(-50%)");
+	}
+	@if $axis == "both"{
+		top:50%;
+		left:50%;
+		@include transforms("translate(-50%, -50%)");
+	}	
+}
+
+// ------------------------------------------------------
+/// This mixin genrates 4 classes for centering elements or text. 
+/// Can be used within an element with the fullscreen class.
+/// @name centreClasses
+/// @group Layout
+/// @example scss - Include
+///  @include centreClasses;
+/// @example css - Output
+///  .centre {
+///    position: absolute;
+///    top: 50%;
+///    left: 50%;
+///    -webkit-transform: translate(-50%, -50%);
+///    -moz-transform: translate(-50%, -50%);
+///    -ms-transform: translate(-50%, -50%);
+///    transform: translate(-50%, -50%);
+///  }
+///  
+///  .centre-x {
+///    height: 100%;
+///    position: absolute;
+///    left: 50%;
+///    -webkit-transform: translateX(-50%);
+///    -moz-transform: translateX(-50%);
+///    -ms-transform: translateX(-50%);
+///    transform: translateX(-50%);
+///  }
+///  
+///  .centre-y {
+///    width: 100%;
+///    position: absolute;
+///    top: 50%;
+///    -webkit-transform: translateY(-50%);
+///    -moz-transform: translateY(-50%);
+///    -ms-transform: translateY(-50%);
+///    transform: translateY(-50%);
+///  }
+///  
+///  .text-centre {
+///    text-align: center;
+///  }
+///
+
+@mixin centreClasses{
+
+	.centre{
+		@include centre;
+	}
+
+	.centre-x{
+
+		height:100%;
+		@include centre(x);
+	}
+
+	.centre-y{
+
+		width:100%;
+		@include centre(y);
+	}
+
+	.text-centre{
+
+		text-align: center;
+	}
+}
+
+
+// ------------------------------------------------------
+
+/// A more symantic wrapper for handling breakpoints.
+/// It takes a single argument for the size. This can be 
+/// 'large' - 1420px, 'medium' - 1200px, 'small' - 760px or
+/// a pixel value of your choosing.
+/// @name breakPoint
+/// @group Layout
+/// @param {String / Pixel value} ize [] Breakpoint width - large | medium | small | pixel val
+/// @example scss - Include
+///  p{
+///  
+///  	font-size: 1.2em;
+///  
+///  	@include breakPoint(850px){
+///  
+///  		font-size: 1em;
+///  	}
+///  
+///  	@include breakPoint(small){
+///  
+///  		font-size: 0.85em;
+///  	}
+///  }
+///
+/// @example css - Output
+///  p {
+///    font-size: 1.2em;
+///  }
+///  @media (max-width: 850px) {
+///    p {
+///      font-size: 1em;
+///    }
+///  }
+///  @media (max-width: 760px) {
+///    p {
+///      font-size: 0.85em;
+///    }
+///  }
+///  
+///
+
+@mixin breakPoint($ize, $type : "max"){
+	@if $ize == large {
+		@media (#{$type}-width: 1420px) { @content; }
+	}
+	@else if $ize == medium {
+		@media (#{$type}-width: 1200px) { @content; }
+	}
+	@else if $ize == small {
+		@media (#{$type}-width: 760px) { @content; }
+	} @else {
+		@media (#{$type}-width: $ize) { @content; }
+	}
+}
+
+
+/// Programmatically generate masonry style css layouts with breakpoints by using this mixin.
+/// It uses both the masonryClasses and breakPoint mixins to generate columns for various
+/// sizes using the column-count css3 property.
+/// @link http://caniuse.com/#search=flexbox Browser support for column-count
+/// @name masonryColumns
+/// @group Layout
+/// @param {Pixel/em value} maxWidth [300px] Maximum width of each column
+/// @param {Integer} maxCols [8] Maximum number of columns
+/// @param {Integer} $minCols [1] Minimum number of columns
+/// @param {Pixel/em value} gutter-width [1em] Width between and below masonry items
+/// @param {Integer} padding [0] Padding in pixels
+/// @param {Integer} rounding [0] Rounding in pixels
+/// @example scss - Include
+///  @include masonryColumns(300px,8,1);
+///
+/// @example css - Output
+///  .masonry {
+///    margin: 1em 0;
+///    -webkit-column-count: 1;
+///    -webkit-column-gap: 1em;
+///    -moz-column-count: 1;
+///    -moz-column-gap: 1em;
+///    column-count: 1;
+///    column-gap: 1em;
+///  }
+///  .masonry .masonry-item {
+///    display: inline-block;
+///    margin: 0 0 1em;
+///    width: 100%;
+///    overflow: hidden;
+///    border-radius: 5px;
+///  }
+///  .masonry .masonry-item img {
+///    display: block;
+///    width: 100%;
+///  }
+///  
+///  @media (min-width: 300px) {
+///    .masonry {
+///      -webkit-column-count: 2;
+///      -moz-column-count: 2;
+///      column-count: 2;
+///    }
+///  }
+///  @media (min-width: 600px) {
+///    .masonry {
+///      -webkit-column-count: 3;
+///      -moz-column-count: 3;
+///      column-count: 3;
+///    }
+///  }
+///  @media (min-width: 900px) {
+///    .masonry {
+///      -webkit-column-count: 4;
+///      -moz-column-count: 4;
+///      column-count: 4;
+///    }
+///  }
+///  @media (min-width: 1200px) {
+///    .masonry {
+///      -webkit-column-count: 5;
+///      -moz-column-count: 5;
+///      column-count: 5;
+///    }
+///  }
+///  @media (min-width: 1500px) {
+///    .masonry {
+///      -webkit-column-count: 6;
+///      -moz-column-count: 6;
+///      column-count: 6;
+///    }
+///  }
+///  @media (min-width: 1800px) {
+///    .masonry {
+///      -webkit-column-count: 7;
+///      -moz-column-count: 7;
+///      column-count: 7;
+///    }
+///  }
+///  @media (min-width: 2100px) {
+///    .masonry {
+///      -webkit-column-count: 8;
+///      -moz-column-count: 8;
+///      column-count: 8;
+///    }
+///  }
+/// @example markup - HTML
+///  <div class="masonry">
+///  	<div class="masonry-item card">			
+///  		<div class="card-body">
+///  			<h4>This is a card</h4>
+///  			<p>
+///  				Cards work really well in pinterest style masonry layouts.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<div class="card-body">
+///  			<h4>Another Card</h4>
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		
+///  		<img src="http://placehold.it/350x250">
+///  		<div class="card-body">
+///  			<h4>Card with image</h4>
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<header>
+///  			<h4>Card with header</h4>
+///  		</header>
+///  		<div class="card-body">
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<div class="card-body">
+///  			<h4>Yet Another Card</h4>
+///  			<p>
+///  				Lorem ipsum dolor. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		
+///  		<img src="http://placehold.it/350x220">
+///  		<div class="card-body">
+///  			<h4>Image Caption</h4>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<div class="card-body">
+///  			<h4>Yet Another Card</h4>
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<header>
+///  			<h4>Card header</h4>
+///  		</header>
+///  		<div class="card-body">
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id et excepturi repellat perspiciatis reprehenderit facere molestias distinctio dolore vel iste!
+///  			</p>
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  			</p>
+///  		</div>
+///  	</div>
+///  	<div class="masonry-item card">
+///  		<div class="card-body">
+///  			<h4>Another Card</h4>
+///  			<p>
+///  				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis.
+///  			</p>
+///  		</div>
+///  	</div>
+///  </div>
+
+@mixin masonryColumns($maxWidth:300px,$maxCols:8,$minCols:1,$gutter-width:1em,$padding:0,$rounding:5){
+
+	@include masonryClasses($minCols,$gutter-width,$padding,$rounding);
+
+	@for $i from 1 through ($maxCols - 1){
+
+		@include breakPoint(#{$maxWidth*$i},'min'){
+			.masonry {
+			  @include vendorPrefix(column-count,#{($i + $minCols)});
+			}
+		}
+	}
+}
+
+
+

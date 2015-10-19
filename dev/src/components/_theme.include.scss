@@ -1,0 +1,125 @@
+// =========================================================================================================================
+// @includes - Theme mixins
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+@mixin themeBase($themeColour:#e9e9e9){
+	
+	body{
+
+		background-color: $themeColour;
+	}
+}
+
+
+
+
+@mixin themeLinks($link:black,$hover:$col-primary,$visited:$col-secondary){
+
+	a{
+
+		&:link{
+
+			color:$link;
+			text-decoration: none;
+		}
+
+		&:hover{
+
+			color: $hover;
+		}
+
+		&:active,&:visited{
+
+			color:darken($hover,10%);
+		}
+	}
+}
+
+$linkmap : (
+	'link'    : #333,
+	'visited' : #FFF,
+	'hover'   : #289e83,
+	'active'  : #1b8898
+);
+
+@mixin linkColours($colours:$linkmap,$underline:false){
+
+	$link    : map-get($colours,'link');
+	$visited : map-get($colours,'visited');
+	$hover   : map-get($colours,'hover');
+	$active  : map-get($colours,'active');
+
+	a{
+		@if $underline{
+			text-decoration: underline;
+		}
+		@else{
+			text-decoration: none;
+		}
+		&:link{
+			color: $link;
+		}
+
+		&:visited{
+			color: $visited;
+		}
+
+		&:hover{
+			color: $hover;
+		}
+
+		&:active{
+			color: $active;
+		}
+	}
+}
+
+
+
+@mixin swatch($name,$colour,$contrast:45%){
+
+	.#{$name}{
+		color:$colour;
+	}
+
+	.#{$name}-bg{
+		background-color:$colour;
+	}
+
+	.#{$name}-border{
+		border-color:$colour;
+	}
+
+	.#{$name}-contrast{
+		color: contrast($colour,$contrast);
+	}
+}
+
+$palette: (
+	'primary'   : $col-primary,
+	'secondary' : $col-secondary,
+	'danger'    : $col-danger,
+	'warning'   : $col-warning,
+	'submit'    : $col-success
+);
+
+
+@mixin palette($cols:$palette,$contrast:45%){
+
+	@each $col in $cols{
+		
+		$key : nth($col,1);
+		$val : nth($col,2);
+
+		@include swatch($key,$val,$contrast);
+
+	}
+}
+
+
+
+
