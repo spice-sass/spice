@@ -3,3 +3,4 @@ docs
 node_modules
 .sass-cache
 gulpfile.js
+bower.json
