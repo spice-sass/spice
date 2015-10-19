@@ -1,10 +1,11 @@
 'use strict';
 
-var gulp   = require('gulp');
-var server = require('gulp-express');
-var sass   = require('gulp-sass');
-var bump   = require('gulp-bump');
-var argv   = require('yargs').argv;
+var gulp    = require('gulp');
+var server  = require('gulp-express');
+var sass    = require('gulp-sass');
+var bump    = require('gulp-bump');
+var sassdoc = require('sassdoc');
+var argv    = require('yargs').argv;
 
 
 
@@ -32,6 +33,22 @@ gulp.task('bump', function(){
   gulp.src('./package.json')
   .pipe(bump({type:'patch'}))
   .pipe(gulp.dest('./'));
+});
+
+
+gulp.task('docs', function () {
+  var options = {
+    dest: './docs',
+    verbose: true,
+    display: {
+      access: ['public', 'private'],
+      alias: true,
+      watermark: true,
+    }
+  };
+
+  return gulp.src('./src/**/*.scss')
+    .pipe(sassdoc(options));
 });
 
 
