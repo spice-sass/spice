@@ -28,12 +28,32 @@ gulp.task('copy', function(){
 
 gulp.task('bump', function(){
 
-  console.log(argv);
+  var files = ['./package.json','./bower.json']
 
-  gulp.src('./package.json')
-  .pipe(bump({type:'patch'}))
-  .pipe(gulp.dest('./'));
+  if(argv.patch){
+
+    gulp.src(files)
+      .pipe(bump({type:'patch'}))
+      .pipe(gulp.dest('./'));
+  }
+
+
+  if(argv.minor){
+
+    gulp.src(files)
+      .pipe(bump({type:'minor'}))
+      .pipe(gulp.dest('./'));
+  }
+
+  if(argv.major){
+
+    gulp.src(files)
+      .pipe(bump({type:'major'}))
+      .pipe(gulp.dest('./'));
+  }
+
 });
+
 
 
 gulp.task('docs', function () {
@@ -53,3 +73,4 @@ gulp.task('docs', function () {
 
 
 gulp.task('default', ['server']);
+gulp.task('publish',['copy','bump']);
