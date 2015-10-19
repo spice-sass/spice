@@ -291,8 +291,9 @@ $googleFonts : (
 
 	@debug "#{$family}";
 
+
 	.#{$font}{
-		//font-family: #{$family}, arial, sans-serif;
+		font-family: (#{$family}), arial, sans-serif;
 
 		@if $weight{
 			font-weight: $weight;
