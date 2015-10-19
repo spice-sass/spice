@@ -1,7 +1,7 @@
-Spice sass library
+Spice sass library 
 =====================
 
-A library of sass mixins for the modern web. If you need it... @include it!
+Add a little spice to your UI!
 
 ## Installation
 
@@ -20,7 +20,7 @@ Spice is available as a npm package, a bower component or zip download.
 
 ##### Sass 3.3
 
-@includes uses sass maps so sass version 3.3+ is required. See below for instructions on installing sass.
+Spice uses sass maps so sass version 3.3+ is required. See below for instructions on installing sass.
 
 **Linux**
 
