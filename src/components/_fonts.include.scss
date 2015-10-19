@@ -289,9 +289,6 @@ $googleFonts : (
 		}
 	}
 
-	@debug "#{$family}";
-
-
 	.#{$font}{
 		font-family: (#{$family}), arial, sans-serif;
 
