@@ -1,0 +1,437 @@
+// =========================================================================================================================
+// @includes - Helpers
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+/// Normalise Html elements and programtically computes heading sizes
+/// @name normalise
+/// @group helpers
+/// @param {em} h1Size [2.5em] Size of H1 elements
+/// @example scss - Include
+///  @include normalise(3em);
+///
+/// @example css - Output
+///  html, body, div, span, applet, object, iframe,
+///  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+///  a, abbr, acronym, address, big, cite, code,
+///  del, dfn, em, img, ins, kbd, q, s, samp,
+///  small, strike, strong, sub, sup, tt, var,
+///  b, u, i, center,
+///  dl, dt, dd, ol, ul, li,
+///  fieldset, form, label, legend,
+///  table, caption, tbody, tfoot, thead, tr, th, td,
+///  article, aside, canvas, details, embed,
+///  figure, figcaption, footer, header, hgroup,
+///  menu, nav, output, ruby, section, summary,
+///  time, mark, audio, video {
+///    margin: 0;
+///    padding: 0;
+///    border: 0;
+///    font: inherit;
+///    font-size: 100%;
+///    vertical-align: baseline;
+///  }
+///
+///  html {
+///    line-height: 1;
+///  }
+///
+///  ol, ul {
+///    list-style: none;
+///  }
+///
+///  table {
+///    border-collapse: collapse;
+///    border-spacing: 0;
+///  }
+///
+///  caption, th, td {
+///    text-align: left;
+///    font-weight: normal;
+///    vertical-align: middle;
+///  }
+///
+///  q, blockquote {
+///    quotes: none;
+///  }
+///
+///  q:before, q:after, blockquote:before, blockquote:after {
+///    content: "";
+///    content: none;
+///  }
+///
+///  a img {
+///    border: none;
+///  }
+///
+///  article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+///    display: block;
+///  }
+///
+///  * {
+///    -moz-box-sizing: border-box;
+///    -webkit-box-sizing: border-box;
+///    box-sizing: border-box;
+///  }
+///
+///  body {
+///    font-family: "arial", sans-serif;
+///    font-size: 18px;
+///  }
+///
+///  h1, h2, h3, h4, h5, h6, p, blockquote {
+///    margin-bottom: 1.2em;
+///  }
+///
+///  h1 {
+///    font-size: 3em;
+///  }
+///
+///  h2 {
+///    font-size: 2.66667em;
+///  }
+///
+///  h3 {
+///    font-size: 2.33333em;
+///  }
+///
+///  h4 {
+///    font-size: 2em;
+///  }
+///
+///  h5 {
+///    font-size: 1.66667em;
+///  }
+///
+///  h6 {
+///    font-size: 1.33333em;
+///  }
+///
+///  p {
+///    font-size: 1em;
+///    line-height: 160%;
+///  }
+///
+///  blockquote {
+///    font-size: 1.2em;
+///  }
+///
+
+@mixin normalise($h1Size:2.5em){
+
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed,
+	figure, figcaption, footer, header, hgroup,
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+	}
+
+	html {
+	    line-height: 1;
+	}
+
+	ol, ul {
+	    list-style: none;
+	}
+
+	table {
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	}
+
+	caption, th, td {
+	    text-align: left;
+	    font-weight: normal;
+	    vertical-align: middle;
+	}
+
+	q, blockquote {
+	    quotes: none;
+	}
+	q:before, q:after, blockquote:before, blockquote:after {
+	    content: "";
+	    content: none;
+	}
+
+	a img {
+	    border: none;
+	}
+
+	article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	    display: block;
+	}
+
+	*{
+
+		@include vendorPrefix(box-sizing,border-box);
+	}
+
+	body{
+
+		font-family: "arial", sans-serif;
+	}
+
+	h1,h2,h3,h4,h5,h6,p,blockquote{
+
+		margin-bottom: 1.2em
+	}
+
+	p{
+
+		font-size:1em;
+		line-height:160%;
+	}
+
+	blockquote{
+
+		font:{
+			size:1.2em;
+		}
+	}
+
+	.justify{
+		text-align:justify;
+	}
+
+	.align-left{
+		float: left;
+	}
+
+	.align-right{
+		float: right;
+	}
+
+	.align-centre{
+
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/// Add retina/HD background images really easily with this mixin.
+/// It takes arguments for the image path (relative to the compiled css file)
+/// and for image dimentions to scale to.
+/// @name retinaImage
+/// @group helpers
+/// @param {String} path [] The path of the retina image
+/// @param {Pixel value} width [] Width to scale the image to
+/// @param {Pixel value} height [] Height to scale the image to
+/// @example scss - Include
+///  #logo{
+///  
+///  	background:url('/assets/images/logo.png') no-repeat;
+///  	@include retinaImage('/assets/images/logo-hd.png',125px,70px);
+///  }
+/// @example css - Output
+///  #logo {
+///    background: url("/assets/images/logo.png") no-repeat;
+///  }
+///  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+///    #logo {
+///      background-image: url("/assets/images/logo-hd.png");
+///      background-size: 125px 70px;
+///    }
+///  }
+
+@mixin retinaImage($path, $width, $height) {
+
+    @media (min--moz-device-pixel-ratio: 1.3),
+             (-o-min-device-pixel-ratio: 2.6/2),
+             (-webkit-min-device-pixel-ratio: 1.3),
+             (min-device-pixel-ratio: 1.3),
+             (min-resolution: 1.3dppx) {
+
+        background-image: url($path);
+        background-size: $width $height;
+    }
+
+}
+
+/// Create custon scrollbars for webkit browsers
+/// @name scrollbar
+/// @group helpers
+/// @param {#hex/rgba} basecol [#ddd] Base colour of the scrollbar
+/// @param {Pixel value} width [16px] Width of the scrollthumb
+/// @example scss - Include
+///  .scrollbar{
+///     @include scrollbarClass(#333,10px);
+///  }
+/// @example css - Output
+///  .scrollbar {
+///    overflow: auto;
+///  }
+///  .scrollbar::-webkit-scrollbar {
+///    width: 10px;
+///    height: 10px;
+///    padding: 10px;
+///  }
+///  .scrollbar::-webkit-scrollbar-track {
+///    background: #666666;
+///  }
+///  .scrollbar::-webkit-scrollbar-thumb {
+///    border-radius: 10px;
+///    background: #1a1a1a;
+///    border: 2px solid #666666;
+///  }
+///
+
+@mixin scrollbar($basecol:#ddd,$width:10px){
+
+		overflow: auto ;
+
+		&::-webkit-scrollbar {
+		    width: $width;
+		    height:$width;
+		    padding:10px;
+		}
+
+		&::-webkit-scrollbar-track {
+		    background: lighten($basecol,20%);
+		}
+
+		&::-webkit-scrollbar-thumb {
+		    border-radius: 10px;
+		    background: darken($basecol,10%);
+		    border:2px solid lighten($basecol,20%);
+		}
+}
+
+// ------------------------------------------------------
+
+/// Mixin for creating a css circle with equal dimentions for
+/// height, width, line-height & border-radius. 
+/// @name circle
+/// @group helpers
+/// @param {Pixel value} size [20px] Size of the circle
+/// @param {#hex/rgba} bgCol [false] Optional background colour of the circle
+/// @example scss - Include
+///  .badge{
+///  	@include circle(30px,#ac2828);
+///  }
+///
+/// @example css - Output
+///  .badge {
+///      width: 30px;
+///      height: 30px;
+///      line-height: 30px;
+///      text-align: center;
+///      border-radius: 30px;
+///      background-color: #ac2828;
+///  }
+
+@mixin circle($size:20px,$bgCol:false){
+
+	width:#{$size};
+	height:#{$size};
+	line-height:#{$size};
+	text-align:center;
+	border-radius:#{$size};
+
+	@if $bgCol{
+		background-color:#{$bgCol};
+	}
+}
+
+/// Mixin for creating css triangle arrows
+/// @name arrow
+/// @group helpers
+/// @param {Pixel value} size [10px] Triangular base width
+/// @param {Option} dir ["down"] Arrow direction - "up" | "down" | "left" | "right"
+/// @param {#hex/rgba} colour [white] Arrow colour
+/// @param {0-1 Decimal} angle [0.7] Decimalised angle value
+/// @example scss - Include
+///  .arrow{
+///     @include arrow(10px,'down',red,0.7);
+///  }
+///
+/// @example css - Output
+///  .arrow {
+///    width: 0;
+///    height: 0;
+///    border-left: 7px solid transparent;
+///    border-right: 7px solid transparent;
+///    border-top: 10px solid red;
+/// }
+///
+
+@mixin arrow($size:10px,$dir:"down",$colour:white,$angle:0.7){
+
+	@if $dir == "up" or $dir == "down" or $dir == "right" or $dir == "left" {
+
+		width: 0;
+		height: 0;
+
+		@if $dir == "up"{
+			border-left: $size*$angle solid transparent;
+			border-right: $size*$angle solid transparent;
+			border-bottom: $size solid $colour;
+		}
+
+		@if $dir == "down"{
+			border-left: $size*$angle solid transparent;
+			border-right: $size*$angle solid transparent;
+			border-top: $size solid $colour;
+		}
+
+		@if $dir == "right"{
+			border-top: $size*$angle solid transparent;
+			border-bottom: $size*$angle solid transparent;
+			border-left: $size solid $colour;
+		}
+
+		@if $dir == "left"{
+			border-top: $size*$angle solid transparent;
+			border-bottom: $size*$angle solid transparent;
+			border-right:$size solid $colour;
+		}
+	}
+	
+	@else {
+		@error "Error - direction argugment has an unexpected value: #{$dir}. Please specify direction. Either 'up', 'down', 'right' or 'left'"
+	}
+}
+
+
+// ------------------------------------------------------
+
+/// Helper to stop unwanted highlighting effect on elements
+/// @name noSelect
+/// @group helpers
+/// @example scss - Include
+///  .viewport{
+///  	@include noSelect;
+///  }
+/// @example css - Output
+///  .viewport {
+///    -webkit-touch-callout: none;
+///    -webkit-user-select: none;
+///    -khtml-user-select: none;
+///    -moz-user-select: none;
+///    -ms-user-select: none;
+///    user-select: none;
+///  }
+
+
+@mixin noSelect {
+    -webkit-touch-callout: none;
+    @include vendorPrefix(user-select,none,"-webkit-" "-khtml-" "-moz-" "-ms-" "");
+}
+
+// ------------------------------------------------------

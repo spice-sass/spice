@@ -1,0 +1,480 @@
+// =========================================================================================================================
+// @includes - Grid system
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+/// This mixin is used by @include gridClasses to calculate widths of 
+/// column elements but it can also
+/// be used nested in selectors in the same way that you might use 
+/// the susy ruby gem. This is useful if you dont need all the grid
+/// classes or if you want to apply column widths to elements that
+/// are dynamicly added on to the page - e.g. iframes.
+/// @name gridColumns
+/// @group grid
+/// @param {Integer} amount [3] Amount of grid columns
+/// @param {Integer} col-count [12] Total column count
+/// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
+/// @param {Bool} last [false] Add margin-right attribute unless true
+/// @example scss - Include
+///  .main{
+///  	@include gridColumns(8);
+///  }
+///  
+///  .sidebar{
+///  	@include gridColumns(4,12,2%,true);
+///  }
+///
+/// @example css - Output
+///  .main {
+///    float: left;
+///    position: relative;
+///    width: 66%;
+///    margin-right: 2%;
+///  }
+///  
+///  .sidebar {
+///    float: left;
+///    position: relative;
+///    width: 32%;
+///  }
+///
+
+@mixin gridColumns($amount:3,$col-count:12,$gutter-width:2%,$last:false){
+
+	$gutter-total : ($col-count - 1) * $gutter-width;
+	$remainder  : 100% - $gutter-total;
+	$fill : ($amount - 1)*$gutter-width;
+	$unit : $remainder / $col-count;
+
+	float:left;
+	position:relative;
+	width:$unit*$amount+$fill;
+
+	@if not $last{
+		margin-right:$gutter-width;
+	}
+}
+
+// ------------------------------------------------------
+
+/// This mixin is used by @include gridClasses to calculate the margin
+/// indents needed for the various push classes. as with @include gridColumns
+/// this mixin can be used individually, nested in a selector to calculate
+/// the margin width of an element.
+/// @name gridIndent
+/// @group grid
+/// @param {Integer} amount [3] Amount of grid columns to indent
+/// @param {Integer} col-count [12] Total column count
+/// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
+/// @example scss - Include
+///  .indented {
+///      @include gridIndent(2);
+///  }
+///
+/// @example css - Output
+///  .indented {
+///      margin-left: 17%;
+///  }
+///
+
+@mixin gridIndent($amount:3,$col-count:12,$gutter-width:2%){
+
+	$gutter-total : ($col-count - 1) * $gutter-width;
+	$remainder  : 100% - $gutter-total;
+	$fill : ($amount - 1)*$gutter-width;
+	$unit : $remainder / $col-count;
+
+	margin-left:$unit*$amount+$fill+$gutter-width; 
+
+}
+
+// ------------------------------------------------------
+
+/// This mixin is used by @include gridClasses to calculate the margin
+/// outdents needed for the various pull classes. as with @include gridIndent
+/// this mixin can be used individually, nested in a selector to calculate
+/// the margin width of an element.
+/// @name gridOutdent
+/// @group grid
+/// @param {Integer} amount [3] Amount of grid columns to outdent
+/// @param {Integer} col-count [12] Total column count
+/// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
+/// @example scss - Include
+///  .oudented {
+///  	@include gridOutdent(3);
+///  }
+///
+/// @example css - Output
+///  .oudented {
+///    margin-left: auto;
+///    margin-right: 25.5% !important;
+///  }
+///
+
+@mixin gridOutdent($amount:3,$col-count:12,$gutter-width:2%){
+
+	$gutter-total : ($col-count - 1) * $gutter-width;
+	$remainder  : 100% - $gutter-total;
+	$fill : ($amount - 1)*$gutter-width;
+	$unit : $remainder / $col-count;
+
+	margin-left:auto;
+	margin-right:($unit*$amount+$fill+$gutter-width)!important; 
+
+}
+
+// ------------------------------------------------------
+
+/// This mixin genrates classes for a fluid grid system. You can specify
+/// the amount of columns you want, the guttering, the screen width at
+/// which you want elements to stack and optional outdent/indent classes.
+/// @name gridClasses
+/// @group grid
+/// @param {Integer} col-count [12] Amount of grid columns
+/// @param {Percentage} gutter-width [2%] Gutter width (must be a percentage)
+/// @param {Pixel value} stack-point [550px] Breakpoint at which to stack columns
+/// @param {Bool} shift [true] Adds indent/outdent classes if true
+/// @example scss - Include
+///  @include gridClasses(12,2%,450px);
+///
+/// @example css - Output
+///  .grid-row {
+///    min-height: 1%;
+///  }
+///  .grid-row:after {
+///    content: "";
+///    display: table;
+///    clear: both;
+///  }
+///  
+///  .grid-col-1 {
+///    float: left;
+///    position: relative;
+///    width: 6.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-1 {
+///    margin-left: 8.5%;
+///  }
+///  
+///  .grid-col-outdent-1 {
+///    margin-left: auto;
+///    margin-right: 8.5% !important;
+///  }
+///  
+///  .grid-col-2 {
+///    float: left;
+///    position: relative;
+///    width: 15%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-2 {
+///    margin-left: 17%;
+///  }
+///  
+///  .grid-col-outdent-2 {
+///    margin-left: auto;
+///    margin-right: 17% !important;
+///  }
+///  
+///  .grid-col-3 {
+///    float: left;
+///    position: relative;
+///    width: 23.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-3 {
+///    margin-left: 25.5%;
+///  }
+///  
+///  .grid-col-outdent-3 {
+///    margin-left: auto;
+///    margin-right: 25.5% !important;
+///  }
+///  
+///  .grid-col-4 {
+///    float: left;
+///    position: relative;
+///    width: 32%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-4 {
+///    margin-left: 34%;
+///  }
+///  
+///  .grid-col-outdent-4 {
+///    margin-left: auto;
+///    margin-right: 34% !important;
+///  }
+///  
+///  .grid-col-5 {
+///    float: left;
+///    position: relative;
+///    width: 40.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-5 {
+///    margin-left: 42.5%;
+///  }
+///  
+///  .grid-col-outdent-5 {
+///    margin-left: auto;
+///    margin-right: 42.5% !important;
+///  }
+///  
+///  .grid-col-6 {
+///    float: left;
+///    position: relative;
+///    width: 49%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-6 {
+///    margin-left: 51%;
+///  }
+///  
+///  .grid-col-outdent-6 {
+///    margin-left: auto;
+///    margin-right: 51% !important;
+///  }
+///  
+///  .grid-col-7 {
+///    float: left;
+///    position: relative;
+///    width: 57.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-7 {
+///    margin-left: 59.5%;
+///  }
+///  
+///  .grid-col-outdent-7 {
+///    margin-left: auto;
+///    margin-right: 59.5% !important;
+///  }
+///  
+///  .grid-col-8 {
+///    float: left;
+///    position: relative;
+///    width: 66%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-8 {
+///    margin-left: 68%;
+///  }
+///  
+///  .grid-col-outdent-8 {
+///    margin-left: auto;
+///    margin-right: 68% !important;
+///  }
+///  
+///  .grid-col-9 {
+///    float: left;
+///    position: relative;
+///    width: 74.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-9 {
+///    margin-left: 76.5%;
+///  }
+///  
+///  .grid-col-outdent-9 {
+///    margin-left: auto;
+///    margin-right: 76.5% !important;
+///  }
+///  
+///  .grid-col-10 {
+///    float: left;
+///    position: relative;
+///    width: 83%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-10 {
+///    margin-left: 85%;
+///  }
+///  
+///  .grid-col-outdent-10 {
+///    margin-left: auto;
+///    margin-right: 85% !important;
+///  }
+///  
+///  .grid-col-11 {
+///    float: left;
+///    position: relative;
+///    width: 91.5%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-11 {
+///    margin-left: 93.5%;
+///  }
+///  
+///  .grid-col-outdent-11 {
+///    margin-left: auto;
+///    margin-right: 93.5% !important;
+///  }
+///  
+///  .grid-col-12 {
+///    float: left;
+///    position: relative;
+///    width: 100%;
+///    margin-right: 2%;
+///  }
+///  
+///  .grid-col-indent-12 {
+///    margin-left: 102%;
+///  }
+///  
+///  .grid-col-outdent-12 {
+///    margin-left: auto;
+///    margin-right: 102% !important;
+///  }
+///  
+///  [class*="grid-col"]:last-child {
+///    margin-right: 0;
+///  }
+///  
+///  @media screen and (max-width: 450px) {
+///    [class*="grid-col"] {
+///      margin-left: 0;
+///      margin-right: 0;
+///      width: 100%;
+///    }
+///  }
+/// @example markup - HTML
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  	<div class="grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  	<div class="grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-2">
+///  		<span>Grid 2</span>
+///  	</div>
+///  
+///  	<div class="grid-col-7">
+///  		<span>Grid 7</span>
+///  	</div>
+///  
+///  	<div class="grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-12">
+///  		<span>Grid 12</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-4 grid-col-indent-2">
+///  		<span>Grid 4 | push 2</span>
+///  	</div>
+///  
+///  	<div class="grid-col-4 grid-col-outdent-2">
+///  		<span>Grid 4 | pull 2</span>
+///  	</div>
+///  
+///  </div>
+
+@mixin gridClasses ($col-count:12,$gutter-width:2%,$stack-point:550px,$shift:true){
+
+	.grid-row {
+
+		min-height: 1%;
+
+		&:after {
+	        content: "";
+	        display: table;
+	        clear: both;
+	    }
+	}
+
+	@for $i from 1 through $col-count{
+
+		.grid-col-#{$i}{
+			@include gridColumns($i,$col-count,$gutter-width);
+		}
+
+		@if $shift {
+
+			.grid-col-indent-#{$i}{
+				@include gridIndent($i,$col-count,$gutter-width)
+			}
+
+			.grid-col-outdent-#{$i}{
+				@include gridOutdent($i,$col-count,$gutter-width)
+			}
+
+		}
+	}
+
+	[class*="grid-col"]:last-child{
+		margin-right:0;
+	}
+
+	@media screen and (max-width:$stack-point){
+
+
+		[class*="grid-col"]{
+			margin-left: 0;
+			margin-right: 0;
+			width: 100%;
+		}
+	}
+}
+
+
+
+

@@ -1,0 +1,944 @@
+// =========================================================================================================================
+// @includes - Animations 
+// Transitions | Keyframes | Transforms
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+/// Add animation attributes to a selector with this mixin. It allows for a
+/// staggering effect using **nth-child** selectors.  Please note that you will 
+/// also need to define the keyframes that match the animation name. See 
+/// 	<a href="#keyframes">@include keyframes;</a> 
+/// or 
+/// 	<a href="#transformKeyframes">@include transformKeyframes;</a>
+/// @name animation
+/// @group animations
+/// @param {string} name  Animation name
+/// @param {Option - string} timingFunction [ease] Easing
+/// @param {Seconds} duration [1s] Duration of the animation
+/// @param {Integer} stagger [0] Ammount of nth-child elements to stagger
+/// @param {Seconds} delay [false] Delay in between staggers
+/// @param {Integer} count [false] Animation iteration count
+/// @example scss - Include
+///  .fade-in{
+////     @include animation(fadeIn,ease,0.5s,5);
+///  }
+/// @example css - Output
+///  .fade-in {
+///    -webkit-animation-name: fadeIn;
+///    animation-name: fadeIn;
+///    -webkit-animation-fill-mode: both;
+///    animation-fill-mode: both;
+///    -webkit-animation-timing-function: ease;
+///    animation-timing-function: ease;
+///    -webkit-animation-duration: 0.5s;
+///    animation-duration: 0.5s;
+///  }
+///  .fade-in:nth-child(1) {
+///    -webkit-animation-delay: 0.1s;
+///    animation-delay: 0.1s;
+///  }
+///  .fade-in:nth-child(2) {
+///    -webkit-animation-delay: 0.2s;
+///    animation-delay: 0.2s;
+///  }
+///  .fade-in:nth-child(3) {
+///    -webkit-animation-delay: 0.3s;
+///    animation-delay: 0.3s;
+///  }
+///  .fade-in:nth-child(4) {
+///    -webkit-animation-delay: 0.4s;
+///    animation-delay: 0.4s;
+///  }
+///  .fade-in:nth-child(5) {
+///    -webkit-animation-delay: 0.5s;
+///    animation-delay: 0.5s;
+///  }
+
+
+
+@mixin animation($name, $timingFunction:ease, $duration:1s,$stagger:0,$delay:false, $count:false){
+	-webkit-animation-name: $name;
+	animation-name: $name;	
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-timing-function:$timingFunction;
+	animation-timing-function:$timingFunction;
+	-webkit-animation-duration: $duration;
+	animation-duration: $duration;	
+	@if $count {
+		-webkit-animation-iteration-count: $count;
+		animation-iteration-count: $count;
+	}
+	@if $stagger > 0{
+		@if not $delay {
+			$delay:0.1s;
+		}
+		@for $i from 1 through $stagger {
+		    &:nth-child(#{$i}) {
+		    	-webkit-animation-delay: $delay * $i;
+		        animation-delay: $delay * $i;
+		    }
+		}
+	} @else {
+		@if $delay {
+			-webkit-animation-delay: $delay;
+			animation-delay: $delay;
+		}
+	}
+}
+
+// ------------------------------------------------------
+
+/// Easlily generate animation keyframes with this mixin. 
+/// The sass **@content** directive is used to wrap the mixin's 
+/// content with the various vendor prefixes. 
+/// @name keyframes
+/// @group animations
+/// @param {String} name [] Animation name
+/// @param {Array} vendors ["-webkit-" "-moz-" "-o-" ""] required vendor prefixes
+/// @example scss - Include
+///  @include keyframes (wobble,"-webkit-" "-moz-" ""){
+///  	0%{
+///  		top: 0px
+///  	}
+///  	33%{
+///  		top: -5px
+///  	}
+///  	66%{
+///  		top: 5px
+///  	}
+///  	100%{
+///  		top: 0px
+///  	}
+///  }
+/// @example css - Output
+///  @-webkit-keyframes wobble {
+///    0% {
+///      top: 0px;
+///    }
+///    33% {
+///      top: -5px;
+///    }
+///    66% {
+///      top: 5px;
+///    }
+///    100% {
+///      top: 0px;
+///    }
+///  }
+///  @-moz-keyframes wobble {
+///    0% {
+///      top: 0px;
+///    }
+///    33% {
+///      top: -5px;
+///    }
+///    66% {
+///      top: 5px;
+///    }
+///    100% {
+///      top: 0px;
+///    }
+///  }
+///  @keyframes wobble {
+///    0% {
+///      top: 0px;
+///    }
+///    33% {
+///      top: -5px;
+///    }
+///    66% {
+///      top: 5px;
+///    }
+///    100% {
+///      top: 0px;
+///    }
+///  }
+///
+
+
+
+@mixin keyframes($animationName, $vendors : "-webkit-" "-moz-" "-o-" "") {
+
+	@if match($vendors , "-webkit-") == "-webkit-"{
+		@-webkit-keyframes #{$animationName} {
+	        @content;
+	    }
+	}
+	@if match($vendors , "-moz-") == "-moz-"{
+		@-moz-keyframes #{$animationName} {
+	        @content;
+	    }
+	}
+
+	@if match($vendors , "-o-") == "-o-"{
+		@-o-keyframes #{$animationName} {
+	        @content;
+	    }
+	}
+	@if match($vendors , "") == ""{
+		@keyframes #{$animationName} {
+	        @content;
+	    }
+	}
+}
+
+// ------------------------------------------------------
+
+/// Easlily generate transform based animation keyframes with this mixin. 
+/// Sass maps are used to replicate the keyframe syntax. 
+/// @name transformKeyframes
+/// @group animations
+/// @param {String} name  Animation name
+/// @param {Sass map} stopsObj A key,val sass map of the stop positions
+/// @param {String} opFade [fasle] Optional fade - "fadeIn" | "fadeOut"
+/// @param {Array} vendors ["-webkit-" "-moz-" "-o-" ""] required vendor prefixes
+/// @example scss - Include
+///  $pulse-stops : (
+///  	0% : "scale(1)",
+///  	87% : "scale(1)",
+///  	90% : "scale(0.8)",
+///  	93% : "scale(1)",
+///  	100% : "scale(1)"
+///  );
+///  
+///  @include transformKeyframes(pulse,$pulse-stops);
+///  
+/// @example css - Output
+///  @-webkit-keyframes pulse {
+///    0% {
+///      -webkit-transform: scale(1);
+///    }
+///    87% {
+///      -webkit-transform: scale(1);
+///    }
+///    90% {
+///      -webkit-transform: scale(0.8);
+///    }
+///    93% {
+///      -webkit-transform: scale(1);
+///    }
+///    100% {
+///      -webkit-transform: scale(1);
+///    }
+///  }
+///  @-moz-keyframes pulse {
+///    0% {
+///      -moz-transform: scale(1);
+///    }
+///    87% {
+///      -moz-transform: scale(1);
+///    }
+///    90% {
+///      -moz-transform: scale(0.8);
+///    }
+///    93% {
+///      -moz-transform: scale(1);
+///    }
+///    100% {
+///      -moz-transform: scale(1);
+///    }
+///  }
+///  @-o-keyframes pulse {
+///    0% {
+///      -o-transform: scale(1);
+///    }
+///    87% {
+///      -o-transform: scale(1);
+///    }
+///    90% {
+///      -o-transform: scale(0.8);
+///    }
+///    93% {
+///      -o-transform: scale(1);
+///    }
+///    100% {
+///      -o-transform: scale(1);
+///    }
+///  }
+///  @keyframes pulse {
+///    0% {
+///      transform: scale(1);
+///    }
+///    87% {
+///      transform: scale(1);
+///    }
+///    90% {
+///      transform: scale(0.8);
+///    }
+///    93% {
+///      transform: scale(1);
+///    }
+///    100% {
+///      transform: scale(1);
+///    }
+///  }
+///  
+
+@mixin transformKeyframes ($animationName,$stopsObj,$opFade:false,$vendors : "-webkit-" "-moz-" "-o-" ""){
+
+	@if match($vendors , "-webkit-") == "-webkit-"{
+		@-webkit-keyframes #{$animationName} {
+	    	@include stops(-webkit-,$stopsObj,$opFade)
+	    }
+	}
+	@if match($vendors , "-moz-") == "-moz-"{
+		@-moz-keyframes #{$animationName} {
+	      	@include stops(-moz-,$stopsObj,$opFade)
+	    }
+	}
+
+	@if match($vendors , "-o-") == "-o-"{
+		@-o-keyframes #{$animationName} {
+	      	@include stops(-o-,$stopsObj,$opFade)
+	    }
+	}
+	@if match($vendors , "") == ""{
+		@keyframes #{$animationName} {
+	     	@include stops("",$stopsObj,$opFade)
+	    }
+	}
+}
+
+// ------------------------------------------------------
+
+/// Predefined class and keyframes for a fade in style animation. This is a 
+/// good example of the power of the @include animation; & @include transformKeyframes;
+/// mixins. Arguments allow you to change the easing, duration & nth-child(n) stagger count.
+/// @name fadeIn
+/// @group animations
+/// @param {String} easing [ease] Easing style
+/// @param {Seconds} duration [0.6s] The duration of the animation
+/// @param {Integer} staggerCount [10] The ammount of nth-child selectors to append
+/// @example scss - Include
+////  @include fadeIn(ease,0.5s,5);
+////  
+/// @example css - Output
+////  .fade-in {
+////    -webkit-animation-name: fadeIn;
+////    animation-name: fadeIn;
+////    -webkit-animation-fill-mode: both;
+////    animation-fill-mode: both;
+////    -webkit-animation-timing-function: ease;
+////    animation-timing-function: ease;
+////    -webkit-animation-duration: 0.5s;
+////    animation-duration: 0.5s;
+////  }
+////  .fade-in:nth-child(1) {
+////    -webkit-animation-delay: 0.08s;
+////    animation-delay: 0.08s;
+////  }
+////  .fade-in:nth-child(2) {
+////    -webkit-animation-delay: 0.16s;
+////    animation-delay: 0.16s;
+////  }
+////  .fade-in:nth-child(3) {
+////    -webkit-animation-delay: 0.24s;
+////    animation-delay: 0.24s;
+////  }
+////  .fade-in:nth-child(4) {
+////    -webkit-animation-delay: 0.32s;
+////    animation-delay: 0.32s;
+////  }
+////  .fade-in:nth-child(5) {
+////    -webkit-animation-delay: 0.4s;
+////    animation-delay: 0.4s;
+////  }
+////  
+////  @-webkit-keyframes fadeIn {
+////    0% {
+////      opacity: 0;
+////      -webkit-transform: scale(0.7);
+////    }
+////    100% {
+////      opacity: 1;
+////      -webkit-transform: scale(1);
+////    }
+////  }
+////  @-moz-keyframes fadeIn {
+////    0% {
+////      opacity: 0;
+////      -moz-transform: scale(0.7);
+////    }
+////    100% {
+////      opacity: 1;
+////      -moz-transform: scale(1);
+////    }
+////  }
+////  @-o-keyframes fadeIn {
+////    0% {
+////      opacity: 0;
+////      -o-transform: scale(0.7);
+////    }
+////    100% {
+////      opacity: 1;
+////      -o-transform: scale(1);
+////    }
+////  }
+////  @keyframes fadeIn {
+////    0% {
+////      opacity: 0;
+////      transform: scale(0.7);
+////    }
+////    100% {
+////      opacity: 1;
+////      transform: scale(1);
+////    }
+////  }
+////  }
+///
+
+@mixin fadeIn($easing:ease,$duration:0.6s,$staggerCount:10) {
+
+	.fade-in{
+
+		@include animation(fadeIn,$easing,$duration,$staggerCount,0.08s);
+	}
+
+	$fadeIn-stops : (
+		0% : "scale(0.7)",
+		100% : "scale(1)"
+	);
+
+	@include transformKeyframes(fadeIn,$fadeIn-stops,"fadeIn");
+}
+
+// ------------------------------------------------------
+
+/// Predefined class and keyframes for a slide in transform animation. This is a 
+/// good example of the power of the @include animation; & @include transformKeyframes;
+/// mixins. Arguments allow you to change the direction, slide distance, easing, duration & 
+/// nth-child(n) stagger count.
+/// @name slideIn
+/// @group animations
+/// @param {String} direction [right] The direction in which to slide the element
+/// @param {Integer} amount [100] Distance in pixels for the element to slide in
+/// @param {String} easing [ease] Easing style
+/// @param {Seconds} duration [0.6s] The duration of the animation
+/// @param {Integer} staggerCount [10] The ammount of nth-child selectors to append
+/// @example scss - Include
+///  @include slideIn("right",40,ease,0.6s,5);
+/// @example css - Output
+///  .slide-in-right {
+///    -webkit-animation-name: slideIn-right;
+///    animation-name: slideIn-right;
+///    -webkit-animation-fill-mode: both;
+///    animation-fill-mode: both;
+///    -webkit-animation-timing-function: ease;
+///    animation-timing-function: ease;
+///    -webkit-animation-duration: 0.6s;
+///    animation-duration: 0.6s;
+///  }
+///  .slide-in-right:nth-child(1) {
+///    -webkit-animation-delay: 0.08s;
+///    animation-delay: 0.08s;
+///  }
+///  .slide-in-right:nth-child(2) {
+///    -webkit-animation-delay: 0.16s;
+///    animation-delay: 0.16s;
+///  }
+///  .slide-in-right:nth-child(3) {
+///    -webkit-animation-delay: 0.24s;
+///    animation-delay: 0.24s;
+///  }
+///  .slide-in-right:nth-child(4) {
+///    -webkit-animation-delay: 0.32s;
+///    animation-delay: 0.32s;
+///  }
+///  .slide-in-right:nth-child(5) {
+///    -webkit-animation-delay: 0.4s;
+///    animation-delay: 0.4s;
+///  }
+///  
+///  @-webkit-keyframes slideIn-right {
+///    0% {
+///      opacity: 0;
+///      -webkit-transform: translateX(-40px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -webkit-transform: translateX(0);
+///    }
+///  }
+///  @-moz-keyframes slideIn-right {
+///    0% {
+///      opacity: 0;
+///      -moz-transform: translateX(-40px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -moz-transform: translateX(0);
+///    }
+///  }
+///  @-o-keyframes slideIn-right {
+///    0% {
+///      opacity: 0;
+///      -o-transform: translateX(-40px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -o-transform: translateX(0);
+///    }
+///  }
+///  @keyframes slideIn-right {
+///    0% {
+///      opacity: 0;
+///      transform: translateX(-40px);
+///    }
+///    100% {
+///      opacity: 1;
+///      transform: translateX(0);
+///    }
+///  }
+
+
+@mixin slideIn($direction:"right",$amount:100,$easing:ease,$duration:0.6s,$staggerCount:10) {
+
+	$name : slideIn-#{$direction};
+	$shift : "";
+	
+	@if $direction == "right"{
+		$shift : "translateX(-#{$amount}px)";
+	}
+
+	@if $direction == "left"{
+		$shift : "translateX(#{$amount}px)";
+	}
+
+	@if $direction == "down"{
+		$shift : "translateY(-#{$amount}px)";
+	}
+
+	@if $direction == "up" {
+		$shift : "translateY(#{$amount}px)";
+	}
+
+	$slideIn-stops : (
+		0% : $shift,
+		100% : "translateX(0)"
+	);
+
+	.slide-in-#{$direction}{
+
+		@include animation($name,$easing,$duration,$staggerCount,0.08s);
+	}
+
+	@include transformKeyframes($name,$slideIn-stops,"fadeIn");
+}
+
+
+
+// ------------------------------------------------------
+
+/// Predefined class and keyframes for a rotate in style animation. This is a 
+/// good example of the power of the @include animation; & @include transformKeyframes;
+/// mixins. Arguments allow you to change the rotate angle, easing, duration & 
+/// nth-child(n) stagger count.
+/// @name rotateIn
+/// @group animations
+/// @param {Integer} degrees [100] Degrees to start from negative values supported
+/// @param {String} easing [ease] Easing
+/// @param {Seconds} duration [0.6s] The duration of the animation
+/// @param {Integer} staggerCount [10] The ammount of nth-child selectors to append
+/// @example scss - Include
+///  $bounce : cubic-bezier(.39,-0.35,.4,1.36);	
+///  @include rotateIn(-30,$bounce,0.6s,5);
+/// @example css - Output
+///  .rotate-in {
+///    -webkit-animation-name: rotateIn;
+///    animation-name: rotateIn;
+///    -webkit-animation-fill-mode: both;
+///    animation-fill-mode: both;
+///    -webkit-animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+///    animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+///    -webkit-animation-duration: 0.6s;
+///    animation-duration: 0.6s;
+///  }
+///  .rotate-in:nth-child(1) {
+///    -webkit-animation-delay: 0.08s;
+///    animation-delay: 0.08s;
+///  }
+///  .rotate-in:nth-child(2) {
+///    -webkit-animation-delay: 0.16s;
+///    animation-delay: 0.16s;
+///  }
+///  .rotate-in:nth-child(3) {
+///    -webkit-animation-delay: 0.24s;
+///    animation-delay: 0.24s;
+///  }
+///  .rotate-in:nth-child(4) {
+///    -webkit-animation-delay: 0.32s;
+///    animation-delay: 0.32s;
+///  }
+///  .rotate-in:nth-child(5) {
+///    -webkit-animation-delay: 0.4s;
+///    animation-delay: 0.4s;
+///  }
+///  
+///  @-webkit-keyframes rotateIn {
+///    0% {
+///      opacity: 0;
+///      -webkit-transform: rotate(-30deg) translateX(-100px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -webkit-transform: rotate(0deg) translateX();
+///    }
+///  }
+///  @-moz-keyframes rotateIn {
+///    0% {
+///      opacity: 0;
+///      -moz-transform: rotate(-30deg) translateX(-100px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -moz-transform: rotate(0deg) translateX();
+///    }
+///  }
+///  @-o-keyframes rotateIn {
+///    0% {
+///      opacity: 0;
+///      -o-transform: rotate(-30deg) translateX(-100px);
+///    }
+///    100% {
+///      opacity: 1;
+///      -o-transform: rotate(0deg) translateX();
+///    }
+///  }
+///  @keyframes rotateIn {
+///    0% {
+///      opacity: 0;
+///      transform: rotate(-30deg) translateX(-100px);
+///    }
+///    100% {
+///      opacity: 1;
+///      transform: rotate(0deg) translateX();
+///    }
+///  }
+///  
+
+@mixin rotateIn($amount:-20,$easing:ease) {
+
+	.rotate-in{
+
+		@include animation(rotateIn,$easing,0.6s,5,0.08s);
+	}
+
+	$rotateIn-stops : (
+		0% : "rotate(#{$amount}deg) translateX(-100px)",
+		100% : "rotate(0deg) translateX()"
+	);
+
+	@include transformKeyframes(rotateIn,$rotateIn-stops,"fadeIn");
+}
+
+// ------------------------------------------------------
+
+/// Predefined class and keyframes for a looping pulse animation. Can be used 
+/// as a subtle attention grabber for buttons.
+/// @name pulse
+/// @group animations
+/// @param {String} easing [ease] Easing
+/// @example scss - Include
+///  @include pulse;
+/// @example css - Output
+///  .pulse {
+///    -webkit-animation-name: pulse;
+///    animation-name: pulse;
+///    -webkit-animation-fill-mode: both;
+///    animation-fill-mode: both;
+///    -webkit-animation-timing-function: ease;
+///    animation-timing-function: ease;
+///    -webkit-animation-duration: 3s;
+///    animation-duration: 3s;
+///    -webkit-animation-iteration-count: infinite;
+///    animation-iteration-count: infinite;
+///  }
+///  
+///  @-webkit-keyframes pulse {
+///    0% {
+///      -webkit-transform: scale(1);
+///    }
+///    87% {
+///      -webkit-transform: scale(1);
+///    }
+///    90% {
+///      -webkit-transform: scale(0.8);
+///    }
+///    93% {
+///      -webkit-transform: scale(1);
+///    }
+///    100% {
+///      -webkit-transform: scale(1);
+///    }
+///  }
+///  @-moz-keyframes pulse {
+///    0% {
+///      -moz-transform: scale(1);
+///    }
+///    87% {
+///      -moz-transform: scale(1);
+///    }
+///    90% {
+///      -moz-transform: scale(0.8);
+///    }
+///    93% {
+///      -moz-transform: scale(1);
+///    }
+///    100% {
+///      -moz-transform: scale(1);
+///    }
+///  }
+///  @-o-keyframes pulse {
+///    0% {
+///      -o-transform: scale(1);
+///    }
+///    87% {
+///      -o-transform: scale(1);
+///    }
+///    90% {
+///      -o-transform: scale(0.8);
+///    }
+///    93% {
+///      -o-transform: scale(1);
+///    }
+///    100% {
+///      -o-transform: scale(1);
+///    }
+///  }
+///  @keyframes pulse {
+///    0% {
+///      transform: scale(1);
+///    }
+///    87% {
+///      transform: scale(1);
+///    }
+///    90% {
+///      transform: scale(0.8);
+///    }
+///    93% {
+///      transform: scale(1);
+///    }
+///    100% {
+///      transform: scale(1);
+///    }
+///  }
+
+@mixin pulse($easing:ease) {
+
+	.pulse{
+
+		@include animation(pulse,$easing,3s,0,false,infinite);
+	}
+
+	$pulse-stops : (
+		0% : "scale(1)",
+		87% : "scale(1)",
+		90% : "scale(0.8)",
+		93% : "scale(1)",
+		100% : "scale(1)"
+	);
+
+	@include transformKeyframes(pulse,$pulse-stops);
+}
+
+
+/// Add classes for a flipping card effect.
+/// Argumants allow you to control the flip axis and duration of the animation.
+/// @name flipClass
+/// @group animations
+/// @param {String} axis [x] Axis on which to flip the card. Accepted values : x | y 
+/// @param {Seconds} duration [0.5s] Duration of the flip animation
+/// @example scss - Include
+///  @include flipClass(x,0.3s)
+///
+/// @example css - Output
+///  .flip {
+///      -webkit-perspective: 700;
+///      -moz-perspective: 700;
+///      perspective: 700;
+///  }
+///  .flip .flipper {
+///      -webkit-transition: all 0.3s ease;
+///      -moz-transition: all 0.3s ease;
+///      -o-transition: all 0.3s ease;
+///      transition: all 0.3s ease;
+///      -webkit-transform-style: preserve-3d;
+///      -moz-transform-style: preserve-3d;
+///      transform-style: preserve-3d;
+///      position: relative;
+///  }
+///  .flip .flipper .front {
+///      overflow: hidden;
+///      z-index: 2;
+///      -webkit-transform: rotateX(0deg);
+///      -moz-transform: rotateX(0deg);
+///      -ms-transform: rotateX(0deg);
+///      transform: rotateX(0deg);
+///  }
+///  .flip .flipper .back {
+///      position: absolute;
+///      top: 0;
+///      left: 0;
+///      bottom: 0;
+///      right: 0;
+///      -webkit-transform: rotateX(180deg);
+///      -moz-transform: rotateX(180deg);
+///      -ms-transform: rotateX(180deg);
+///      transform: rotateX(180deg);
+///  }
+///  .flip .flipper .front, .flip .flipper .back {
+///      -webkit-backface-visibility: hidden;
+///      -moz-backface-visibility: hidden;
+///      backface-visibility: hidden;
+///  }
+///  .flip:hover .flipper {
+///      -webkit-transform: rotateX(180deg);
+///      -moz-transform: rotateX(180deg);
+///      -ms-transform: rotateX(180deg);
+///      transform: rotateX(180deg);
+///  }
+/// @example markup - HTML
+///  <div class="grid-row">
+///  
+///  	<div class="grid-col-6 flip">
+///  		<div class="flipper">
+///  			
+///  			<div class="front card">				
+///  				<img src="http://placehold.it/350x250">
+///  				<div class="card-body">
+///  					<h3>
+///  						Hover over this card to flip it over
+///  					</h3>
+///  				</div>
+///  				<footer>
+///  					<a href="#"><i class="icon-eye"></i></a> 
+///  					<a href="#"><i class="icon-share"></i></a>
+///  					<a href="#"><i class="icon-heart"></i></a> 					 
+///  				</footer>
+///  			</div>
+///  			
+///  			<div class="back card">
+///  				<header>
+///  					<h4>Boom!</h4>
+///  				</header>
+///  				
+///  				<div class="centre text-centre">
+///  					<p>Horray - you flipped it!</p>
+///  				</div>
+///  			</div>
+///  
+///  		</div>
+///  	</div>
+///  
+///  	<div class="grid-col-6 flip">
+///  		<div class="flipper">
+///  			
+///  			<div class="front card">				
+///  
+///  				<header>
+///  					<h4>Flip this card</h4>
+///  				</header>
+///  				<div class="card-body">
+///  					<p>
+///  						Hover over this card to flip it over
+///  					</p>
+///  					<p>
+///  						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed aut dolore magni corrupti. Debitis minus officiis magni, laborum! Unde impedit similique delectus voluptatibus necessitatibus a atque, debitis dolores nulla.
+///  					</p>
+///  				</div>
+///  				<footer>
+///  					<a href="#"><i class="icon-eye"></i></a> 
+///  					<a href="#"><i class="icon-share"></i></a>
+///  					<a href="#"><i class="icon-heart"></i></a> 					 
+///  				</footer>
+///  			</div>
+///  			
+///  			<div class="back card">
+///  
+///  				<header>
+///  					<h4>Ka-boom!</h4>
+///  				</header>
+///  				
+///  				<div class="centre text-centre">
+///  					<p>Horray - you flipped it!</p>
+///  				</div>
+///  			</div>
+///  
+///  		</div>
+///  	</div>
+///  
+///  </div>
+
+@mixin flipClass($axis:"x",$duration:0.5s) {
+
+	@if $axis == "x" or $axis == "X" or $axis == "y" or $axis == "Y"{
+
+		.flip{
+
+			@include vendorPrefix(perspective,700);
+
+			.flipper {
+
+				@include vendorPrefix(transition,all $duration ease);
+				@include vendorPrefix(transform-style,preserve-3d);
+
+				position:relative;
+
+				.front{
+					
+					overflow: hidden;
+					z-index: 2;
+
+					@if $axis == "x" or $axis == "X"{
+						@include transforms(rotateX(0deg));
+					}
+
+					@if $axis == "y" or $axis == "Y"{
+						@include transforms(rotateY(0deg));
+					}
+				}
+
+				.back{
+
+					position:absolute;
+					top:0;
+					left:0;
+					bottom:0;
+					right:0;
+					@if $axis == "x" or $axis == "X"{
+						@include transforms(rotateX(180deg));
+					}
+
+					@if $axis == "y" or $axis == "Y"{
+						@include transforms(rotateY(180deg));
+					}
+				}
+
+				.front, .back {
+					
+					@include vendorPrefix(backface-visibility,hidden);
+				}
+			}
+
+			&:hover .flipper{
+
+				@if $axis == "x" or $axis == "X"{
+					@include transforms(rotateX(180deg));
+				}
+
+				@if $axis == "y" or $axis == "Y"{
+					@include transforms(rotateY(180deg));
+				}
+			}
+		}
+	}
+
+	@else{
+
+		@error "ERROR: Invalid axis value passed as argument in flip mixin. #{$axis} is not an accepted value. Accepted values : x | X | y | Y."
+	}
+}

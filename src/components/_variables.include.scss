@@ -1,0 +1,20 @@
+// Colour variables
+// ------------------------------------------------------------------------
+
+$col-primary    :  #289e83 !default;
+$col-secondary  :  #1b8898 !default;
+$col-warning    :  #d7861e !default;
+$col-danger     :  #ac2828 !default;
+$col-success    :  #54A03A !default;
+
+$col-pastel-red :  #e7534f !default;
+
+// ------------------------------------------------------------------------
+
+$bounce : cubic-bezier(.39,-0.35,.4,1.36) !default;
+
+// Vendor Prefixes
+// ------------------------------------------------------------------------
+$defaultVendors   : "-webkit-" "-moz-" "" !default;
+$animationVendors : "-webkit-" "-moz-" "-o-" "" !default;
+$transformVendors : "-webkit-" "-moz-" "-ms-" "" !default;	

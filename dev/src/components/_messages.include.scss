@@ -1,0 +1,48 @@
+// =========================================================================================================================
+// @includes - Messages
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+@import "helpers.include";
+
+
+
+/// Generate styles for a notification badge with this mixin. Arguments allow you 
+/// to contol the colour and font size.
+/// @name badge
+/// @group messages, hints & alerts
+/// @param {#hex/rgba} col [#289e83] Background colour of the badge
+/// @param {Integer} fontSize [14] Font size (in pixels)
+/// @example scss - Include
+///  .badge.green{
+///  	@include badge(#289e83,12);
+///  }
+/// @example css - Output
+///  .badge.green {
+///      background-color: #289e83;
+///      padding: 0 6.3px;
+///      line-height: 18px;
+///      text-align: center;
+///      color: white;
+///      display: block;
+///      border-radius: 18px;
+///      font-size: 12px;
+///      font-size: 0.75rem;
+///  }
+
+@mixin badge($col:$col-primary,$fontSize:14){
+
+	$height : $fontSize * 1.5;
+		
+	background-color: $col;
+	padding:0 #{$height*0.35}px;
+	line-height:#{$height}px;
+	text-align:center;
+	color: contrast($col,80%);
+	display: block;
+	border-radius:#{$height}px;
+	@include fontSize($fontSize);
+}
+

@@ -1,0 +1,205 @@
+// =========================================================================================================================
+// @includes - Typography
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+/// Programmatically calculate the sizes of your heading elements. This mixin uses the @include
+/// fontSize mixin in order to calulate both rem and pixel value fallbacks.
+/// by passing in the ceiling(h1) and floor(h6) size values. These integers
+/// will be converted into px and rem values using the @include fontSize(); mixin.
+/// @name headerSizes
+/// @param {Integer} h1 [50] Size of H1 elements
+/// @param {Integer} h6 [20] Size of H6 elements
+/// @example scss - Include
+///     @include headerSizes(100,20);
+///
+/// @example css - Output
+/// h1 {
+///         font-size: 100px;
+///         font-size: 6.25rem;
+/// }
+///
+/// h2 {
+///         font-size: 86.66667px;
+///         font-size: 5.41667rem;
+/// }
+///
+/// h3 {
+///         font-size: 73.33333px;
+///         font-size: 4.58333rem;
+/// }
+///
+/// h4 {
+///         font-size: 60px;
+///         font-size: 3.75rem;
+/// }
+///
+/// h5 {
+///         font-size: 46.66667px;
+///         font-size: 2.91667rem;
+/// }
+///
+/// h6 {
+///         font-size: 20px;
+///         font-size: 1.25rem;
+/// }
+
+@mixin headerSizes($h1:50,$h6:20){
+
+    $range    : $h1 - $h6;
+    $interval : $range / 6;
+
+    h1{
+
+        @include fontSize($h1);
+    }
+
+    h2{
+
+        @include fontSize($h6 + $interval * 5 )
+    }
+
+    h3{
+
+        @include fontSize($h6 + $interval * 4 )
+    }
+
+    h4{
+
+        @include fontSize($h6 + $interval * 3 )
+    }
+
+    h5{
+
+        @include fontSize($h6 + $interval * 2 )
+    }
+
+    h6{
+
+        @include fontSize($h6);
+    }
+}
+
+@mixin themeTypography($themeColour:#e9e9e9,$body:#666,$heading:#111,$highlight:#e7534f){
+
+    body{
+
+        color:$body;
+        line-height: 140%;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+
+        color:$heading;
+    }
+
+    p{
+
+        color:$body;
+    }
+
+    strong,b{
+
+        color: contrast($themeColour,65%);
+        font-weight: bold;
+    }
+
+
+    hr{
+
+        display: block;
+        margin: 20px 20px 40px 20px;
+        height:0;
+        border-left:none;
+        border-right:none;
+        border-top: 1px solid darken($themeColour,20%);
+        border-bottom: 1px solid lighten($themeColour,20%);
+        opacity: 0.3;
+    }
+
+    mark{
+
+        font-size: 0.8em;
+        background-color: orange;
+        padding:5px;
+    }
+
+    ol{
+
+        li{
+            list-style: decimal;
+            margin-left:30px;
+        }
+    }
+
+    .highlighted{
+
+        font-size: 0.9em;
+        padding:3px 5px;
+        border-radius:5px;
+
+        @if (lightness($themeColour) > 50) {
+            color: $highlight;
+            background-color: lighten($highlight,30%);
+            border:1px solid lighten($highlight,20%);
+        } @else {
+            background-color: $highlight;
+            border:1px solid $highlight;
+            color: $themeColour;
+        }
+    }
+
+}
+
+@mixin themeBlockquote($border:$col-pastel-red,$bg:#f3f3f3,$rounding:5){
+
+    blockquote{
+
+        padding:20px;
+        background-color:$bg;
+        border-left:5px solid $border;
+
+        @if $rounding > 0 {
+            border-radius:#{$rounding}px;
+        }
+    }
+}
+
+
+
+
+//Adds a gradient text effect - WEBKIT ONLY!!!
+@mixin gradientText($top:#fcfcfc,$bottom:#828282){
+	color:$top;
+	background: -webkit-linear-gradient($top,$bottom);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+
+@mixin textColumns($cols:3,$gap:40px,$breakpoint:550px,$ruleColour:false){
+
+    @include vendorPrefix(column-count,$cols);
+    @include vendorPrefix(column-gap,$gap);
+
+    @if $ruleColour {
+        @include vendorPrefix(column-rule,1px outset #{$ruleColour});
+    }
+
+    @include breakPoint($breakpoint,'max'){
+
+        @include vendorPrefix(column-count,1);
+        @include vendorPrefix(column-gap,0);
+        
+        @if $ruleColour {
+            @include vendorPrefix(column-rule,none);
+        }
+    }
+}
+
+
+

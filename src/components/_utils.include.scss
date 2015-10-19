@@ -1,0 +1,287 @@
+// Utility functions and mixins for Includes
+// =========================================
+
+
+// Colour Helpers
+// ------------------------------------------------------------------------
+
+/// Function for applying contrast to a colour val/variable.
+/// It detects the lightess of the colour and applies **darken/lighten**
+/// functions accordingly.
+/// @name contrast
+/// @group colours
+/// @param {rgba/#hex} colour [] The colour to aplly contrast to
+/// @param {percentage} amount [] The percentage of contrast to be applied
+/// @example scss - function
+///  .dark-with-light-text{
+///  
+///  	$dark : #111;
+///  
+///  	background-color:$dark;
+///  	color:contrast($dark,65%);
+///  }
+/// @example css - Output
+///  .dark-with-light-text {
+///    background-color: #111;
+///    color: #b7b7b7;
+///  }
+
+@function contrast($colour,$amount) {
+	@if (lightness($colour) > 50) {
+	    @return darken($colour,$amount);
+	} @else {
+	    @return lighten($colour,$amount);
+	}
+}
+
+
+/// Function for enhancing a colour val/variable.
+/// It detects the lightess of the colour and applies **darken/lighten**
+/// functions accordingly.
+/// @name enhance
+/// @group colours
+/// @param {rgba/#hex} colour [] The colour to aplly contrast to
+/// @param {percentage} amount [] The percentage of contrast to be applied
+/// @example scss - function
+///  .dark-bordered{
+///  
+///  	$dark : #333;
+///  
+///  	background-color:$dark;
+///  	border:1px solid enhance($dark,10%);
+///  }
+/// @example css - Output
+///  .dark-bordered {
+///      background-color: #333;
+///      border: 1px solid #1a1a1a;
+///  }
+
+@function enhance($colour,$amount) {
+	@if (lightness($colour) > 50) {
+	    @return lighten($colour,$amount);
+	} @else {
+	    @return darken($colour,$amount);
+	}
+}
+
+// css3 helpers to replace compass css3
+// ------------------------------------------------------------------------
+
+
+/// Mixin for generating vendor prefixes for css3 properties. 
+/// @name vendorPrefix
+/// @group helpers
+/// @param {String} prop [] The css property to apply vendor prefixes to
+/// @param {String} val [] The value of the property
+/// @param {Array} vendors [false] Optional array of desired vendor prefixes
+/// @example scss - function
+///  .css3-box{
+///  
+///  	@include vendorPrefix(box-shadow,10px 0 10px rgba(0,0,0,0.4));
+///  	@include vendorPrefix(transition,all ease 0.5s);
+///  	@include vendorPrefix(transform,scale(0.5) rotate(3deg));
+///  }
+/// @example css - Output
+///  .css3-box {
+///    	-webkit-box-shadow: 10px 0 10px rgba(0, 0, 0, 0.4);
+///    	-moz-box-shadow: 10px 0 10px rgba(0, 0, 0, 0.4);
+///    	box-shadow: 10px 0 10px rgba(0, 0, 0, 0.4);
+///    	-webkit-transition: all ease 0.5s;
+///    	-moz-transition: all ease 0.5s;
+///    	-o-transition: all ease 0.5s;
+///    	transition: all ease 0.5s;
+///    	-webkit-transform: scale(0.5) rotate(3deg);
+///    	-moz-transform: scale(0.5) rotate(3deg);
+///    	transform: scale(0.5) rotate(3deg);
+///  }
+
+@mixin vendorPrefix($prop,$val,$vendors:false){
+
+	@if $vendors {
+		
+		@each $vendor in $vendors{
+			#{$vendor}#{$prop} : #{$val};
+		}
+
+	} @else {
+
+		@if $prop == transition {
+
+			@each $vendor in $animationVendors{
+				#{$vendor}#{$prop} : #{$val};
+			}
+		} @else{
+
+			@each $vendor in $defaultVendors{
+				#{$vendor}#{$prop} : #{$val};
+			}
+		}
+	}
+}
+
+@mixin transforms($val,$vendors:$transformVendors){
+
+	@each $vendor in $vendors{
+		#{$vendor}transform : #{$val};
+	}
+}
+
+@mixin linearGradient($start,$end){
+	
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $start), color-stop(100%, $end));
+  	background-image: -moz-linear-gradient($start, $end);
+  	background-image: -webkit-linear-gradient($start, $end);
+  	background-image: linear-gradient($start $end);
+}
+
+
+// Font helpers
+// ------------------------------------------------------------------------
+
+/// Convert a pixel value into rem value with this mixin. Pixel values are still 
+/// output for legacy browsers. 
+/// @name fontSize
+/// @group fonts
+/// @param {pixel val} size [] The font size to convert to rem.
+/// @param {String/Integer} weight[fasle] If defined this will output the desired font-weight
+/// @example scss - function
+///  h1{
+///  	@include fontSize(50px, bold);
+///  }
+///  
+///  h2{
+///  	@include fontSize(45px);
+///  }
+/// @example css - Output
+///  h1 {
+///      font-weight: bold;
+///      font-size: 50px;
+///      font-size: 3.125rem;
+///  }
+///  
+///  h2 {
+///      font-size: 45px;
+///      font-size: 2.8125rem;
+///  }
+
+@mixin fontSize($size,$weight:false) {
+
+	$string : inspect($size);
+	$index : str-index($string, 'px');
+
+	@if $weight {
+    	font-weight: $weight;
+    }    
+    @if $index{
+    	font-size: #{$size};
+    }
+    @else {
+    	font-size: #{$size}px;
+    }
+    font-size: calculateRem($size);
+}
+
+@function calculateRem($size) {
+
+	$string : inspect($size);
+	$numb : $size;
+	$index : str-index($string, 'px');
+
+	@if $index{
+		$val : str-slice($string, 1, $index - 1);
+		$numb : Number($val);
+	} 
+
+    $remSize: $numb / 16;
+    @return $remSize * 1rem;
+}
+
+
+// Misc helpers
+// ------------------------------------------------------------------------
+
+@function sliderShift($trackHeight,$sliderHeight){
+	@return -($sliderHeight - $trackHeight) / 2;
+}
+
+
+@function match($list, $name) {
+	@each $item in $list {
+	    $index: index($item, $name);
+	    @if $index {
+	        @return $item;
+	    }
+	}
+	@return false;
+}
+
+// Used by transformKeyframes 
+@mixin stops($vendor,$stopsObj,$opFade){
+
+	@each $stop,$val in $stopsObj{
+	
+		#{$stop}{
+
+			@if $opFade == "fadeIn"{
+				@if $stop == 0%{opacity:0}
+				@if $stop == 100%{opacity:1}
+			}
+
+			@if $opFade == "fadeOut"{
+				@if $stop == 100%{opacity:0}
+				@if $stop == 0%{opacity:1}
+			}
+			#{$vendor}transform:#{$val};
+		}
+	}
+}
+
+@mixin clearFix{
+
+	min-height: 1%;
+
+	&:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Type setters and error handlers
+// ------------------------------------------------------------------------
+
+//Convert a string to a number 
+@function Number($string) {
+  // Matrices
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+  $numbers:  0   1   2   3   4   5   6   7   8   9;
+
+  // Result
+  $result: 0;
+
+  // Looping through all characters
+  @for $i from 1 through str-length($string) {
+	  $character: str-slice($string, $i, $i);
+	  $index: index($strings, $character);
+
+	  @if not $index {
+	    @warn "Unknown character `#{$character}`.";
+	    @return false;
+	  }
+
+	  $number: nth($numbers, $index);
+	  $result: $result * 10 + $number;
+	}
+
+  @return $result;
+  
+}
+
+@function Col($colour){
+	@if type-of($colour) != color {
+      @error "Invalid colour value entered as argument: `#{$colour}` is not a colour! Please use a hex or rgba value";
+    }
+    @else {
+    	@return $colour;
+    }
+} 

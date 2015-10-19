@@ -1,0 +1,397 @@
+// =========================================================================================================================
+// @includes - Development partial
+// The following mixins/functions are currently in development 
+// or depricated awaiting removal from code base in next release.
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+
+
+
+// Depricated ---------
+
+
+
+
+
+
+// app specific - nobody else would ever use it
+
+// work in progress
+// used only in themes
+@mixin linedTabs($borderCol:#bbb,$bgCol:#e9e9e9,$height:40px,$rounding:5px,$padding:20px){
+
+    .tabs.lined{
+
+        position: relative;
+
+        .tab-links{
+
+            text-align: center;
+
+            li{
+
+                display:inline-block;
+
+                a{
+
+                    display: block;
+                    padding:5px 15px;
+                    color: contrast($bgCol,60%);
+                    cursor: pointer;
+                }
+
+                &.active a{
+
+                    background-color: $bgCol;
+                    border-left: 1px solid $borderCol;
+                    border-right: 1px solid $borderCol;
+                    border-top: 1px solid $borderCol;
+                    border-bottom: 1px solid $bgCol;
+
+                    @if $rounding {
+                        border-radius:$rounding $rounding 0 0;
+                    }
+                }
+            }
+        }
+
+        .tab{
+
+            padding:$padding;
+            width:100%;
+            background-color: $bgCol;
+            border: 1px solid $borderCol;
+            margin-top: -1px;
+
+            @if $rounding {
+                border-radius:$rounding;
+            }
+
+            &.hide{
+
+                opacity: 0;
+            }
+        }
+    }
+}
+
+
+@mixin messageClass($padding:10px,$rounding:5,$border:false){
+
+    .message{
+
+        display: block;
+        padding:$padding;
+        margin-bottom: 10px;
+
+        @if $rounding > 0 {
+
+            border-radius: #{$rounding}px;
+        }
+
+        @if $border {
+
+            border:1px solid #ccc;
+        }
+
+        h1,h2,h3,h4,h5,p{
+
+            margin-bottom: 0;
+            font-size: 1em;
+        }
+    }
+
+}
+
+@mixin themeMessageClass($classname:"",$color:$col-primary,$text-col:false){
+
+    .message.#{$classname} {
+
+        @if $text-col == false {
+
+            color: $color;
+            border-color: $color;
+            background-color: lighten($color,45%);
+
+            h1,h2,h3,h4,h5,h6,p{
+
+                color: $color;
+            }
+
+        }
+
+        @if $text-col{
+
+            color: $text-col;
+            border-color: $color;
+            background-color: $color;
+
+            h1,h2,h3,h4,h5,h6,p{
+
+                color: $text-col;
+            }
+        }
+
+    }
+}
+
+
+@mixin navigationClasses($orientation:"horizontal",$font-size:1em,$link-height:50px,$padding:20px,$rounding:5px,$align:left,$expand:false){
+
+
+    @if $orientation == "horizontal"{
+
+        nav.horizontal{
+
+            display:inline-block;
+
+            @if $rounding{
+
+                border-radius:#{$rounding};
+            }
+
+            ul{
+                
+                text-align: $align;
+
+                li{
+
+                    position: relative;
+                    display: inline-block;
+
+                    .subnav{
+
+                        height:0;
+                        overflow:hidden;
+                        position: absolute;
+                        top:$link-height;
+                        width:300px;
+
+                        li{
+
+                            display:list-item;
+
+                            &.active a{
+
+                                color:$col-pastel-red;
+                            }
+                        }
+                    }
+
+                    &:hover .subnav{
+
+                        height:auto;
+                    }
+                    
+                    a{
+                        
+                        font-size: $font-size;
+                        line-height: $link-height;
+                        display: block;
+                        padding:0 $padding;
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    @if $orientation == "vertical"{
+
+        nav.vertical{
+
+            @if $rounding{
+
+                border-radius:#{$rounding};
+            }
+
+            ul{
+                
+                text-align: $align; 
+
+                li{
+
+                    display: list-item;
+                    position: relative;
+
+                    @if $expand{
+
+                        &:hover .subnav{
+
+                            height:auto;
+                            padding:$padding 0;
+                        }
+
+                    }
+
+                    a{
+                        
+                        font-size: $font-size;
+                        line-height: $link-height;
+                        display: block;
+                        padding:0 $padding;
+
+                    }
+
+                    &.active{
+
+                        @include vendorPrefix(box-shadow,inset 4px 0 0 rgba(0,0,0,0.1));
+                    }
+                }
+            }
+
+            .subnav{
+
+                margin-bottom: 30px;
+
+                li{
+
+                    a{
+                        font-size: 0.8em;
+                        padding-left: $padding*1.5;
+                        line-height: $link-height*0.7; 
+                    }
+
+                    &.active a{
+
+                        color:$col-pastel-red;
+                        @include vendorPrefix(box-shadow,inset 4px 0 0 $col-pastel-red);
+                    }
+                }
+                // &.closed{
+
+                //  padding:0;
+                //  height:0;
+                //  overflow:hidden;
+                // }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+@mixin subnav($orientation:"vertical",$indent:40px,$expand:false){
+    
+    @if $orientation == "vertical"{
+
+        li a{
+            
+            font-size: 0.9em;
+            padding-left:$indent;
+        }
+    }
+
+    @if $expand{
+
+        height: 0;
+        overflow: hidden;
+        @include single-transition(all,0.3s,ease);
+    }
+}
+
+@mixin themeNavigation($className:"",$bg:false,$hover:#fff,$text:#666,$text-hover:#000){
+
+    nav.#{$className}{
+    
+        @if $bg{
+            background-color:$bg;
+        }
+
+        ul li a{
+
+            color:$text;
+
+            &:hover{
+
+                background-color:$hover;
+                color:$text-hover;
+            }
+        }
+
+        @if $bg{
+            
+            .subnav{
+                background-color:$bg;
+            }
+        }
+    }
+}
+
+
+
+
+
+// ==============================================================
+// STILL IN DEVELOPMENT
+// ==============================================================
+
+@mixin verticalNav($col:#333,$hover:$col-primary,$active:$col-primary,$font-size:16,$padding:20px,$activeType:'text',$hoverType:'background'){
+
+
+    ul.vertical-nav{
+
+        li{
+
+            display: block;
+            position:relative;
+
+            &.active a{
+
+                @if $activeType == 'text' {
+
+                    color:$active;
+                }
+            }
+
+            a{
+
+                display: block;
+                color:$col;
+                padding:0 $padding;
+                line-height: #{$font-size*3.5}px;
+                @include fontSize($font-size);
+
+                &:hover{
+
+                    @if $hoverType == 'background'{
+
+                        background-color:$hover;
+                        color: contrast($hover,45%);
+                    }
+                }
+
+                i{
+
+                    margin-right: 10px;
+                }
+            }
+
+            .subnav{
+                
+                display: none;
+                
+                li a {
+                    padding-left:40px;
+                }
+            }
+
+            &:hover{
+
+                .subnav{
+
+                    display: block;
+                }
+            }
+        }
+    }
+
+
+}

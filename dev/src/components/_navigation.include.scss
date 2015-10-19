@@ -1,0 +1,518 @@
+// =========================================================================================================================
+// @includes - Navigation
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables.include";
+@import "utils.include";
+@import "layout.include";
+@import "helpers.include";
+
+/// Add flat ui pagination classes with this mixin. Arguments allow you to control
+/// Colours, sizing, outer roundness and thickness of the bottom border.
+/// @name paginationFlat
+/// @param {String} className [] The class name of parent ul element
+/// @param {#hex/rgba} bgCol [#f1f1f1] Background colour of the links
+/// @param {#hex/rgba} active [#e7534f] Colour of active and hover states
+/// @param {Integer} size [42] Size (in pixels) of the links
+/// @param {pixel value} rounding [5px] Border radius of the outer links
+/// @param {pixel value} thickness [4px] Thickness of the bottom border
+/// @example scss - Include
+///  @include paginationFlat('flat',#f2f2f2,#289e83);
+///
+/// @example css - Output
+///  ul.pagination.flat {
+///    	display: block;
+///    	text-align: center;
+///  }
+///  ul.pagination.flat li {
+///    	display: inline-block;
+///    	background: #f2f2f2;
+///    	border-style: solid;
+///    	border-color: #e0e0e0;
+///    	border-left-width: 1px;
+///    	border-top-width: 1px;
+///    	border-bottom-width: 1px;
+///  }
+///  ul.pagination.flat li a {
+///    	display: block;
+///    	 height: 42px;
+///      width: 42px;
+///      line-height: 42px;
+///      color: #666666;
+///      padding-bottom: 4px;
+///      -webkit-transition: all 0.5s ease;
+///      -moz-transition: all 0.5s ease;
+///      -o-transition: all 0.5s ease;
+///      transition: all 0.5s ease;
+///      font-size: 16.8px;
+///      font-size: 1.05rem;
+///    	-webkit-box-shadow: inset 0 -4px 0 #e0e0e0;
+///    	-moz-box-shadow: inset 0 -4px 0 #e0e0e0;
+///    	box-shadow: inset 0 -4px 0 #e0e0e0;
+///  }
+///  ul.pagination.flat li a.active {
+///    	color: #289e83;
+///    	-webkit-box-shadow: inset 0 -4px 0 #289e83;
+///    	-moz-box-shadow: inset 0 -4px 0 #289e83;
+///    	box-shadow: inset 0 -4px 0 #289e83;
+///  }
+///  ul.pagination.flat li a:hover {
+///    	color: white;
+///    	-webkit-box-shadow: inset 0 -42px 0 #289e83;
+///    	-moz-box-shadow: inset 0 -42px 0 #289e83;
+///    	box-shadow: inset 0 -42px 0 #289e83;
+///  }
+///  ul.pagination.flat li:first-child {
+///    	border-radius: 5px 0 0 5px;
+///  }
+///  ul.pagination.flat li:first-child a {
+///    	border-radius: 5px 0 0 5px;
+///  }
+///  ul.pagination.flat li:last-child {
+///    	border-radius: 0 5px 5px 0;
+///    	border-right-width: 1px;
+///  }
+///  ul.pagination.flat li:last-child a {
+///    	border-radius: 0 5px 5px 0;
+///  }
+///  
+/// @example markup - Html
+///  <ul class="pagination flat">
+///  	<li>
+///  		<a href="" class="prev"><i class="line-icon-arrow-left"></i></a>
+///  	</li>
+///  	
+///  	<li>
+///  		<a href="#">1</a>
+///  	</li>
+///  	<li>
+///  		<a href="#" class="active">2</a>
+///  	</li>
+///  	<li>
+///  		<a href="#">3</a>
+///  	</li>
+///  	<li>
+///  		<a href="#">4</a>
+///  	</li>
+///  	<li>
+///  		<a href="#">5</a>
+///  	</li>
+///  
+///  	<li>
+///  		<a href="" class="next"><i class="line-icon-arrow-right"></i></a>
+///  	</li>
+///  </ul>
+///  
+@mixin paginationFlat($className,$bgCol:#f1f1f1,$active:$col-pastel-red,$size:42,$rounding:5px,$thickness:4px){
+
+	ul.pagination.#{$className}{
+
+		display: block;
+		text-align:center;
+
+		li{
+
+			display: inline-block;
+			background: $bgCol;
+			border-style: solid;
+			border-color: darken($bgCol,7%);
+			border-left-width:1px;
+			border-top-width:1px;
+			border-bottom-width:1px;
+
+			a{
+
+				display: block;
+				height: #{$size}px;
+				width : #{$size}px;
+				line-height: #{$size}px;
+				color: contrast($bgCol,55%);
+				@include vendorPrefix(transition,all 0.5s ease);
+				@include fontSize($size * 0.4);
+
+				&.active{
+
+					color:$active;
+				}
+
+				&:hover{
+					
+					color:contrast($active,70%);
+					background-color:$active;
+				}
+			}
+
+			&:first-child{
+				border-radius:$rounding 0 0 $rounding;
+
+				a{
+					border-radius:$rounding 0 0 $rounding;
+				}
+			}
+
+			&:last-child{
+				
+				border-radius:0 $rounding $rounding 0;
+				border-right-width:1px;
+
+				a{
+					border-radius:0 $rounding $rounding 0;
+				}
+			}
+		}
+	}
+}
+
+/// Add styles for a flat ui list dropdaown. Arguments allow you to control
+/// Colours, sizing & outer roundness.
+/// @name dropdownFlat
+/// @param {String} className [] The class name of parent ul element
+/// @param {#hex/rgba} bgCol [#f1f1f1] Background colour of the links
+/// @param {#hex/rgba} active [#e7534f] Colour of active and hover states
+/// @param {Integer} fontSize [14] Size (in pixels) of link font
+/// @param {pixel value} rounding [5px] Border radius of the dropdown
+/// @example scss - Include
+///  @include dropdownFlat('primary',#f1f1f1);
+///
+/// @example css - Output
+///  ul.dropdown.primary {
+///      height: 39.2px;
+///      position: relative;
+///  }
+///  ul.dropdown.primary li {
+///      display: none;
+///      height: 39.2px;
+///      background-color: #f1f1f1;
+///      border-radius: 10px;
+///      border: 1px solid #dfdfdf;
+///  }
+///  ul.dropdown.primary li a {
+///      display: block;
+///      padding: 0 20px;
+///      line-height: 39.2px;
+///      -webkit-transition: all 0.5s ease;
+///      -moz-transition: all 0.5s ease;
+///      -o-transition: all 0.5s ease;
+///      transition: all 0.5s ease;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  ul.dropdown.primary li.selected {
+///      display: block;
+///  }
+///  ul.dropdown.primary li.selected a:after {
+///      content: "";
+///      right: 10px;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///      -webkit-transition: all 0.5s ease;
+///      -moz-transition: all 0.5s ease;
+///      -o-transition: all 0.5s ease;
+///      transition: all 0.5s ease;
+///      width: 0;
+///      height: 0;
+///      border-left: 7px solid transparent;
+///      border-right: 7px solid transparent;
+///      border-top: 10px solid #cbcbcb;
+///  }
+///  ul.dropdown.primary.open {
+///      z-index: 999;
+///  }
+///  ul.dropdown.primary.open li {
+///      display: block;
+///      border-radius: 0px;
+///      border-top: none;
+///      border-bottom: none;
+///  }
+///  ul.dropdown.primary.open li:first-child {
+///      border-top: 1px solid #dfdfdf;
+///      border-radius: 10px 10px 0 0;
+///  }
+///  ul.dropdown.primary.open li:first-child a {
+///      border-radius: 10px 10px 0 0;
+///  }
+///  ul.dropdown.primary.open li:last-child {
+///      border-bottom: 1px solid #dfdfdf;
+///      border-radius: 0 0 10px 10px;
+///      -webkit-box-shadow: 0 10px 0 #dfdfdf;
+///      -moz-box-shadow: 0 10px 0 #dfdfdf;
+///      box-shadow: 0 10px 0 #dfdfdf;
+///  }
+///  ul.dropdown.primary.open li:last-child a {
+///      border-radius: 0 0 10px 10px;
+///  }
+///  ul.dropdown.primary.open li.selected a {
+///      color: #e7534f;
+///  }
+///  ul.dropdown.primary.open li.selected a:after {
+///      border-top: none;
+///      width: 0;
+///      height: 0;
+///      border-left: 7px solid transparent;
+///      border-right: 7px solid transparent;
+///      border-bottom: 10px solid #cbcbcb;
+///  }
+///  ul.dropdown.primary.open li a:hover {
+///      color: black;
+///      background-color: #e7e7e7;
+///  }
+
+
+@mixin dropdownFlat($className,$bgCol:#f1f1f1,$active:$col-pastel-red,$fontSize:14,$rounding:10px){
+
+	$height : #{$fontSize *2.8}px;
+	$arrowSize : 10px;
+
+	ul.dropdown.#{$className}{
+
+		height: $height;
+		position: relative;
+
+		li{
+
+			display: none;
+			height: $height;
+			background-color: $bgCol;
+			border-radius:$rounding;
+			border:1px solid darken($bgCol,7%);
+
+			a{
+				
+				display: block;
+				padding:0 20px; 
+				line-height: $height;
+				@include vendorPrefix(transition,all 0.5s ease);
+				@include fontSize($fontSize);
+			}
+
+
+			&.selected{
+
+				display: block;
+
+				a {
+					&:after{
+
+						content:"";
+						right: 10px;
+						@include centre(y);
+						@include vendorPrefix(transition,all 0.5s ease);
+						@include arrow($arrowSize,'down',contrast($bgCol,15%));
+					}
+				}
+	
+			}
+		}
+
+		&.open{
+
+			z-index: 999;
+
+			li{
+
+				display: block;
+				border-radius:0px;
+				border-top:none;
+				border-bottom:none;
+
+				&:first-child{
+
+					border-top:1px solid darken($bgCol,7%);
+					border-radius: $rounding $rounding 0 0;
+
+					a{
+						border-radius: $rounding $rounding 0 0;
+					}
+				}
+
+				&:last-child{
+					
+					border-bottom:1px solid darken($bgCol,7%);
+					border-radius: 0 0 $rounding $rounding;
+
+					a{
+						border-radius: 0 0 $rounding $rounding;
+					}
+
+					@include vendorPrefix(box-shadow,0 10px 0 darken($bgCol,7%));
+				}
+
+				&.selected a{
+
+					color: $active;
+
+					&:after{
+						
+						border-top:none;
+						@include arrow($arrowSize,'up',contrast($bgCol,15%));
+					}
+				}
+
+				a:hover{
+
+					color: contrast($active,70%);
+					background-color: darken($bgCol,4%);
+				}
+
+			}
+		}
+	}
+}
+
+
+/// Add styles for a flat UI style tabbing interface.
+/// @name tabsFlat
+/// @param {String} className [] The class name of parent ul element
+/// @param {#hex/rgba} header [#1b8898] Background colour header
+/// @param {#hex/rgba} body [#f3f3f3] Background colour of the tab active link
+/// @param {Integer} fontSize [16] Size (in pixels) of the links
+/// @param {pixel value} rounding [5px] Border radius of the outer links
+/// @example scss - Include
+///  @include tabsFlat('flat',#f2f2f2,#289e83);
+///
+/// @example css - Output
+///  .tabs.flat header {
+///      background-color: #1b8898;
+///      padding: 5px 5px 0 5px;
+///      border-radius: 3px 3px 0 0;
+///  }
+///  .tabs.flat header ul li {
+///      display: inline-block;
+///  }
+///  .tabs.flat header ul li a {
+///      display: block;
+///      padding: 0 20px;
+///      cursor: pointer;
+///      border-radius: 3px 3px 0 0;
+///      color: #eaf9fb;
+///      position: relative;
+///      line-height: 38.4px;
+///      font-size: 16px;
+///      font-size: 1rem;
+///  }
+///  .tabs.flat header ul li a:after {
+///      content: "";
+///      width: 1px;
+///      height: 16px;
+///      right: 0;
+///      background-color: #177582;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///  }
+///  .tabs.flat header ul li a.active {
+///      background-color: #f3f3f3;
+///      color: black;
+///  }
+///  .tabs.flat header ul li a.active:after {
+///      display: none;
+///  }
+///  .tabs.flat header ul li:last-child a:after {
+///      display: none;
+///  }
+///  .tabs.flat .tab-content {
+///      padding: 30px;
+///      background-color: #f3f3f3;
+///      border-left: 1px solid #dadada;
+///      border-right: 1px solid #dadada;
+///      border-bottom: 1px solid #dadada;
+///      border-radius: 0 0 3px 3px;
+///  }
+/// @example markup - HTML
+///  <div class="tabs flat">
+///  
+///  	<header>
+///  		<ul>
+///  			<li>
+///  				<a class="active" href="">Tab 1</a>
+///  			</li>
+///  			<li>
+///  				<a href="">Tab 2</a>
+///  			</li>
+///  			<li>
+///  				<a href="">Tab 3</a>
+///  			</li>
+///  		</ul>
+///  	</header>
+///  
+///  	<div class="tab-content">
+///  
+///  		<p>Tab content goes here</p>
+///  
+///  	</div>
+///  
+///  </div>
+
+
+@mixin tabsFlat($className,$header:$col-secondary,$body:#f3f3f3,$fontSize:16,$rounding:3px){
+
+	.tabs.#{$className}{
+
+		header{
+
+			background-color: $header;
+			border-radius: $rounding $rounding 0 0;
+			border-left:1px solid darken($body,10%);
+			border-right:1px solid darken($body,10%);
+			border-top:1px solid darken($body,10%);
+			@include vendorPrefix(box-shadow,inset 0 -1px 0 darken($body,10%));
+
+			ul{
+
+				li{
+
+					display: inline-block;
+
+					a{
+
+						display: block;
+						padding: 0 20px;
+						cursor: pointer;
+						border-radius:$rounding $rounding 0 0;
+						color: contrast($header,60%);
+						position:relative;
+						line-height: #{$fontSize *2.4}px;
+						border-left:1px solid transparent;
+						border-right:1px solid transparent;
+						@include fontSize($fontSize);
+
+
+						&.active{
+
+							background-color:$body;
+							color: contrast($body,100%);
+							border-color:darken($body,10%);
+
+						}
+					}
+					
+					&:first-child a.active{
+
+						border-left-color:$body;						
+					}
+				}
+			}
+		}
+
+		.tab-content{
+
+			padding:30px;
+			background-color:$body;
+			border-left:1px solid darken($body,10%);
+			border-right:1px solid darken($body,10%);
+			border-bottom:1px solid darken($body,10%);
+			border-radius: 0 0 $rounding $rounding;
+		}
+
+	}
+}
+
+
