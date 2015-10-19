@@ -3,20 +3,20 @@
 // =============
 // Spicy sass library. Add a little spice to your UI!
 // Website : http://spice-sass.github.io/
-// Repository : https://github.com/spice-sass/spice/
+// Repository : https://github.com/spice-sass/spice
 // ------------------------------------------------------------------------
 // Released under the MIT license
-// https://github.com/dannyoz/includes/blob/master/MIT-LICENSE.txt
+// https://github.com/spice-sass/spice/blob/master/MIT-LICENSE.txt
 // ------------------------------------------------------------------------
 
 @charset "utf-8";
 
-// Includes variables helpers and utils
+// Spice variables helpers and utils
 // ------------------------------------------------------------------------
 @import "components/variables.include",
         "components/utils.include";
 
-// Includes core
+// Spice core
 // ------------------------------------------------------------------------
 @import "components/animations.include",
         "components/buttons.include",

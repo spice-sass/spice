@@ -71,6 +71,11 @@ gulp.task('docs', function () {
     .pipe(sassdoc(options));
 });
 
+gulp.task('watch', function () {
+  gulp.watch('dev/**/*.scss', ['dev-sass','docs']);
+});
 
-gulp.task('default', ['server']);
+
+
+gulp.task('default', ['server','watch']);
 gulp.task('publish',['copy','bump']);
