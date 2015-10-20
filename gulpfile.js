@@ -6,6 +6,7 @@ var sass    = require('gulp-sass');
 var bump    = require('gulp-bump');
 var sassdoc = require('sassdoc');
 var argv    = require('yargs').argv;
+var concat  = require('gulp-concat');
 
 
 
@@ -54,7 +55,41 @@ gulp.task('bump', function(){
 
 });
 
+gulp.task('concat',function(){
+  return gulp.src('./dev/master/*.scss')
+    .pipe(concat('_spice.scss'))
+    .pipe(gulp.dest('./dev/src'));
+});
 
+gulp.task('spice-version', function(){
+
+  var fs      = require('fs');
+  var file    = './package.json';
+  var obj     = JSON.parse(fs.readFileSync(file, 'utf8'));
+  var version = obj.version;
+
+
+  var data =  "// Spice" + "\n" +
+              "// Version " + version + "\n" +
+              "// =============" + "\n" +
+              "// Spicy sass library. Add a little spice to your UI!" + "\n" +
+              "// Website : http://spice-sass.github.io/" + "\n" +
+              "// Repository : https://github.com/spice-sass/spice" + "\n" +
+              "// ------------------------------------------------------------------------" + "\n" +
+              "// Released under the MIT license" + "\n" +
+              "// https://github.com/spice-sass/spice/blob/master/MIT-LICENSE.txt" + "\n" +
+              "// ------------------------------------------------------------------------"
+
+
+  fs.writeFile("./dev/master/_version.scss", data, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+
+      console.log('updated to version ' + version);
+  });
+
+});
 
 gulp.task('docs', function () {
   var options = {
@@ -78,4 +113,4 @@ gulp.task('watch', function () {
 
 
 gulp.task('default', ['server','watch']);
-gulp.task('publish',['copy','bump']);
+gulp.task('publish',['copy','bump', 'spice-version', 'concat']);
