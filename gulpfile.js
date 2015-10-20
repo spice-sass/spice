@@ -42,13 +42,6 @@ gulp.task('docs', function () {
 // Publish Tasks
 // ===================================================
 
-//Copy dev files into src folder
-gulp.task('copy', function(){
-    gulp.src('./dev/src/**/*.scss')
-    .pipe(gulp.dest('./src'));
-});
-
-
 // Bump up version numbers
 gulp.task('bump', function(){
 
@@ -130,6 +123,12 @@ gulp.task('concat', function(){
     .pipe(gulp.dest('./dev/src'));
 });
 
+//Copy dev files into src folder
+gulp.task('copy', ['concat'], function(){
+    return gulp.src('./dev/src/**/*.scss')
+      .pipe(gulp.dest('./src'));
+});
+
 // ===================================================
 
 gulp.task('watch', function () {
@@ -139,5 +138,5 @@ gulp.task('watch', function () {
 
 
 gulp.task('default', ['server','watch']);
-gulp.task('publish', ['copy', 'bump']);
-gulp.task('pubsass', ['spice-version','concat']);
+gulp.task('publish', ['bump']);
+gulp.task('pubsass', ['spice-version', 'copy']);
