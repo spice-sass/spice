@@ -9,6 +9,8 @@ var argv    = require('yargs').argv;
 var concat  = require('gulp-concat');
 
 
+// Dev Tasks
+// ===================================================
 
 gulp.task('dev-sass', function () {
   gulp.src('./dev/test/sass/**/*.scss')
@@ -21,12 +23,33 @@ gulp.task('server', function () {
     gulp.watch(['dev/**/*.*'], server.notify);
 });
 
+gulp.task('docs', function () {
+  var options = {
+    dest: './docs',
+    verbose: true,
+    display: {
+      access: ['public', 'private'],
+      alias: true,
+      watermark: true,
+    }
+  };
+
+  return gulp.src('./src/**/*.scss')
+    .pipe(sassdoc(options));
+});
+
+
+// Publish Tasks
+// ===================================================
+
 //Copy dev files into src folder
 gulp.task('copy', function(){
     gulp.src('./dev/src/**/*.scss')
     .pipe(gulp.dest('./src'));
 });
 
+
+// Bump up version numbers
 gulp.task('bump', function(){
 
   var files = ['./package.json','./bower.json']
@@ -53,58 +76,61 @@ gulp.task('bump', function(){
       .pipe(gulp.dest('./'));
   }
 
+  if(argv.prerelease){
+
+    gulp.src(files)
+      .pipe(bump({type:'prerelease'}))
+      .pipe(gulp.dest('./'));
+  }
+
 });
 
-gulp.task('concat',function(){
+// Write version to sass partial
+gulp.task('spice-version',function(){
+
+  var version = function(){
+
+    var fs      = require('fs');
+    var file    = './package.json';
+    var obj     = JSON.parse(fs.readFileSync(file, 'utf8'));
+    var version = obj.version;
+
+
+    var data =  "// Spice" + "\n" +
+                "// Version " + version + "\n" +
+                "// =============" + "\n" +
+                "// Spicy sass library - Add a little spice to your UI!" + "\n" +
+                "// Website : http://spice-sass.github.io/" + "\n" +
+                "// Repository : https://github.com/spice-sass/spice" + "\n" +
+                "// ------------------------------------------------------------------------" + "\n" +
+                "// Released under the MIT license" + "\n" +
+                "// https://github.com/spice-sass/spice/blob/master/MIT-LICENSE.txt" + "\n" +
+                "// ------------------------------------------------------------------------"
+
+
+    fs.writeFile("./dev/master/_version.scss", data, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log('updated sass file to version ' + version);
+    });
+
+  }
+
+  return version();
+
+});
+
+
+// Concatinate sass partials
+gulp.task('concat', function(){
   return gulp.src('./dev/master/*.scss')
     .pipe(concat('_spice.scss'))
     .pipe(gulp.dest('./dev/src'));
 });
 
-gulp.task('spice-version', function(){
-
-  var fs      = require('fs');
-  var file    = './package.json';
-  var obj     = JSON.parse(fs.readFileSync(file, 'utf8'));
-  var version = obj.version;
-
-
-  var data =  "// Spice" + "\n" +
-              "// Version " + version + "\n" +
-              "// =============" + "\n" +
-              "// Spicy sass library. Add a little spice to your UI!" + "\n" +
-              "// Website : http://spice-sass.github.io/" + "\n" +
-              "// Repository : https://github.com/spice-sass/spice" + "\n" +
-              "// ------------------------------------------------------------------------" + "\n" +
-              "// Released under the MIT license" + "\n" +
-              "// https://github.com/spice-sass/spice/blob/master/MIT-LICENSE.txt" + "\n" +
-              "// ------------------------------------------------------------------------"
-
-
-  fs.writeFile("./dev/master/_version.scss", data, function(err) {
-      if(err) {
-          return console.log(err);
-      }
-
-      console.log('updated to version ' + version);
-  });
-
-});
-
-gulp.task('docs', function () {
-  var options = {
-    dest: './docs',
-    verbose: true,
-    display: {
-      access: ['public', 'private'],
-      alias: true,
-      watermark: true,
-    }
-  };
-
-  return gulp.src('./src/**/*.scss')
-    .pipe(sassdoc(options));
-});
+// ===================================================
 
 gulp.task('watch', function () {
   gulp.watch('dev/**/*.scss', ['dev-sass','docs']);
@@ -113,4 +139,5 @@ gulp.task('watch', function () {
 
 
 gulp.task('default', ['server','watch']);
-gulp.task('publish',['copy','bump', 'spice-version', 'concat']);
+gulp.task('publish', ['copy', 'bump']);
+gulp.task('pubsass', ['spice-version','concat']);
