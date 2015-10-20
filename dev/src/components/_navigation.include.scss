@@ -11,6 +11,7 @@
 /// Add flat ui pagination classes with this mixin. Arguments allow you to control
 /// Colours, sizing, outer roundness and thickness of the bottom border.
 /// @name paginationFlat
+/// @group navigation
 /// @param {String} className [] The class name of parent ul element
 /// @param {#hex/rgba} bgCol [#f1f1f1] Background colour of the links
 /// @param {#hex/rgba} active [#e7534f] Colour of active and hover states
@@ -76,13 +77,13 @@
 ///  ul.pagination.flat li:last-child a {
 ///    	border-radius: 0 5px 5px 0;
 ///  }
-///  
+///
 /// @example markup - Html
 ///  <ul class="pagination flat">
 ///  	<li>
 ///  		<a href="" class="prev"><i class="line-icon-arrow-left"></i></a>
 ///  	</li>
-///  	
+///
 ///  	<li>
 ///  		<a href="#">1</a>
 ///  	</li>
@@ -98,12 +99,12 @@
 ///  	<li>
 ///  		<a href="#">5</a>
 ///  	</li>
-///  
+///
 ///  	<li>
 ///  		<a href="" class="next"><i class="line-icon-arrow-right"></i></a>
 ///  	</li>
 ///  </ul>
-///  
+///
 @mixin paginationFlat($className,$bgCol:#f1f1f1,$active:$col-pastel-red,$size:42,$rounding:5px,$thickness:4px){
 
 	ul.pagination.#{$className}{
@@ -137,7 +138,7 @@
 				}
 
 				&:hover{
-					
+
 					color:contrast($active,70%);
 					background-color:$active;
 				}
@@ -152,7 +153,7 @@
 			}
 
 			&:last-child{
-				
+
 				border-radius:0 $rounding $rounding 0;
 				border-right-width:1px;
 
@@ -167,6 +168,7 @@
 /// Add styles for a flat ui list dropdaown. Arguments allow you to control
 /// Colours, sizing & outer roundness.
 /// @name dropdownFlat
+/// @group navigation
 /// @param {String} className [] The class name of parent ul element
 /// @param {#hex/rgba} bgCol [#f1f1f1] Background colour of the links
 /// @param {#hex/rgba} active [#e7534f] Colour of active and hover states
@@ -282,9 +284,9 @@
 			border:1px solid darken($bgCol,7%);
 
 			a{
-				
+
 				display: block;
-				padding:0 20px; 
+				padding:0 20px;
 				line-height: $height;
 				@include vendorPrefix(transition,all 0.5s ease);
 				@include fontSize($fontSize);
@@ -305,7 +307,7 @@
 						@include arrow($arrowSize,'down',contrast($bgCol,15%));
 					}
 				}
-	
+
 			}
 		}
 
@@ -331,7 +333,7 @@
 				}
 
 				&:last-child{
-					
+
 					border-bottom:1px solid darken($bgCol,7%);
 					border-radius: 0 0 $rounding $rounding;
 
@@ -347,7 +349,7 @@
 					color: $active;
 
 					&:after{
-						
+
 						border-top:none;
 						@include arrow($arrowSize,'up',contrast($bgCol,15%));
 					}
@@ -367,6 +369,7 @@
 
 /// Add styles for a flat UI style tabbing interface.
 /// @name tabsFlat
+/// @group navigation
 /// @param {String} className [] The class name of parent ul element
 /// @param {#hex/rgba} header [#1b8898] Background colour header
 /// @param {#hex/rgba} body [#f3f3f3] Background colour of the tab active link
@@ -428,7 +431,7 @@
 ///  }
 /// @example markup - HTML
 ///  <div class="tabs flat">
-///  
+///
 ///  	<header>
 ///  		<ul>
 ///  			<li>
@@ -442,13 +445,13 @@
 ///  			</li>
 ///  		</ul>
 ///  	</header>
-///  
+///
 ///  	<div class="tab-content">
-///  
+///
 ///  		<p>Tab content goes here</p>
-///  
+///
 ///  	</div>
-///  
+///
 ///  </div>
 
 
@@ -493,10 +496,10 @@
 
 						}
 					}
-					
+
 					&:first-child a.active{
 
-						border-left-color:$body;						
+						border-left-color:$body;
 					}
 				}
 			}
@@ -514,5 +517,3 @@
 
 	}
 }
-
-

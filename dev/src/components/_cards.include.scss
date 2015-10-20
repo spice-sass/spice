@@ -8,6 +8,7 @@
 
 /// Mixin for generating a card class
 /// @name cardClass
+/// @group Layout
 /// @param {css pixel shorthand} padding [20px] Padding value applied to .card-body
 /// @param {Integer} rounding [0] Border radius in pixels
 /// @example scss - Include
@@ -98,7 +99,7 @@
 			}
 
 			button{
-				
+
 				margin-top: $padding/4;
 				margin-bottom: $padding/4;
 				margin-left:5px;
@@ -110,6 +111,7 @@
 
 /// Mixin for theming card classes
 /// @name themeCardClass
+/// @group Layout
 /// @param {#hex/rgba} blockColour [#f4f4f4] Card background colour
 /// @param {#hex/rgba} borderColour [false] Applies border colours if passed
 /// @param {Bool} headerStyle [false] Applies stylised heading if passed
@@ -134,14 +136,14 @@
 ///    border-top: 1px solid #ddd;
 ///  }
 ///  .card footer a {
-///    border-right: 1px solid #ddd;	
+///    border-right: 1px solid #ddd;
 ///  }
 ///
 
 @mixin themeCardClass($blockColour:#f4f4f4,$borderColour:false,$headerStyle:false){
 
 	.card{
-		
+
 		background-color: $blockColour;
 
 		@if $borderColour{

@@ -14,6 +14,6 @@ gulp.task('docs', function () {
     }
   };
 
-  return gulp.src('./src/**/*.scss')
+  return gulp.src('./dev/src/**/*.scss')
     .pipe(sassdoc(options));
 });
