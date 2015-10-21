@@ -1,4 +1,12 @@
 @import "../../src/spice";
 
 
-@include googleFont(quicksand, h1 h3); 
+$palette: (
+	'primary'   : #289e83,
+	'secondary' : #1b8898,
+	'danger'    : #d7861e,
+	'warning'   : #ac2828,
+	'submit'    : #54A03A
+);
+
+@include palette($palette);

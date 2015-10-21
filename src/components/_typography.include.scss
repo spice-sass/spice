@@ -11,6 +11,7 @@
 /// by passing in the ceiling(h1) and floor(h6) size values. These integers
 /// will be converted into px and rem values using the @include fontSize(); mixin.
 /// @name headerSizes
+/// @group fonts
 /// @param {Integer} h1 [50] Size of H1 elements
 /// @param {Integer} h6 [20] Size of H6 elements
 /// @example scss - Include
@@ -194,12 +195,9 @@
 
         @include vendorPrefix(column-count,1);
         @include vendorPrefix(column-gap,0);
-        
+
         @if $ruleColour {
             @include vendorPrefix(column-rule,none);
         }
     }
 }
-
-
-

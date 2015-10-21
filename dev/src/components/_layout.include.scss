@@ -7,7 +7,7 @@
 @import "variables.include";
 @import "utils.include";
 
-/// Modern masonry css layout. Uses *column-count to arange content 
+/// Modern masonry css layout. Uses *column-count to arange content
 /// This mixin can be used with the @include cardClass; mixin
 /// to create "Pinterest" style layouts. Html5 browser support only.
 /// See caniuse for more info on column-count browser support.
@@ -32,7 +32,7 @@
 ///  	-webkit-column-gap: 1em;
 ///  	column-gap: 1em;
 ///  }
-///  
+///
 ///  .masonry .masonry-item {
 ///    	display: inline-block;
 ///    	margin: 0 0 1em;
@@ -44,7 +44,7 @@
 ///    		display: block;
 ///    		width: 100%;
 ///  }
-///  
+///
 ///
 
 
@@ -115,7 +115,7 @@
 
 		margin: 0 auto;
 		max-width: $maxWidth;
-		
+
 		@if $padding > 0{
 			padding:0 #{$padding}px;
 		}
@@ -126,7 +126,7 @@
 
 // ------------------------------------------------------
 
-/// Nested include to apply full screen styles to a selector. 
+/// Nested include to apply full screen styles to a selector.
 /// Uses the vh css property see caniuse for more information
 /// @link http://caniuse.com/#search=vh Browser support info for vh property
 /// @name fullScreen
@@ -161,7 +161,7 @@
 /// @param {#hex/rgba} bgCol [] Optional background colour for the header
 /// @example scss - Include
 ///  header.sticky{
-///  
+///
 ///  	@include stickyHeader(60px);
 ///  }
 /// @example css - Output
@@ -175,7 +175,7 @@
 ///
 
 @mixin stickyHeader($height:50px,$bgCol:false){
-	
+
 	position: fixed;
 	top:0;
 	height:$height;
@@ -200,16 +200,16 @@
 /// @param {css box model} boxmodel [0px] Css box model shorthand
 /// @example scss - Include
 ///  .main{
-///  
+///
 ///  	@include fitContainer;
-///  
+///
 ///  	.sidebar{
-///  
+///
 ///  		width:300px;
 ///  		@include fitContainer(0px auto 0px 0px);
 ///  	}
 ///  }
-///  
+///
 /// @example css - Output
 ///  .main {
 ///      position: absolute;
@@ -240,7 +240,7 @@
 	}
 
 	@if length($boxmodel) == 2{
-		
+
 		top:nth($boxmodel,1);
 		right:nth($boxmodel,2);
 		bottom:nth($boxmodel,1);
@@ -248,7 +248,7 @@
 	}
 
 	@if length($boxmodel) == 3{
-		
+
 		top:nth($boxmodel,1);
 		right:nth($boxmodel,2);
 		bottom:nth($boxmodel,3);
@@ -256,7 +256,7 @@
 	}
 
 	@if length($boxmodel) == 4{
-		
+
 		top:nth($boxmodel,1);
 		right:nth($boxmodel,2);
 		bottom:nth($boxmodel,3);
@@ -270,7 +270,7 @@
 	@for $i from 1 through length($boxmodel){
 
 		$entry : nth($boxmodel,$i);
-		
+
 		@if type-of($entry) != number and $entry != "auto" {
 			@error "#{$entry} is not a valid value for the fitContainer box model. Please use a pixel, percentage or em value.";
 		}
@@ -285,14 +285,14 @@
 /// nearest relative parent's height.
 /// Arguments allow you to specify the width and position of the sidebar.
 /// Used in the
-/// 	<a href="/demo/dash">Dash demo.</a> 
+/// 	<a href="/demo/dash">Dash demo.</a>
 /// @name sideBar
 /// @group Layout
 /// @param {Pixel value} width [300px] Width of the side-bar
 /// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
 /// @example scss - Include
 ///  #side-bar{
-///  
+///
 ///  	@include sideBar(340px);
 ///  }
 /// @example css - Output
@@ -331,12 +331,12 @@
 /// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
 /// @example scss - Include
 ///  .sidebar{
-///  
+///
 ///  	 @include sideBar($sidebarWidth);
 ///  }
-///  
+///
 ///  .main{
-///  
+///
 ///  	 @include sideBarAppend($sidebarWidth);
 ///  }
 /// @example css - Output
@@ -347,7 +347,7 @@
 ///      width: 300px;
 ///      left: 0;
 ///  }
-///  
+///
 ///  .main {
 ///      position: absolute;
 ///      top: 0;
@@ -375,9 +375,10 @@
 }
 
 // ------------------------------------------------------
-/// Centralises a fluid container element to its nearest relatively posisiotned parent. 
+/// Centralises a fluid container element to its nearest relatively posisiotned parent.
 /// Can be used within an element with the fullscreen class.
 /// @name centre
+/// @group Layout
 /// @param {String} axis ["both"] The axis to center the content on. 'both' | 'y' | 'x'
 /// @example scss - Include
 ///  .centre{
@@ -409,11 +410,11 @@
 		top:50%;
 		left:50%;
 		@include transforms("translate(-50%, -50%)");
-	}	
+	}
 }
 
 // ------------------------------------------------------
-/// This mixin genrates 4 classes for centering elements or text. 
+/// This mixin genrates 4 classes for centering elements or text.
 /// Can be used within an element with the fullscreen class.
 /// @name centreClasses
 /// @group Layout
@@ -429,7 +430,7 @@
 ///    -ms-transform: translate(-50%, -50%);
 ///    transform: translate(-50%, -50%);
 ///  }
-///  
+///
 ///  .centre-x {
 ///    height: 100%;
 ///    position: absolute;
@@ -439,7 +440,7 @@
 ///    -ms-transform: translateX(-50%);
 ///    transform: translateX(-50%);
 ///  }
-///  
+///
 ///  .centre-y {
 ///    width: 100%;
 ///    position: absolute;
@@ -449,7 +450,7 @@
 ///    -ms-transform: translateY(-50%);
 ///    transform: translateY(-50%);
 ///  }
-///  
+///
 ///  .text-centre {
 ///    text-align: center;
 ///  }
@@ -483,7 +484,7 @@
 // ------------------------------------------------------
 
 /// A more symantic wrapper for handling breakpoints.
-/// It takes a single argument for the size. This can be 
+/// It takes a single argument for the size. This can be
 /// 'large' - 1420px, 'medium' - 1200px, 'small' - 760px or
 /// a pixel value of your choosing.
 /// @name breakPoint
@@ -491,16 +492,16 @@
 /// @param {String / Pixel value} ize [] Breakpoint width - large | medium | small | pixel val
 /// @example scss - Include
 ///  p{
-///  
+///
 ///  	font-size: 1.2em;
-///  
+///
 ///  	@include breakPoint(850px){
-///  
+///
 ///  		font-size: 1em;
 ///  	}
-///  
+///
 ///  	@include breakPoint(small){
-///  
+///
 ///  		font-size: 0.85em;
 ///  	}
 ///  }
@@ -519,7 +520,7 @@
 ///      font-size: 0.85em;
 ///    }
 ///  }
-///  
+///
 ///
 
 @mixin breakPoint($ize, $type : "max"){
@@ -573,7 +574,7 @@
 ///    display: block;
 ///    width: 100%;
 ///  }
-///  
+///
 ///  @media (min-width: 300px) {
 ///    .masonry {
 ///      -webkit-column-count: 2;
@@ -625,7 +626,7 @@
 ///  }
 /// @example markup - HTML
 ///  <div class="masonry">
-///  	<div class="masonry-item card">			
+///  	<div class="masonry-item card">
 ///  		<div class="card-body">
 ///  			<h4>This is a card</h4>
 ///  			<p>
@@ -642,7 +643,7 @@
 ///  		</div>
 ///  	</div>
 ///  	<div class="masonry-item card">
-///  		
+///
 ///  		<img src="http://placehold.it/350x250">
 ///  		<div class="card-body">
 ///  			<h4>Card with image</h4>
@@ -670,7 +671,7 @@
 ///  		</div>
 ///  	</div>
 ///  	<div class="masonry-item card">
-///  		
+///
 ///  		<img src="http://placehold.it/350x220">
 ///  		<div class="card-body">
 ///  			<h4>Image Caption</h4>
@@ -720,6 +721,3 @@
 		}
 	}
 }
-
-
-
