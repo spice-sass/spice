@@ -1,4 +1,12 @@
 @import "../../src/spice";
 
 
-@include flatTables(#333,#e9e9e9,10px,14px);
+$palette: (
+	'primary'   : #289e83,
+	'secondary' : #1b8898,
+	'danger'    : #d7861e,
+	'warning'   : #ac2828,
+	'submit'    : #54A03A
+);
+
+@include palette($palette);

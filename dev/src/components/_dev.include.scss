@@ -12,6 +12,41 @@
 
 // Depricated ---------
 
+
+@mixin themeLinks($link:black,$hover:$col-primary,$visited:$col-secondary){
+
+    @warn "This mixin is depricated and will be removed in the next release";
+
+    a{
+
+        &:link{
+
+            color:$link;
+            text-decoration: none;
+        }
+
+        &:hover{
+
+            color: $hover;
+        }
+
+        &:active,&:visited{
+
+            color:darken($hover,10%);
+        }
+    }
+}
+
+@mixin themeBase($themeColour:#e9e9e9){
+
+    @warn "This mixin is depricated and will be removed in the next release";
+    
+    body{
+
+        background-color: $themeColour;
+    }
+}
+
 @mixin tables($padding:10px,$fontSize:16px){
 
     @warn "This mixin is depricated and will be removed in the next release";
