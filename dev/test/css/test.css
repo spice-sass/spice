@@ -1,23 +1,79 @@
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 300;
-  src: local(Quicksand Light), local(Quicksand-Light), url(http://fonts.gstatic.com/s/quicksand/v5/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+.primary {
+  color: #289e83;
+}
 
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 400;
-  src: local(Quicksand Regular), local(Quicksand-Regular), url(http://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW1tXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+.primary-bg {
+  background-color: #289e83;
+}
 
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 700;
-  src: local(Quicksand Bold), local(Quicksand-Bold), url(http://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+.primary-border {
+  border-color: #289e83;
+}
 
-.quicksand, h1, h3 {
-  font-family: "Quicksand", arial, sans-serif; }
+.primary-contrast {
+  color: #bdeee3;
+}
+
+.secondary {
+  color: #1b8898;
+}
+
+.secondary-bg {
+  background-color: #1b8898;
+}
+
+.secondary-border {
+  border-color: #1b8898;
+}
+
+.secondary-contrast {
+  color: #a9e7f0;
+}
+
+.danger {
+  color: #d7861e;
+}
+
+.danger-bg {
+  background-color: #d7861e;
+}
+
+.danger-border {
+  border-color: #d7861e;
+}
+
+.danger-contrast {
+  color: #fbefe0;
+}
+
+.warning {
+  color: #ac2828;
+}
+
+.warning-bg {
+  background-color: #ac2828;
+}
+
+.warning-border {
+  border-color: #ac2828;
+}
+
+.warning-contrast {
+  color: #f2c7c7;
+}
+
+.submit {
+  color: #54A03A;
+}
+
+.submit-bg {
+  background-color: #54A03A;
+}
+
+.submit-border {
+  border-color: #54A03A;
+}
+
+.submit-contrast {
+  color: #d9eed1;
+}
