@@ -1,23 +1,54 @@
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 300;
-  src: local(Quicksand Light), local(Quicksand-Light), url(http://fonts.gstatic.com/s/quicksand/v5/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
 
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 400;
-  src: local(Quicksand Regular), local(Quicksand-Regular), url(http://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW1tXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+table {
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    font-size: 0.875rem;
+}
 
-@font-face {
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 700;
-  src: local(Quicksand Bold), local(Quicksand-Bold), url(http://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+table th, table td {
+    margin: 0;
+    padding: 10px;
+    line-height: 1.5;
+    vertical-align: top;
+    display: table-cell;
+}
 
-.quicksand, h1, h3 {
-  font-family: "Quicksand", arial, sans-serif; }
+table tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+table th {
+    font-weight: 600;
+    color: #1a1a1a;
+    border-color: #d0d0d0;
+}
+
+table td {
+    border-top-width: 1px;
+    border-style: solid;
+    color: #333;
+    border-color: #d0d0d0;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
