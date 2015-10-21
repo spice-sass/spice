@@ -3,9 +3,6 @@
   "version": "0.4.6",
   "description": "Add a little spice to your UI",
   "main": "src/_spice.scss",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spice-sass/spice.git"
