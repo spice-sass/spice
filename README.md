@@ -3,6 +3,8 @@ Spice sass library
 
 Add a little spice to your UI!
 
+[![Build Status](https://travis-ci.org/spice-sass/spice.svg)](https://travis-ci.org/spice-sass/spice)
+
 ## Installation
 
 Spice is available as a npm package, a bower component or zip download.
