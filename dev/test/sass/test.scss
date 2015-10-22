@@ -1,12 +1,7 @@
 @import "../../src/spice";
 
 
-$palette: (
-	'primary'   : #289e83,
-	'secondary' : #1b8898,
-	'danger'    : #d7861e,
-	'warning'   : #ac2828,
-	'submit'    : #54A03A
-);
+p.columns{ 
 
-@include palette($palette);
+	@include textColumns(200px,6,1,1.5em,#ddd);
+}
