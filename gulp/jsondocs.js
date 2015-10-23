@@ -1,48 +1,15 @@
 
-var gulp = require('gulp');
+var gulp   = require('gulp');
+var concat = require('gulp-concat');
+var files  = [
+	'./dev/docbuilder/includes.header.json',
+	'./dev/docbuilder/docs/*.json',
+	'./dev/docbuilder/docs/includes.footer.json'
+]
 
 gulp.task('jsondocs', function(){
-    
-    var fs   = require('fs'),
-		path = './dev/docbuilder',
-		incs = fs.readdirSync(path),
-		obj  = {};
-
-	obj.includes = {};
-
-
-	incs.forEach(function(include,index){
-
-		var name = include.replace('.json','');
-		
-
-		fs.readFile(path+"/"+include, function (err, data) {
-		    if (err) throw err;
-
-		    var data = JSON.parse(data);
-
-		    obj.includes[include] = JSON.stringify(data);
-
-		    if(index == incs.length-1){
-
-				console.log(obj)
-				copy();
-			}
-		 });
-
-		
-
-	});
-
-	function copy(){
-
-		var finalData = JSON.stringify(obj);
-
-		fs.writeFile('./dev/docbuilder.json', finalData , function (err) {
-	      if (err) throw err;
-	      console.log('includes file saved file saved');
-	    });
-
-	}
+    return gulp.src(files)
+    .pipe(concat('includes.json'))
+    .pipe(gulp.dest('./dev'));
 
 });

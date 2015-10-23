@@ -1,0 +1,23 @@
+{
+	"includesOrder" : [
+		"fonts",
+		"animations",
+		"animationPresets",
+		"grid",
+		"palette",
+		"icons",
+		"layout",
+		"navigation",
+		"forms",
+		"buttons",
+		"svg"
+	],
+	"stylepages" : [
+		"fonts",
+		"grid",
+		"form",
+		"animations",
+		"buttons",
+		"icons"
+	],
+	"includes" : {
