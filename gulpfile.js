@@ -8,6 +8,7 @@ var sass      = require('./gulp/sass');
 var devserver = require('./gulp/server');
 var docs      = require('./gulp/docs');
 var converter = require('./gulp/converter');
+var jsondocs  = require('./gulp/jsondocs');
 // ===================================================
 
 
