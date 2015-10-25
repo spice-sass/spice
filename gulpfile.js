@@ -8,6 +8,7 @@ var sass      = require('./gulp/sass');
 var devserver = require('./gulp/server');
 var docs      = require('./gulp/docs');
 var converter = require('./gulp/converter');
+var jsondocs  = require('./gulp/jsondocs');
 // ===================================================
 
 
@@ -25,5 +26,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['server','watch']);
-gulp.task('publish', ['bump']);
+gulp.task('publish', ['bump','jsondocs']);
 gulp.task('pubsass', ['version', 'copy']);
