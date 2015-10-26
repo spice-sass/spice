@@ -26,5 +26,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['server','watch']);
-gulp.task('publish', ['bump','jsondocs']);
-gulp.task('pubsass', ['version', 'copy']);
+gulp.task('update',  ['bump','jsondocs']);
+gulp.task('publish', ['version', 'copy', 'publishdocs']);
