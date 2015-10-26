@@ -497,6 +497,7 @@
 
 @mixin slideIn($direction:"right",$amount:100,$easing:ease,$duration:0.6s,$staggerCount:10) {
 
+	$direction : to-lower-case($direction);
 	$name : slideIn-#{$direction};
 	$shift : "";
 	
@@ -504,16 +505,20 @@
 		$shift : "translateX(-#{$amount}px)";
 	}
 
-	@if $direction == "left"{
+	@else if $direction == "left"{
 		$shift : "translateX(#{$amount}px)";
 	}
 
-	@if $direction == "down"{
+	@else if $direction == "down"{
 		$shift : "translateY(-#{$amount}px)";
 	}
 
-	@if $direction == "up" {
+	@else if $direction == "up" {
 		$shift : "translateY(#{$amount}px)";
+	}
+
+	@else {
+		@error "#{$direction} is not a valid argument for 'Direction'. Please use 'left', 'right', 'up' or 'down'";
 	}
 
 	$slideIn-stops : (
@@ -939,6 +944,6 @@
 
 	@else{
 
-		@error "ERROR: Invalid axis value passed as argument in flip mixin. #{$axis} is not an accepted value. Accepted values : x | X | y | Y."
+		@error "Invalid axis value passed as argument in flip mixin. #{$axis} is not an accepted value. Accepted values : x | X | y | Y."
 	}
 }
