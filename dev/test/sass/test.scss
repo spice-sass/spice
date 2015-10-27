@@ -1,4 +1,7 @@
 @import "../../src/spice";
 
 
-@include slideIn('right');
+p.columns{ 
+
+	@include textColumns(200px,6,1,1.5em,#ddd);
+}
