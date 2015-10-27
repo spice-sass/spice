@@ -1,0 +1,186 @@
+// =========================================================================================================================
+// Spice - Cards
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+
+/// Mixin for generating a card class
+/// @name cardClass
+/// @group Layout
+/// @param {css pixel shorthand} padding [20px] Padding value applied to .card-body
+/// @param {Integer} rounding [0] Border radius in pixels
+/// @example scss - Include
+///  @include cardClass(20px,5);
+///
+/// @example css - Output
+/// .card {
+///   font-size: 0.95em;
+///   overflow: hidden;
+///   border-radius:5px;
+/// }
+/// .card .card-body h1, .card .card-body h2, .card .card-body h3, .card .card-body h4, .card .card-body h5, .card .card-body h6, .card header h1, .card header h2, .card header h3, .card header h4, .card header h5, .card header h6 {
+///   font-size: 1.4em;
+///   margin-bottom: 0.7em;
+/// }
+/// .card .card-body h1:last-child, .card .card-body h2:last-child, .card .card-body h3:last-child, .card .card-body h4:last-child, .card .card-body h5:last-child, .card .card-body h6:last-child, .card .card-body p:last-child, .card header h1:last-child, .card header h2:last-child, .card header h3:last-child, .card header h4:last-child, .card header h5:last-child, .card header h6:last-child, .card header p:last-child {
+///   margin-bottom: 0;
+/// }
+/// .card .card-body, .card header {
+///   padding: 20px;
+/// }
+/// .card footer {
+///   padding: 0 10px;
+/// }
+/// .card footer h1, .card footer h2, .card footer h3, .card footer h4, .card footer h5, .card footer h6, .card footer p, .card footer a {
+///   font-size: 1em;
+///   display: inline-block;
+///   padding: 10px;
+/// }
+/// .card footer h1:first-child, .card footer h2:first-child, .card footer h3:first-child, .card footer h4:first-child, .card footer h5:first-child, .card footer h6:first-child, .card footer p:first-child, .card footer a:first-child {
+///   padding-left: 0;
+/// }
+/// .card footer button {
+///   margin-top: 5px;
+///   margin-bottom: 5px;
+///   margin-left: 5px;
+/// }
+///
+
+@mixin cardClass($padding:20px,$rounding:0){
+
+	.card{
+
+		font-size: 0.95em;
+
+		@if $rounding > 0{
+
+			overflow: hidden;
+			border-radius: #{$rounding}px;
+		}
+
+		.card-body,header{
+
+			h1,h2,h3,h4,h5,h6{
+
+				font-size: 1.4em;
+				margin-bottom: 0.7em;
+			}
+
+			h1,h2,h3,h4,h5,h6,p{
+
+				&:last-child{
+
+					margin-bottom: 0;
+				}
+
+			}
+		}
+
+		.card-body, header{
+			padding:$padding;
+		}
+
+		footer{
+
+			padding:0 $padding/2;
+
+			h1,h2,h3,h4,h5,h6,p, a{
+
+				font-size: 1em;
+				display: inline-block;
+				padding:$padding/2;
+
+				&:first-child{
+
+					padding-left: 0;
+				}
+			}
+
+			button{
+
+				margin-top: $padding/4;
+				margin-bottom: $padding/4;
+				margin-left:5px;
+			}
+		}
+	}
+}
+
+
+/// Mixin for theming card classes
+/// @name themeCardClass
+/// @group Layout
+/// @param {#hex/rgba} blockColour [#f4f4f4] Card background colour
+/// @param {#hex/rgba} borderColour [false] Applies border colours if passed
+/// @param {Bool} headerStyle [false] Applies stylised heading if passed
+/// @example scss - Include
+///  @include themeCardClass(#f6f6f6,#ddd,true);
+///
+/// @example css - Output
+///  .card{
+///    background-color: #f6f6f6;
+///    border: 1px solid #ddd;
+///  }
+///  .card header{
+///    background-color: #eeeeee;
+///    border-bottom: 1px solid #ddd;
+///  }
+///  .card header h1 {
+///    padding-left: 10px;
+///    border-left: 3px solid #289e83;
+///  }
+///  .card footer{
+///    background-color: #eeeeee;
+///    border-top: 1px solid #ddd;
+///  }
+///  .card footer a {
+///    border-right: 1px solid #ddd;
+///  }
+///
+
+@mixin themeCardClass($blockColour:#f4f4f4,$borderColour:false,$headerStyle:false){
+
+	.card{
+
+		background-color: $blockColour;
+
+		@if $borderColour{
+			border: 1px solid $borderColour;
+		}
+
+		header{
+
+			background-color:darken($blockColour,3%);
+
+			@if $borderColour{
+				border-bottom: 1px solid $borderColour;
+			}
+
+			@if $headerStyle{
+
+				h1,h2,h3,h4,h5,h6{
+
+					padding-left:10px;
+					border-left: 3px solid $headerStyle;
+				}
+			}
+		}
+
+		footer{
+
+			background-color:darken($blockColour,3%);
+
+			@if $borderColour{
+				border-top: 1px solid $borderColour;
+
+				a{
+
+					border-right: 1px solid $borderColour;
+				}
+
+			}
+		}
+	}
+}

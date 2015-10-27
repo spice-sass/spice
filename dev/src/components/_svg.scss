@@ -1,0 +1,121 @@
+// =========================================================================================================================
+// Spice - Svg mixins
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+@import "layout";
+
+/// For styling doughnut svgs
+/// @name doughnut
+/// @group svg
+/// @param {String} classname [] Class name for the element
+/// @param {#hex/rgba} stroke [#e7534f] Colour of the path stroke
+/// @param {Pixel value} stroke-width [5px] Width of the path stroke
+/// @param {#hex/rgba} circle-col [rgba(0,0,0,0.1)] Colour of the circle stroke
+/// @param {#hex/rgba} text-col [#111] Colour percentage
+/// @example scss - Include
+///  @include doughnut('primary');
+///
+/// @example css - Output
+///  svg.primary {
+///  	position: relative;
+///  }
+///  svg.primary circle {
+///  	fill: none;
+///  	stroke: rgba(0, 0, 0, 0.1);
+///  	stroke-width: 5px;
+///  }
+///  svg.primary path {
+///  	stroke: #289e83;
+///  	fill: none;
+///  	stroke-width: 5px;
+///  }
+///
+///  .primary.percentage {
+///  	color: #111;
+///  	font-size: 1.4em;
+///  	position: absolute;
+///  	top: 50%;
+///  	left: 50%;
+///  	-moz-transform: translate(-50%, -50%);
+///  	-ms-transform: translate(-50%, -50%);
+///  	-webkit-transform: translate(-50%, -50%);
+///  	transform: translate(-50%, -50%);
+///  }
+/// @example markup - HTML
+///  <div class="doughnut-example">
+///      	<svg class="submit" style="width:120px;height:120px;">
+///          		<circle cx="50%" cy="50%" r="52.5"></circle>
+///          		<path d="M 60 7.5 A 52.5 52.5 0 1 1 59.99990837021427 7.5000000000799645"></path>
+///      	</svg>
+///      	<p class="submit percentage">100%</p>
+///  </div>
+///
+///  <div class="doughnut-example">
+///      	<svg class="primary" style="width:120px;height:120px;">
+///          		<circle cx="50%" cy="50%" r="52.5"></circle>
+///          		<path  d="M 60 7.5 A 52.5 52.5 0 1 1 11.18670075976727 40.67354617930401"></path>
+///      	</svg>
+///      	<p class="primary percentage">81%</p>
+///  </div>
+///
+///  <div class="doughnut-example">
+///      	<svg class="secondary" style="width:120px;height:120px;">
+///          		<circle cx="50%" cy="50%" r="52.5"></circle>
+///          		<path d="M 60 7.5 A 52.5 52.5 0 1 1 7.5000000000799645 60.00009162978573"></path>
+///      	</svg>
+///      	<p class="secondary percentage">75%</p>
+///  </div>
+///
+///  <div class="doughnut-example">
+///      	<svg class="warning" style="width:120px;height:120px;">
+///          		<circle cx="50%" cy="50%" r="52.5"></circle>
+///          		<path d="M 60 7.5 A 52.5 52.5 0 1 1 29.141348384746003 102.47344606325677"></path>
+///      	</svg>
+///      	<p class="warning percentage">60%</p>
+///  </div>
+///
+///  <div class="doughnut-example">
+///      	<svg class="danger" style="width:120px;height:120px;">
+///          		<circle cx="50%" cy="50%" r="52.5"></circle>
+///          		<path d="M 60 7.5 A 52.5 52.5 0 0 1 102.47344606325677 90.85865161525399"></path>
+///      	</svg>
+///      	<p class="danger percentage">35%</p>
+///  </div>
+
+@mixin doughnut($className,$stroke:#e7534f,$stroke-width:5px,$circle-col:rgba(0,0,0,0.1),$text-col:#111){
+
+	svg.#{$className}{
+
+		position: relative;
+
+		circle {
+
+			fill: none;
+			stroke: $circle-col;
+	    	stroke-width: $stroke-width;
+		}
+
+		path{
+
+			stroke: $stroke;
+			fill: none;
+    		stroke-width: $stroke-width;
+
+    		&:hover{
+
+    			stroke-width: $stroke-width+4px;
+    		}
+		}
+	}
+
+	.#{$className}.percentage{
+
+		color:$text-col;
+		font-size: 1.4em;
+		@include centre;
+	}
+
+}

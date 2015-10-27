@@ -1,0 +1,229 @@
+// =========================================================================================================================
+// Spice - Typography
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+
+/// Programmatically calculate the sizes of your heading elements. This mixin uses the @include
+/// fontSize mixin in order to calulate both rem and pixel value fallbacks.
+/// by passing in the ceiling(h1) and floor(h6) size values. These integers
+/// will be converted into px and rem values using the @include fontSize(); mixin.
+/// @name headerSizes
+/// @group fonts
+/// @param {Pixel value} h1 [50px] Size of H1 elements
+/// @param {Pixel value} h6 [20px] Size of H6 elements
+/// @example scss - Include
+///     @include headerSizes(100px,20px);
+///
+/// @example css - Output
+/// h1 {
+///         font-size: 100px;
+///         font-size: 6.25rem;
+/// }
+///
+/// h2 {
+///         font-size: 86.66667px;
+///         font-size: 5.41667rem;
+/// }
+///
+/// h3 {
+///         font-size: 73.33333px;
+///         font-size: 4.58333rem;
+/// }
+///
+/// h4 {
+///         font-size: 60px;
+///         font-size: 3.75rem;
+/// }
+///
+/// h5 {
+///         font-size: 46.66667px;
+///         font-size: 2.91667rem;
+/// }
+///
+/// h6 {
+///         font-size: 20px;
+///         font-size: 1.25rem;
+/// }
+
+@mixin headerSizes($h1:50,$h6:20){
+
+    $range    : $h1 - $h6;
+    $interval : $range / 6;
+
+    h1{
+
+        @include fontSize($h1);
+    }
+
+    h2{
+
+        @include fontSize($h6 + $interval * 5 )
+    }
+
+    h3{
+
+        @include fontSize($h6 + $interval * 4 )
+    }
+
+    h4{
+
+        @include fontSize($h6 + $interval * 3 )
+    }
+
+    h5{
+
+        @include fontSize($h6 + $interval * 2 )
+    }
+
+    h6{
+
+        @include fontSize($h6);
+    }
+}
+
+
+/// Add a vertical linear gradient to text. **Webkit support only.** Other browsers will 
+/// fall back to a flat colour.
+/// @name gradientText
+/// @group fonts
+/// @param {#hex/rgba} top [] Top colour to blend
+/// @param {#hex/rgba} bottom [] Bottom colour to blend
+/// @example scss - Include
+///  @include gradientText(#f3f3f3,#ddd)
+///
+/// @example css - Output
+///  h1.gradient {
+///     color: #f3f3f3;
+///     background: -webkit-linear-gradient(#f3f3f3, #ddd);
+///     -webkit-background-clip: text;
+///     -webkit-text-fill-color: transparent;
+///  }
+
+
+@mixin gradientText($top,$bottom){
+	color:$top;
+	background: -webkit-linear-gradient($top,$bottom);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/// Programmatically generate css3 columns with breakpoints by using this mixin.
+/// @name textColumns
+/// @group fonts
+/// @param {Pixel value} maxWidth [300px] Max width of each column
+/// @param {Integer} maxCols [8] Maximum number of columns
+/// @param {Integer} minCols [1] Minimum number of columns
+/// @param {Pixel/em value} gap [1em] Gap between columns
+/// @param {#Hex/rgba} ruleColour [false] Optional rule between columns
+/// @example scss - Include
+///  p.columns{ 
+///  
+///      @include textColumns(200px,6,1,1.5em,#ddd);
+///  }
+/// @example css - Output
+///  p.columns {
+///      -webkit-column-count: 1;
+///      -moz-column-count: 1;
+///      column-count: 1;
+///      -webkit-column-gap: 0;
+///      -moz-column-gap: 0;
+///      column-gap: 0;
+///      -webkit-column-rule: none;
+///      -moz-column-rule: none;
+///      column-rule: none;
+///  }
+///  
+///  @media (min-width: 200px) {
+///      p.columns {
+///          -webkit-column-count: 2;
+///          -moz-column-count: 2;
+///          column-count: 2;
+///          -webkit-column-gap: 1.5em;
+///          -moz-column-gap: 1.5em;
+///          column-gap: 1.5em;
+///          -webkit-column-rule: 1px outset #ddd;
+///          -moz-column-rule: 1px outset #ddd;
+///          column-rule: 1px outset #ddd;
+///      }
+///  }
+///  
+///  @media (min-width: 400px) {
+///      p.columns {
+///          -webkit-column-count: 3;
+///          -moz-column-count: 3;
+///          column-count: 3;
+///          -webkit-column-gap: 1.5em;
+///          -moz-column-gap: 1.5em;
+///          column-gap: 1.5em;
+///          -webkit-column-rule: 1px outset #ddd;
+///          -moz-column-rule: 1px outset #ddd;
+///          column-rule: 1px outset #ddd;
+///      }
+///  }
+///  
+///  @media (min-width: 600px) {
+///      p.columns {
+///          -webkit-column-count: 4;
+///          -moz-column-count: 4;
+///          column-count: 4;
+///          -webkit-column-gap: 1.5em;
+///          -moz-column-gap: 1.5em;
+///          column-gap: 1.5em;
+///          -webkit-column-rule: 1px outset #ddd;
+///          -moz-column-rule: 1px outset #ddd;
+///          column-rule: 1px outset #ddd;
+///      }
+///  }
+///  
+///  @media (min-width: 800px) {
+///      p.columns {
+///          -webkit-column-count: 5;
+///          -moz-column-count: 5;
+///          column-count: 5;
+///          -webkit-column-gap: 1.5em;
+///          -moz-column-gap: 1.5em;
+///          column-gap: 1.5em;
+///          -webkit-column-rule: 1px outset #ddd;
+///          -moz-column-rule: 1px outset #ddd;
+///          column-rule: 1px outset #ddd;
+///      }
+///  }
+///  
+///  @media (min-width: 1000px) {
+///      p.columns {
+///          -webkit-column-count: 6;
+///          -moz-column-count: 6;
+///          column-count: 6;
+///          -webkit-column-gap: 1.5em;
+///          -moz-column-gap: 1.5em;
+///          column-gap: 1.5em;
+///          -webkit-column-rule: 1px outset #ddd;
+///          -moz-column-rule: 1px outset #ddd;
+///          column-rule: 1px outset #ddd;
+///      }
+///  }
+
+@mixin textColumns($maxWidth:300px,$maxCols:8,$minCols:1,$gap:1em,$ruleColour:false){
+
+    @include vendorPrefix(column-count,1);
+    @include vendorPrefix(column-gap,0);
+
+    @if $ruleColour {
+        @include vendorPrefix(column-rule,none);
+    }
+
+    @for $i from 1 through ($maxCols - 1){
+
+        @include breakPoint(#{$maxWidth*$i},'min'){
+            @include vendorPrefix(column-count,#{($i + $minCols)});
+            @include vendorPrefix(column-gap,$gap);
+
+            @if $ruleColour {
+                @include vendorPrefix(column-rule,1px outset #{$ruleColour});
+            }
+        }
+    }
+}

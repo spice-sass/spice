@@ -12,25 +12,25 @@
 
 // Spice variables helpers and utils
 // ------------------------------------------------------------------------
-@import "components/variables.include",
-        "components/utils.include";
+@import "components/variables",
+        "components/utils";
 
 // Spice core
 // ------------------------------------------------------------------------
-@import "components/animations.include",
-        "components/buttons.include",
-        "components/cards.include",
-        "components/fonts.include",
-        "components/form.include",
-        "components/grid.include",
-        "components/helpers.include",
-        "components/icons.include",
-        "components/layout.include",
-        "components/messages.include",
-        "components/navigation.include",
-        "components/svg.include",
-        "components/tables.include",
-        "components/theme.include",
-        "components/typography.include",
-        "components/dev.include";
+@import "components/animations",
+        "components/buttons",
+        "components/cards",
+        "components/fonts",
+        "components/form",
+        "components/grid",
+        "components/helpers",
+        "components/icons",
+        "components/layout",
+        "components/messages",
+        "components/navigation",
+        "components/svg",
+        "components/tables",
+        "components/theme",
+        "components/typography",
+        "components/dev";
 // ------------------------------------------------------------------------
