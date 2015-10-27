@@ -1,0 +1,316 @@
+// =========================================================================================================================
+// Spice - Web fonts
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+
+// Currently availble google fonts :
+// ---------------------------------
+// open-sans
+// open-sans-condensed
+// roboto
+// roboto-slab
+// leckerli-one
+// quicksand
+// oswald
+// source-sans
+// lobster
+// arvo
+
+$googleFonts : (
+	open-sans : (
+		font-family: 'Open Sans',
+		weights : (
+			400 : (
+				localone : 'Open Sans',
+				localtwo : 'OpenSans',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff)' 
+			),
+			600 : (
+				localone : 'Open Sans Semibold',
+				localtwo : 'OpenSans-Semibold',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/opensans/v8/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff)' 
+			),
+			800 : (
+				localone : 'Open Sans Extrabold',
+				localtwo : 'OpenSans-Extrabold',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/opensans/v8/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff)' 
+			)
+		)
+	),
+	open-sans-condensed : (
+		font-family: 'Open Sans Condensed',
+		weights : (
+			300 : (
+				localone : 'Open Sans Cond Light',
+				localtwo : 'OpenSans-CondensedLight',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/opensanscondensed/v7/gk5FxslNkTTHtojXrkp-xF1YPouZEKgzpqZW9wN-3Ek.woff)' 
+			),
+			700 : (
+				localone : 'Open Sans Condensed Bold',
+				localtwo : 'OpenSans-CondensedBold',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/opensanscondensed/v7/gk5FxslNkTTHtojXrkp-xONSK5BxN3NFS4EJkViHIqo.woff)' 
+			)
+		)
+	),
+	roboto : (
+		font-family: 'Roboto',
+		weights : (
+			300 : (
+				localone : 'Roboto Light',
+				localtwo : 'Roboto-Light',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/roboto/v11/Hgo13k-tfSpn0qi1SFdUfT8E0i7KZn-EPnyo3HZu7kw.woff)' 
+			),
+			400 : (
+				localone : 'Roboto Regular',
+				localtwo : 'Roboto-Regular',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/roboto/v11/2UX7WLTfW3W8TclTUvlFyQ.woff)' 
+			),
+			700 : (
+				localone : 'Roboto Bold',
+				localtwo : 'Roboto-Bold',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/roboto/v11/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff)' 
+			)
+		)
+	),
+	roboto-slab : (
+		font-family: 'Roboto Slab',
+		weights : (
+			300 : (
+				localone : 'Roboto Slab Light',
+				localtwo : 'RobotoSlab-Light',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJR_xHqYgAV9Bl_ZQbYUxnQU.woff)' 
+			),
+			400 : (
+				localone : 'Roboto Slab Regular',
+				localtwo : 'RobotoSlab-Regular',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/y7lebkjgREBJK96VQi37ZobN6UDyHWBl620a-IRfuBk.woff)' 
+			),
+			700 : (
+				localone : 'Roboto Slab Bold',
+				localtwo : 'RobotoSlab-Bold',
+				url : 'url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJTqR_3kx9_hJXbbyU8S6IN0.woff)' 
+			)
+		)
+
+	),
+	quicksand : (
+		font-family: '"Quicksand"',
+		weights : (
+			300 : (
+				localone : 'Quicksand Light',
+				localtwo : 'Quicksand-Light',
+				url : 'url(http://fonts.gstatic.com/s/quicksand/v5/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2)' 
+			),
+			400 : (
+				localone : 'Quicksand Regular',
+				localtwo : 'Quicksand-Regular',
+				url : 'url(http://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW1tXRa8TVwTICgirnJhmVJw.woff2)' 
+			),
+			700 : (
+				localone : 'Quicksand Bold',
+				localtwo : 'Quicksand-Bold',
+				url : 'url(http://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsugdm0LZdjqr5-oayXSOefg.woff2)' 
+			)
+		)
+	),
+	leckerli-one : (
+		font-family: '"Leckerli One"',
+		weights : (
+			300 : (
+				localone : 'Leckerli One',
+				localtwo : 'LeckerliOne-Regular',
+				url : 'url(http://fonts.gstatic.com/s/leckerlione/v7/S2Y_iLrItTu8kIJTkS7DrOgdm0LZdjqr5-oayXSOefg.woff2)' 
+			)
+		)
+	),
+	oswald : (
+		font-family: '"Oswald"',
+		weights : (
+			300 : (
+				localone : 'Oswald Light',
+				localtwo : 'Oswald-Light',
+				url : 'url(http://fonts.gstatic.com/s/oswald/v10/HqHm7BVC_nzzTui2lzQTDVtXRa8TVwTICgirnJhmVJw.woff2)' 
+			),
+			400 : (
+				localone : 'Oswald Regular',
+				localtwo : 'Oswald-Regular',
+				url : 'url(http://fonts.gstatic.com/s/oswald/v10/pEobIV_lL25TKBpqVI_a2w.woff2)' 
+			),
+			700 : (
+				localone : 'Oswald Bold',
+				localtwo : 'Oswald-Bold',
+				url : 'url(http://fonts.gstatic.com/s/oswald/v10/bH7276GfdCjMjApa_dkG6VtXRa8TVwTICgirnJhmVJw.woff2)' 
+			)
+		)
+	),
+	source-sans : (
+		font-family: 'Source Sans Pro',
+		weights : (
+			200 : (
+				localone : 'Source Sans Pro ExtraLight',
+				localtwo : 'SourceSansPro-ExtraLight',
+				url : 'url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGCVh0V6fR69OLaFLklYbiSk.woff2)' 
+			),
+			300 : (
+				localone : 'Source Sans Pro Light',
+				localtwo : 'SourceSansPro-Light',
+				url : 'url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGOode0-EuMkY--TSyExeINg.woff2)' 
+			),
+			400 : (
+				localone : 'Source Sans Pro',
+				localtwo : 'SourceSansPro-Regular',
+				url : 'url(http://fonts.gstatic.com/s/sourcesanspro/v9/ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2)' 
+			),
+			600 : (
+				localone : 'Source Sans Pro Semibold',
+				localtwo : 'SourceSansPro-Semibold',
+				url : 'url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGCOFnW3Jk0f09zW_Yln67Ac.woff2)'
+			),
+			700 : (
+				localone : 'Source Sans Pro Bold',
+				localtwo : 'SourceSansPro-Bold',
+				url : 'url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2)'
+			)
+		)
+	),
+	lobster : (
+		font-family: 'Lobster',
+		weights : (
+			400:(
+				localone : 'Lobster',
+				localtwo : 'Lobster-Regular',
+				url : 'url(http://fonts.gstatic.com/s/lobster/v15/cycBf3mfbGkh66G5NhszPQ.woff2)'
+
+			)
+		)
+	),
+	arvo : (
+		font-family: 'Arvo',
+		weights : (
+			400:(
+				localone : 'Arvo',
+				localtwo : 'Arvo',
+				url : 'url(http://fonts.gstatic.com/s/arvo/v8/J0GYVYTizO1mjpT3aOcSbQ.woff2)'
+			),
+			700:(
+				localone : 'Arvo Bold',
+				localtwo : 'Arvo-Bold',
+				url : 'url(http://fonts.gstatic.com/s/arvo/v8/Ya11CJGBCnKoJHvb8B2EOw.woff2)'
+			)
+		)
+	)
+);
+
+/// Google web fonts can be added to elements really easily using this mixin.
+/// @name googleFont
+/// @group fonts
+/// @param {String} font [] The name of the google font to include e.g. 'open-sans'
+/// @param {Array} elements [false] List of elements to extend with the font-family
+/// @param {Integer} weight [fasle] optional weight of the fonts e.g. 300 | 400 | 700
+/// @example scss - Include
+///  @include googleFont('quicksand',h1 h2 h3 h4 h5 h6,400);
+///  @include googleFont('roboto-slab',body textarea button);
+/// @example css - Output
+///  @font-face {
+///    font-family: "Quicksand";
+///    font-style: normal;
+///    font-weight: 300;
+///    src: local(Quicksand Light), local(Quicksand-Light), url(http://fonts.gstatic.com/s/quicksand/v5/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  @font-face {
+///    font-family: "Quicksand";
+///    font-style: normal;
+///    font-weight: 400;
+///    src: local(Quicksand Regular), local(Quicksand-Regular), url(http://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW1tXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  @font-face {
+///    font-family: "Quicksand";
+///    font-style: normal;
+///    font-weight: 700;
+///    src: local(Quicksand Bold), local(Quicksand-Bold), url(http://fonts.gstatic.com/s/quicksand/v5/32nyIRHyCu6iqEka_hbKsugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  .quicksand, h1, h2, h3, h4, h5, h6 {
+///    font-family: "Quicksand", arial, sans-serif;
+///    font-weight: 400;
+///  }
+///  
+///  @font-face {
+///    font-family: Roboto Slab;
+///    font-style: normal;
+///    font-weight: 300;
+///    src: local(Roboto Slab Light), local(RobotoSlab-Light), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJR_xHqYgAV9Bl_ZQbYUxnQU.woff) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  @font-face {
+///    font-family: Roboto Slab;
+///    font-style: normal;
+///    font-weight: 400;
+///    src: local(Roboto Slab Regular), local(RobotoSlab-Regular), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/y7lebkjgREBJK96VQi37ZobN6UDyHWBl620a-IRfuBk.woff) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  @font-face {
+///    font-family: Roboto Slab;
+///    font-style: normal;
+///    font-weight: 700;
+///    src: local(Roboto Slab Bold), local(RobotoSlab-Bold), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJTqR_3kx9_hJXbbyU8S6IN0.woff) format("woff2");
+///    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+///  }
+///  .roboto-slab, body, textarea, button {
+///    font-family: Roboto Slab, arial, sans-serif;
+///  }
+
+@mixin googleFont($font,$elements:false,$weight:false){
+
+
+	$thisFont : map-get($googleFonts,$font);
+	$weights  : map-get($thisFont,weights);
+	$family   : map-get($thisFont,font-family);
+
+	@each $weight in $weights {
+
+		$key : nth($weight,1);
+		$val : nth($weight,2);
+		$loc1 : map-get($val,localone);
+		$loc2 : map-get($val,localtwo);
+		$url  : map-get($val,url);
+
+		@font-face {
+		  font-family: #{$family};
+		  font-style: normal;
+		  font-weight: $key;
+		  src: local(#{$loc1}), local(#{$loc2}), #{$url} format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+	}
+
+	.#{$font}{
+		font-family: (#{$family}), arial, sans-serif;
+
+		@if $weight{
+			font-weight: $weight;
+		}
+
+		@if $font == "open-sans-condensed"{
+
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+		}
+	}
+
+
+
+	@if $elements {
+
+		@each $element in $elements {
+			#{$element}{
+				@extend .#{$font};
+			}
+		}
+	}
+}

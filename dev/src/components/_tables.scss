@@ -1,0 +1,174 @@
+// =========================================================================================================================
+// Spice - Tables
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+
+/// Add styles for simple flat UI tabular data.
+/// @name flatTables
+/// @group Tables & Data
+/// @param {#hex/rgba} textCol [] Colour of the table body font
+/// @param {#hex/rgba} bgCol [] Background colour of table
+/// @param {pixel value} padding [10px] Amount of padding applied to cells
+/// @param {pixel value} fontSize [14px] Font size of the table
+/// @example scss - Include
+///  @include flatTables(#333,#e9e9e9,10px,14px);
+/// @example css - Output
+///  table, caption, tbody, tfoot, thead, tr, th, td {
+///      margin: 0;
+///      padding: 0;
+///      border: 0;
+///      font: inherit;
+///      font-size: 100%;
+///      vertical-align: baseline;
+///  }
+///  
+///  table {
+///      width: 100%;
+///      display: table;
+///      border-collapse: separate;
+///      border-spacing: 0;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///  }
+///  
+///  table th, table td {
+///      margin: 0;
+///      padding: 10px;
+///      line-height: 1.5;
+///      vertical-align: top;
+///      display: table-cell;
+///  }
+///  
+///  table tbody {
+///      display: table-row-group;
+///      vertical-align: middle;
+///      border-color: inherit;
+///  }
+///  
+///  table tr {
+///      display: table-row;
+///      vertical-align: inherit;
+///      border-color: inherit;
+///  }
+///  
+///  table th {
+///      font-weight: 600;
+///      color: #1a1a1a;
+///      border-color: #d0d0d0;
+///  }
+///  
+///  table td {
+///      border-top-width: 1px;
+///      border-style: solid;
+///      color: #333;
+///      border-color: #d0d0d0;
+///  }
+///  
+///  table tbody tr:nth-child(odd) {
+///      background-color: #eeeeee;
+///  }
+/// @example markup - html 
+///  <table>
+///  
+///      <thead>
+///          <tr>
+///              <th>#</th>
+///              <th>Superhero</th>
+///              <th>Special Power</th>
+///              <th>Alter-ego</th>
+///          </tr>
+///      </thead>
+///  
+///      <tbody>
+///          <tr>
+///              <td>1</td>
+///              <td>Superman</td>
+///              <td>Flying, super strength</td>
+///              <td>Clark Kent</td>
+///          </tr>
+///          <tr>
+///              <td>2</td>
+///              <td>Batman</td>
+///              <td>N/A</td>
+///              <td>Bruce Wayne</td>
+///          </tr>
+///          <tr>
+///              <td>3</td>
+///              <td>Spiderman</td>
+///              <td>Spidy senses</td>
+///              <td>Peter Parker</td>
+///            </tr>
+///      </tbody>
+///  
+///  </table>
+
+@mixin flatTables($textCol,$bgCol,$padding:10px,$fontSize:16px){
+
+	table, caption, tbody, tfoot, thead, tr, th, td {
+
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+	}
+
+	table {
+
+		width:100%;
+	    display: table;
+	    border-collapse: separate;
+	    border-spacing: 0;
+	    @include fontSize($fontSize);
+
+	    th, td{
+			
+			margin:0;
+			padding: $padding;
+			line-height: 1.5;
+			vertical-align: top;
+			display: table-cell;
+		}
+
+	    tbody {
+
+			display: table-row-group;
+			vertical-align: middle;
+			border-color: inherit;
+		}
+
+		tr {
+
+		    display: table-row;
+		    vertical-align: inherit;
+		    border-color: inherit;
+		}
+
+		th{
+
+			font-weight: 600;
+			color: enhance($textCol,10%);
+			border-color:contrast($bgCol,10%);
+		}
+
+		td{
+
+			border-top-width: 1px;
+			border-style: solid;
+			color: $textCol;
+			border-color:contrast($bgCol,10%);
+		}
+
+		tbody tr{
+
+			&:nth-child(odd){
+				background-color: lighten($bgCol,2%);
+			}
+		}
+	}
+
+}

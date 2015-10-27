@@ -1,0 +1,83 @@
+// =========================================================================================================================
+// Spice - Development partial
+// The following mixins/functions are currently in development 
+// or depricated awaiting removal from code base in next release.
+// ------------------------------------------------------
+
+@charset "utf-8";
+@import "variables";
+@import "utils";
+
+
+
+// Depricated ---------
+
+
+
+
+// ==============================================================
+// STILL IN DEVELOPMENT
+// ==============================================================
+
+@mixin verticalNav($col:#333,$hover:$col-primary,$active:$col-primary,$font-size:16,$padding:20px,$activeType:'text',$hoverType:'background'){
+
+
+    ul.vertical-nav{
+
+        li{
+
+            display: block;
+            position:relative;
+
+            &.active a{
+
+                @if $activeType == 'text' {
+
+                    color:$active;
+                }
+            }
+
+            a{
+
+                display: block;
+                color:$col;
+                padding:0 $padding;
+                line-height: #{$font-size*3.5}px;
+                @include fontSize($font-size);
+
+                &:hover{
+
+                    @if $hoverType == 'background'{
+
+                        background-color:$hover;
+                        color: contrast($hover,45%);
+                    }
+                }
+
+                i{
+
+                    margin-right: 10px;
+                }
+            }
+
+            .subnav{
+                
+                display: none;
+                
+                li a {
+                    padding-left:40px;
+                }
+            }
+
+            &:hover{
+
+                .subnav{
+
+                    display: block;
+                }
+            }
+        }
+    }
+
+
+}
