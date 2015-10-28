@@ -1,2 +1,5 @@
 @import "../../src/spice";
 
+#sidebar{
+	@include sideBar(300px,"RiGht",#333);
+}
