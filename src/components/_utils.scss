@@ -284,4 +284,14 @@
     @else {
     	@return $colour;
     }
+}
+
+@function Num($int){
+	@if type-of($int) != number {
+      @error "Invalid number value entered as argument: `#{$int}` is not a number!";
+    }
+    @else {
+    	@return $int;
+    }
+
 } 

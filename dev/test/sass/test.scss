@@ -1,5 +1,8 @@
 @import "../../src/spice";
 
-#sidebar{
-	@include sideBar(300px,"RiGht",#333);
+.centre{
+
+	@include breakPoint(1000px,'min'){
+		display: block;
+	}
 }

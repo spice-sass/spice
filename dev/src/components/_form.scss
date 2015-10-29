@@ -327,7 +327,7 @@
 /// @group forms
 /// @param {Pixel value} rounding [5px] Rounding value of the elements
 /// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
-/// @param {Integer} font-size [18] Pt size of the font
+/// @param {Pixel value} font-size [18px] Font size converted to rem values
 /// @example scss - Include
 ///  @include formRounded(12px);
 ///
@@ -408,7 +408,7 @@
 ///  </form>  
 
 
-@mixin formRounded($rounding:5px,$padding:10px 20px,$font-size:18) {
+@mixin formRounded($rounding:5px,$padding:10px 20px,$font-size:18px) {
 	
 	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
 
@@ -479,7 +479,7 @@
 /// @group forms
 /// @param {Pixel value} thickness [4px] Bottom border thickness 
 /// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
-/// @param {Integer} font-size [18] Pt size of the font
+/// @param {Pixel value} font-size [18px] Font size converted to rem values
 /// @example scss - Include
 ///  @include formLined(6px,15px 20px,18);
 ///
@@ -563,7 +563,7 @@
 ///  
 ///  </form>
 
-@mixin formLined($thickness:4px,$padding:10px 20px,$font-size:18){
+@mixin formLined($thickness:4px,$padding:10px 20px,$font-size:18px){
 
 
 	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
@@ -703,7 +703,7 @@
 /// @param {#hex/rgba} on [#289e83] Background colour of the switch when on
 /// @param {#hex/rgba} off [#fff] Background colour of the switch when off
 /// @param {Pixel val} width [80px] Width of the switch
-/// @param {Integer} fontSize [18] Font size in pixels
+/// @param {Pixel value} font-size [18px] Font size converted to rem values
 /// @example scss - Includes
 ///  @include switch('green', #54A03A,#777);
 ///
@@ -785,9 +785,9 @@
 ///  	 <span class="off">Off</span>
 ///  </div>
 
-@mixin switch($className,$on:$col-primary,$off:#fff,$width:80px,$fontSize:18){
+@mixin switch($className,$on:$col-primary,$off:#fff,$width:80px,$fontSize:18px){
 
-	$height : #{$fontSize*2}px;
+	$height : #{$fontSize*2};
 
 	.switch.#{$className}{
 
@@ -800,7 +800,7 @@
 		height: $height;
 		position:relative;
 		cursor: pointer;
-		border-radius:#{$fontSize}px;
+		border-radius:#{$fontSize};
 		@include fontSize($fontSize);
 
 		&:before{
@@ -811,7 +811,7 @@
 			background-color: contrast($off,10%);
 			@include centre(y);
 			@include vendorPrefix(transition,all 0.3s ease);
-			@include circle(#{$fontSize*1.4}px);
+			@include circle(#{$fontSize*1.4});
 		}
 
 		span{

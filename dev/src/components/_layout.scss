@@ -425,19 +425,30 @@
 ///
 
 @mixin centre($axis: "both"){
-	position:absolute;
-	@if $axis == "y"{
-		top:50%;
-		@include transforms("translateY(-50%)");
+
+	$axis : to-lower-case($axis);
+	
+	@if $axis == "both" or $axis == "y" or $axis == "x" {
+
+		position:absolute;
+
+		@if $axis == "y"{
+			top:50%;
+			@include transforms("translateY(-50%)");
+		}
+		@if $axis == "x"{
+			left:50%;
+			@include transforms("translateX(-50%)");
+		}
+		@if $axis == "both"{
+			top:50%;
+			left:50%;
+			@include transforms("translate(-50%, -50%)");
+		}
 	}
-	@if $axis == "x"{
-		left:50%;
-		@include transforms("translateX(-50%)");
-	}
-	@if $axis == "both"{
-		top:50%;
-		left:50%;
-		@include transforms("translate(-50%, -50%)");
+	
+	@else {
+		@error "#{$axis} is not a valid value for 'axis.' Please use either - 'y' | 'x' | 'both'";
 	}
 }
 
@@ -512,12 +523,14 @@
 // ------------------------------------------------------
 
 /// A more symantic wrapper for handling breakpoints.
-/// It takes a single argument for the size. This can be
+/// It takes two arguments. Firstly for the size. This can be
 /// 'large' - 1420px, 'medium' - 1200px, 'small' - 760px or
-/// a pixel value of your choosing.
+/// a pixel value of your choosing. The second argument allows you to specify 
+/// the type of breakpoint i.e. 'min' = min-width or 'max' = max-width.
 /// @name breakPoint
 /// @group Layout
-/// @param {String / Pixel value} ize [] Breakpoint width - large | medium | small | pixel val
+/// @param {String / Pixel value} ize [] Breakpoint width - 'large' | 'medium' | 'small' | pixel val
+/// @param {String} type ['max'] Type of breakpoint - 'max' | 'min'
 /// @example scss - Include
 ///  p{
 ///
@@ -552,16 +565,28 @@
 ///
 
 @mixin breakPoint($ize, $type : "max"){
-	@if $ize == large {
-		@media (#{$type}-width: 1420px) { @content; }
+
+	$type : to-lower-case($type);
+
+	@if $type == "max" or $type == "min"{
+
+		@if $ize == large {
+			@media (#{$type}-width: 1420px) { @content; }
+		}
+		@else if $ize == medium {
+			@media (#{$type}-width: 1200px) { @content; }
+		}
+		@else if $ize == small {
+			@media (#{$type}-width: 760px) { @content; }
+		} @else {
+			@media (#{$type}-width: $ize) { @content; }
+		}
+
 	}
-	@else if $ize == medium {
-		@media (#{$type}-width: 1200px) { @content; }
-	}
-	@else if $ize == small {
-		@media (#{$type}-width: 760px) { @content; }
-	} @else {
-		@media (#{$type}-width: $ize) { @content; }
+
+	@else {
+
+		@error "#{$type} is not a valid value for 'type.' Please use 'min' | 'max'";
 	}
 }
 
