@@ -1,5 +1,3 @@
 @import "../../src/spice";
 
-#sidebar{
-	@include sideBar(300px,"RiGht",#333);
-}
+@include gridClasses(12,2%,450px);

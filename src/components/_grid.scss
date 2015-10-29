@@ -14,7 +14,7 @@
 /// are dynamicly added on to the page - e.g. iframes.
 /// @name gridColumns
 /// @group grid
-/// @param {Integer} amount [3] Amount of grid columns
+/// @param {Integer} amount [] Amount of grid columns
 /// @param {Integer} col-count [12] Total column count
 /// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
 /// @param {Bool} last [false] Add margin-right attribute unless true
@@ -42,7 +42,11 @@
 ///  }
 ///
 
-@mixin gridColumns($amount:3,$col-count:12,$gutter-width:2%,$last:false){
+@mixin gridColumns($amount,$col-count:$grid-col-count,$gutter-width:$grid-gutter-width,$last:false){
+
+
+	$amount : Num($amount);
+	$col-count : Num($col-count);
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -66,7 +70,7 @@
 /// the margin width of an element.
 /// @name gridIndent
 /// @group grid
-/// @param {Integer} amount [3] Amount of grid columns to indent
+/// @param {Integer} amount [] Amount of grid columns to indent
 /// @param {Integer} col-count [12] Total column count
 /// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
 /// @example scss - Include
@@ -80,7 +84,11 @@
 ///  }
 ///
 
-@mixin gridIndent($amount:3,$col-count:12,$gutter-width:2%){
+@mixin gridIndent($amount,$col-count:$grid-col-count,$gutter-width:$grid-gutter-width){
+
+
+	$amount : Num($amount);
+	$col-count : Num($col-count);
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -99,7 +107,7 @@
 /// the margin width of an element.
 /// @name gridOutdent
 /// @group grid
-/// @param {Integer} amount [3] Amount of grid columns to outdent
+/// @param {Integer} amount [] Amount of grid columns to outdent
 /// @param {Integer} col-count [12] Total column count
 /// @param {Percentage} gutter-width [2%] Grid gutter width (percentage)
 /// @example scss - Include
@@ -114,7 +122,11 @@
 ///  }
 ///
 
-@mixin gridOutdent($amount:3,$col-count:12,$gutter-width:2%){
+@mixin gridOutdent($amount,$col-count:$grid-col-count,$gutter-width:$grid-gutter-width){
+
+
+	$amount : Num($amount);
+	$col-count : Num($col-count);
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -128,231 +140,199 @@
 
 // ------------------------------------------------------
 
-/// This mixin genrates classes for a fluid grid system. You can specify
+/// This mixin genrates classes for a fluid grid system. Arguments allow you to define
 /// the amount of columns you want, the guttering, the screen width at
 /// which you want elements to stack and optional outdent/indent classes.
+/// Default settings can be overwritten to suit your template. 
+///
+/// **Default Settings:**
+/// - $grid-col-count     : 12;
+/// - $grid-gutter-width  : 2%;
+/// - $grid-stack-point   : 550px;
+/// - $grid-mobile-first  : true;
+/// - $grid-shift-classes : true;
 /// @name gridClasses
 /// @group grid
 /// @param {Integer} col-count [12] Amount of grid columns
 /// @param {Percentage} gutter-width [2%] Gutter width (must be a percentage)
 /// @param {Pixel value} stack-point [550px] Breakpoint at which to stack columns
+/// @param {Bool} mobile-first [true] Determines whether or not the grid is mobile first
 /// @param {Bool} shift [true] Adds indent/outdent classes if true
 /// @example scss - Include
 ///  @include gridClasses(12,2%,450px);
 ///
 /// @example css - Output
 ///  .grid-row {
-///    min-height: 1%;
+///    	min-height: 1%;
 ///  }
+///  
 ///  .grid-row:after {
-///    content: "";
-///    display: table;
-///    clear: both;
+///    	content: "";
+///    	display: table;
+///    	clear: both;
 ///  }
 ///  
-///  .grid-col-1 {
-///    float: left;
-///    position: relative;
-///    width: 6.5%;
-///    margin-right: 2%;
+///  [class*="grid-col"] {
+///    	margin-left: 0;
+///    	margin-right: 0;
+///    	width: 100%;
 ///  }
 ///  
-///  .grid-col-indent-1 {
-///    margin-left: 8.5%;
+///  @media (min-width: 450px) {
+///    	.grid-col-1 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 6.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-1 {
+///    	  	margin-left: 8.5%;
+///    	}
+///    	.grid-col-outdent-1 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 8.5% !important;
+///    	}
+///    	.grid-col-2 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 15%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-2 {
+///    	  	margin-left: 17%;
+///    	}
+///    	.grid-col-outdent-2 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 17% !important;
+///    	}
+///    	.grid-col-3 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 23.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-3 {
+///    	  	margin-left: 25.5%;
+///    	}
+///    	.grid-col-outdent-3 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 25.5% !important;
+///    	}
+///    	.grid-col-4 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 32%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-4 {
+///    	  	margin-left: 34%;
+///    	}
+///    	.grid-col-outdent-4 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 34% !important;
+///    	}
+///    	.grid-col-5 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 40.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-5 {
+///    	  	margin-left: 42.5%;
+///    	}
+///    	.grid-col-outdent-5 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 42.5% !important;
+///    	}
+///    	.grid-col-6 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 49%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-6 {
+///    	  	margin-left: 51%;
+///    	}
+///    	.grid-col-outdent-6 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 51% !important;
+///    	}
+///    	.grid-col-7 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 57.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-7 {
+///    	  	margin-left: 59.5%;
+///    	}
+///    	.grid-col-outdent-7 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 59.5% !important;
+///    	}
+///    	.grid-col-8 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 66%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-8 {
+///    	  	margin-left: 68%;
+///    	}
+///    	.grid-col-outdent-8 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 68% !important;
+///    	}
+///    	.grid-col-9 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 74.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-9 {
+///    	  	margin-left: 76.5%;
+///    	}
+///    	.grid-col-outdent-9 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 76.5% !important;
+///    	}
+///    	.grid-col-10 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 83%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-10 {
+///    	  	margin-left: 85%;
+///    	}
+///    	.grid-col-outdent-10 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 85% !important;
+///    	}
+///    	.grid-col-11 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 91.5%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.grid-col-indent-11 {
+///    	  	margin-left: 93.5%;
+///    	}
+///    	.grid-col-outdent-11 {
+///    	  	margin-left: auto;
+///    	  	margin-right: 93.5% !important;
+///    	}
+///    	.grid-col-12 {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 100%;
+///    	  	margin-right: 2%;
+///    	}
+///    	[class*="grid-col"]:last-child {
+///    	  	margin-right: 0;
+///    	}
 ///  }
 ///  
-///  .grid-col-outdent-1 {
-///    margin-left: auto;
-///    margin-right: 8.5% !important;
-///  }
-///  
-///  .grid-col-2 {
-///    float: left;
-///    position: relative;
-///    width: 15%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-2 {
-///    margin-left: 17%;
-///  }
-///  
-///  .grid-col-outdent-2 {
-///    margin-left: auto;
-///    margin-right: 17% !important;
-///  }
-///  
-///  .grid-col-3 {
-///    float: left;
-///    position: relative;
-///    width: 23.5%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-3 {
-///    margin-left: 25.5%;
-///  }
-///  
-///  .grid-col-outdent-3 {
-///    margin-left: auto;
-///    margin-right: 25.5% !important;
-///  }
-///  
-///  .grid-col-4 {
-///    float: left;
-///    position: relative;
-///    width: 32%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-4 {
-///    margin-left: 34%;
-///  }
-///  
-///  .grid-col-outdent-4 {
-///    margin-left: auto;
-///    margin-right: 34% !important;
-///  }
-///  
-///  .grid-col-5 {
-///    float: left;
-///    position: relative;
-///    width: 40.5%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-5 {
-///    margin-left: 42.5%;
-///  }
-///  
-///  .grid-col-outdent-5 {
-///    margin-left: auto;
-///    margin-right: 42.5% !important;
-///  }
-///  
-///  .grid-col-6 {
-///    float: left;
-///    position: relative;
-///    width: 49%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-6 {
-///    margin-left: 51%;
-///  }
-///  
-///  .grid-col-outdent-6 {
-///    margin-left: auto;
-///    margin-right: 51% !important;
-///  }
-///  
-///  .grid-col-7 {
-///    float: left;
-///    position: relative;
-///    width: 57.5%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-7 {
-///    margin-left: 59.5%;
-///  }
-///  
-///  .grid-col-outdent-7 {
-///    margin-left: auto;
-///    margin-right: 59.5% !important;
-///  }
-///  
-///  .grid-col-8 {
-///    float: left;
-///    position: relative;
-///    width: 66%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-8 {
-///    margin-left: 68%;
-///  }
-///  
-///  .grid-col-outdent-8 {
-///    margin-left: auto;
-///    margin-right: 68% !important;
-///  }
-///  
-///  .grid-col-9 {
-///    float: left;
-///    position: relative;
-///    width: 74.5%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-9 {
-///    margin-left: 76.5%;
-///  }
-///  
-///  .grid-col-outdent-9 {
-///    margin-left: auto;
-///    margin-right: 76.5% !important;
-///  }
-///  
-///  .grid-col-10 {
-///    float: left;
-///    position: relative;
-///    width: 83%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-10 {
-///    margin-left: 85%;
-///  }
-///  
-///  .grid-col-outdent-10 {
-///    margin-left: auto;
-///    margin-right: 85% !important;
-///  }
-///  
-///  .grid-col-11 {
-///    float: left;
-///    position: relative;
-///    width: 91.5%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-11 {
-///    margin-left: 93.5%;
-///  }
-///  
-///  .grid-col-outdent-11 {
-///    margin-left: auto;
-///    margin-right: 93.5% !important;
-///  }
-///  
-///  .grid-col-12 {
-///    float: left;
-///    position: relative;
-///    width: 100%;
-///    margin-right: 2%;
-///  }
-///  
-///  .grid-col-indent-12 {
-///    margin-left: 102%;
-///  }
-///  
-///  .grid-col-outdent-12 {
-///    margin-left: auto;
-///    margin-right: 102% !important;
-///  }
-///  
-///  [class*="grid-col"]:last-child {
-///    margin-right: 0;
-///  }
-///  
-///  @media screen and (max-width: 450px) {
-///    [class*="grid-col"] {
-///      margin-left: 0;
-///      margin-right: 0;
-///      width: 100%;
-///    }
-///  }
 /// @example markup - HTML
 ///  <div class="grid-row">
 ///  
@@ -428,7 +408,8 @@
 ///  
 ///  </div>
 
-@mixin gridClasses ($col-count:12,$gutter-width:2%,$stack-point:550px,$shift:true){
+@mixin gridClasses ($col-count:$grid-col-count,$gutter-width:$grid-gutter-width,$stack-point:$grid-stack-point,$mobile-first:$grid-mobile-first,$shift:$grid-shift-classes){
+
 
 	.grid-row {
 
@@ -441,37 +422,78 @@
 	    }
 	}
 
-	@for $i from 1 through $col-count{
+	
+	@if not $mobile-first {
 
-		.grid-col-#{$i}{
-			@include gridColumns($i,$col-count,$gutter-width);
+		@for $i from 1 through $col-count{
+
+			.grid-col-#{$i}{
+				@include gridColumns($i,$col-count,$gutter-width);
+			}
+
+			@if $shift and $i != $col-count{
+
+				.grid-col-indent-#{$i}{
+					@include gridIndent($i,$col-count,$gutter-width)
+				}
+
+				.grid-col-outdent-#{$i}{
+					@include gridOutdent($i,$col-count,$gutter-width)
+				}
+
+			}
 		}
 
-		@if $shift {
+		[class*="grid-col"]:last-child{
+			margin-right:0;
+		}
 
-			.grid-col-indent-#{$i}{
-				@include gridIndent($i,$col-count,$gutter-width)
+		@include breakPoint($stack-point,'max'){
+
+
+			[class*="grid-col"]{
+				margin-left: 0;
+				margin-right: 0;
+				width: 100%;
 			}
-
-			.grid-col-outdent-#{$i}{
-				@include gridOutdent($i,$col-count,$gutter-width)
-			}
-
 		}
 	}
 
-	[class*="grid-col"]:last-child{
-		margin-right:0;
-	}
-
-	@media screen and (max-width:$stack-point){
-
+	@else {
 
 		[class*="grid-col"]{
 			margin-left: 0;
 			margin-right: 0;
 			width: 100%;
 		}
+
+		@include breakPoint($stack-point,"min"){
+
+
+			@for $i from 1 through $col-count{
+
+				.grid-col-#{$i}{
+					@include gridColumns($i,$col-count,$gutter-width);
+				}
+
+				@if $shift and $i != $col-count{
+
+					.grid-col-indent-#{$i}{
+						@include gridIndent($i,$col-count,$gutter-width)
+					}
+
+					.grid-col-outdent-#{$i}{
+						@include gridOutdent($i,$col-count,$gutter-width)
+					}
+
+				}
+			}
+
+			[class*="grid-col"]:last-child{
+				margin-right:0;
+			}
+		}
+
 	}
 }
 
