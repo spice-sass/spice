@@ -38,19 +38,9 @@ $animationVendors : "-webkit-" "-moz-" "-o-" "" !default;
 $transformVendors : "-webkit-" "-moz-" "-ms-" "" !default;	
 
 
-// Currently availble google fonts :
-// ------------------------------------------------------------------------
-// open-sans
-// open-sans-condensed
-// roboto
-// roboto-slab
-// leckerli-one
-// quicksand
-// oswald
-// source-sans
-// lobster
-// arvo
 
+// Google fonts
+// ------------------------------------------------------------------------
 $googleFonts : (
 	open-sans : (
 		font-family: 'Open Sans',
