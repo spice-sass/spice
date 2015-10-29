@@ -1,3 +1,8 @@
 @import "../../src/spice";
 
-@include switch('primary');
+.centre{
+
+	@include breakPoint(1000px,'min'){
+		display: block;
+	}
+}
