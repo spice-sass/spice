@@ -290,34 +290,48 @@
 /// @group Layout
 /// @param {Pixel value} width [300px] Width of the side-bar
 /// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
+/// @param {#Hex/rgba} bgCol [false] Optional background colour for the side-bar
 /// @example scss - Include
-///  #side-bar{
-///
-///  	@include sideBar(340px);
+///  #sidebar{
+///  	@include sideBar(300px,"Left",#333);
 ///  }
 /// @example css - Output
-///  #side-bar {
-///    position: absolute;
-///    top: 0;
-///    bottom: 0;
-///    width: 340px;
-///    left: 0;
+///  #sidebar {
+///      position: absolute;
+///      top: 0;
+///      bottom: 0;
+///      width: 300px;
+///      background-color: #333;
+///      left: 0;
 ///  }
 ///
 
-@mixin sideBar($width:300px,$side:"left"){
+@mixin sideBar($width:300px,$side:"left",$bgCol:false){
 
-	position:absolute;
-	top:0;
-	bottom:0;
-	width:$width;
+	$side : to-lower-case($side);
 
-	@if $side == "left"{
-		left:0;
+	@if $side == "left" or $side == "right"{
+
+		position:absolute;
+		top:0;
+		bottom:0;
+		width:$width;
+
+		@if $bgCol {
+			background-color : $bgCol;
+		}
+
+		@if $side == "left"{
+			left:0;
+		}
+
+		@if $side == "right"{
+			right:0;
+		}
 	}
 
-	@if $side == "right"{
-		right:0;
+	@else{
+		@error "#{$side} is not a valid argument for 'side'. Please use 'left' or 'right'"
 	}
 }
 
@@ -328,7 +342,8 @@
 /// @name sideBarAppend
 /// @group Layout
 /// @param {Pixel value} width [300px] Width of the side-bar
-/// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
+/// @param {String} side ['left'] Position the of side-bar. 'left' | 'right'
+/// @param {#Hex/rgba} bgCol [false] Optional background colour for the element
 /// @example scss - Include
 ///  .sidebar{
 ///
@@ -357,20 +372,33 @@
 ///  }
 ///
 
-@mixin sideBarAppend($width:300px,$side:"left"){
+@mixin sideBarAppend($width:300px,$side:"left",$bgCol:false){
 
-	position:absolute;
-	top:0;
-	bottom:0;
+	$side : to-lower-case($side);
 
-	@if $side == "left"{
-		left:$width;
-		right:0;
+	@if $side == "left" or $side == "right"{
+
+		position:absolute;
+		top:0;
+		bottom:0;
+
+		@if $bgCol {
+			background-color : $bgCol;
+		}
+
+		@if $side == "left"{
+			left:$width;
+			right:0;
+		}
+
+		@if $side == "right"{
+			right:$width;
+			left:0;
+		}
 	}
 
-	@if $side == "right"{
-		right:$width;
-		left:0;
+	@else{
+		@error "#{$side} is not a valid argument for 'side'. Please use 'left' or 'right'"
 	}
 }
 

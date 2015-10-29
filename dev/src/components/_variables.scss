@@ -13,11 +13,13 @@ $col-pastel-red :  #e7534f !default;
 
 // Cubic Bezier easing
 // ------------------------------------------------------------------------
-$bounce    : cubic-bezier(.39,-0.35,.4,1.36) !default;
-$rush      : cubic-bezier(.12,.85,.28,1)!default;
-$snap      : cubic-bezier(.12,.85,.89,.4)!default;
-$handbrake : cubic-bezier(.09,.98,.39,.26)!default;
-$late      : cubic-bezier(.16,-0.32,.26,.59)!default;   
+$bounce     : cubic-bezier(.39,-0.35,.4,1.36) !default;
+$rush       : cubic-bezier(.12,.85,.28,1)!default;
+$snap       : cubic-bezier(.12,.85,.89,.4)!default;
+$handbrake  : cubic-bezier(.09,.98,.39,.26)!default;
+$late       : cubic-bezier(.16,-0.32,.26,.59)!default;
+$warpspeed  : cubic-bezier(.96,0,.04,1)!default;
+$decelerate : cubic-bezier(.08,1.23,.61,.53)!default;   
 
 
 
