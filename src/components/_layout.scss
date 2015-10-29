@@ -512,12 +512,14 @@
 // ------------------------------------------------------
 
 /// A more symantic wrapper for handling breakpoints.
-/// It takes a single argument for the size. This can be
+/// It takes two arguments. Firstly for the size. This can be
 /// 'large' - 1420px, 'medium' - 1200px, 'small' - 760px or
-/// a pixel value of your choosing.
+/// a pixel value of your choosing. The second argument allows you to specify 
+/// the type of breakpoint i.e. 'min' = min-width or 'max' = max-width.
 /// @name breakPoint
 /// @group Layout
-/// @param {String / Pixel value} ize [] Breakpoint width - large | medium | small | pixel val
+/// @param {String / Pixel value} ize [] Breakpoint width - 'large' | 'medium' | 'small' | pixel val
+/// @param {String} type ['max'] Type of breakpoint - 'max' | 'min'
 /// @example scss - Include
 ///  p{
 ///
