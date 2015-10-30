@@ -1,27 +1,11 @@
 @import "../../src/spice";
 
+@include blockIcons;
 
 
-@mixin message($className,$col,$rounding:3px,$border:true){
 
-	.message.#{$className}{
 
-		background-color: #{$col};
-		padding:10px;
-		display: block;
-		color: contrast($col,45%);
-
-		@if $rounding {
-			border-radius:#{$rounding};
-		}
-
-		@if $border{
-			border: 1px solid contrast($col,10%);
-		}
-	}
-}
-
-@include message('info',#61bcda);
-@include message('success',#61bcda);
-@include message('warning',#61bcda);
-@include message('danger',#61bcda);
+@include message('info',#98DAE4);
+@include message('success',#98E4A6);
+@include message('warning',#FFC558);
+@include message('danger',#FF9191);
