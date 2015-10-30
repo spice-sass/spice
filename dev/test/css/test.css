@@ -1,5 +1,35 @@
-@media (min-width: 1000px) {
-  .centre {
-    display: block;
-  }
+.message.info {
+  background-color: #61bcda;
+  padding: 10px;
+  display: block;
+  color: #103845;
+  border-radius: 3px;
+  border: 1px solid #38aad0;
+}
+
+.message.success {
+  background-color: #61bcda;
+  padding: 10px;
+  display: block;
+  color: #103845;
+  border-radius: 3px;
+  border: 1px solid #38aad0;
+}
+
+.message.warning {
+  background-color: #61bcda;
+  padding: 10px;
+  display: block;
+  color: #103845;
+  border-radius: 3px;
+  border: 1px solid #38aad0;
+}
+
+.message.danger {
+  background-color: #61bcda;
+  padding: 10px;
+  display: block;
+  color: #103845;
+  border-radius: 3px;
+  border: 1px solid #38aad0;
 }
