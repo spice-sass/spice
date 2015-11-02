@@ -9,7 +9,9 @@
 
 
 
-/// Add styles for a message bar
+/// Add styles for an alert style message element. 
+/// Arguments allow you to asign a class name, add colour,
+/// edit rounding and border effect.
 /// @name message
 /// @group messages, hints & alerts
 /// @param {String} className [] Class of the message
