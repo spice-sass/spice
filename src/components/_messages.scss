@@ -9,6 +9,74 @@
 
 
 
+/// Add styles for a message bar
+/// @name message
+/// @group messages, hints & alerts
+/// @param {String} className [] Class of the message
+/// @param {#hex/rgba} col [] Background colour of the message
+/// @param {Pixel value} rounding [3px] Rounding of the message
+/// @param {Boolean} border [true] Toggle optional border 
+/// @example scss - Include
+///  @include message('info',#98DAE4);
+///  @include message('success',#98E4A6);
+///  @include message('warning',#FFC558);
+///  @include message('danger',#FF9191);
+/// @example css - Output
+///  .message.info {
+///    	background-color: #98DAE4;
+///    	padding: 10px;
+///    	display: block;
+///    	color: #1f6c77;
+///    	border-radius: 3px;
+///    	border: 1px solid #70cbd9;
+///  }
+///  
+///  .message.success {
+///    	background-color: #98E4A6;
+///    	padding: 10px;
+///    	display: block;
+///    	color: #1f772f;
+///    	border-radius: 3px;
+///    	border: 1px solid #70d983;
+///  }
+///  
+///  .message.warning {
+///    	background-color: #FFC558;
+///    	padding: 10px;
+///    	display: block;
+///    	color: #724a00;
+///    	border-radius: 3px;
+///    	border: 1px solid #ffb325;
+///  }
+///  
+///  .message.danger {
+///    	background-color: #FF9191;
+///    	padding: 10px;
+///    	display: block;
+///    	color: #ab0000;
+///    	border-radius: 3px;
+///    	border: 1px solid #ff5e5e;
+///  }
+///  
+@mixin message($className,$col,$rounding:3px,$border:true){
+
+	.message.#{$className}{
+
+		background-color: #{$col};
+		padding:10px;
+		display: block;
+		color: contrast($col,45%);
+
+		@if $rounding {
+			border-radius:#{$rounding};
+		}
+
+		@if $border{
+			border: 1px solid contrast($col,10%);
+		}
+	}
+}
+
 /// Generate styles for a notification badge with this mixin. Arguments allow you 
 /// to contol the colour and font size.
 /// @name badge
