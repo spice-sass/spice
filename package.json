@@ -1,6 +1,6 @@
 {
   "name": "spice-sass",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "Add a little spice to your UI",
   "main": "src/_spice.scss",
   "repository": {
