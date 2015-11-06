@@ -6,3 +6,11 @@
     @include should( expect( calculateRem(20px) ), to( equal(1.25rem)));
   }
 }
+
+
+@include describe("Contrast colours") {
+  @include it("should expect contrasted colour to be returned") {
+    @include should( expect( contrast(#981C1C,5%); ), to( equal(#ae2020)));
+    @include should( expect( contrast(#981C1C,0%); ), to( equal(#981c1c)));
+  }
+}
