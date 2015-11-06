@@ -9,12 +9,12 @@ var server = app.listen(port);
 
 //For static asset files
 ['css', 'img', 'js', 'views', 'api', 'msg'].forEach(function (dir){
-    app.use('/'+dir, express.static(__dirname+'/test/'+dir));
+    app.use('/'+dir, express.static(__dirname+'/environment/'+dir));
 });
 
 
 app.get('/', function(req, res) {
-	res.sendfile('./dev/test/index.html');
+	res.sendfile('./dev/environment/index.html');
 });
 
 

@@ -22,7 +22,7 @@ var copydev = require('./gulp/copydev');
 
 
 gulp.task('watch', function () {
-  gulp.watch('dev/**/*.scss', ['sass','docs','converter']);
+  gulp.watch('dev/**/*.scss', ['sass','sasstest','docs','converter']);
 });
 
 gulp.task('default', ['server','watch']);

@@ -1,0 +1,8 @@
+
+
+@include describe("Font rem calculation") {
+  @include it("should expect rem values to be calculated correctly") {
+    @include should( expect( calculateRem(14px) ), to( equal(0.875rem)));
+    @include should( expect( calculateRem(20px) ), to( equal(1.25rem)));
+  }
+}
