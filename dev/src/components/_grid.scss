@@ -497,6 +497,152 @@
 	}
 }
 
+// ------------------------------------------------------
 
+/// Add grid system styles to a list of elements. Arguments allow you to control the 
+/// amont of blocks to display on a row, the grid column count, the gutter width, the screen width at 
+/// which the elements will stack on top of each other.
+/// @name griddedList
+/// @group grid
+/// @param {Integer} count [] The amount of blocks to display on a row
+/// @param {Integer} cols [12] Total column count
+/// @param {Percentage} gutter-width [2%] Grid gutter width 
+/// @param {Pixel value} stack-point [550px] Breakpoint at which to stack columns
+/// @example scss - Include
+///  .grid-row{
+///  
+///  	@include clearFix;
+///  }
+///  
+///  @include griddedList(3);
+///
+/// @example css - Output
+///  .grid-row {
+///    	min-height: 1%;
+///  }
+///  
+///  .grid-row:after {
+///    	content: "";
+///    	display: table;
+///    	clear: both;
+///  }
+///  
+///  .gridded-list {
+///    	float: left;
+///    	position: relative;
+///    	width: 100%;
+///    	margin-right: 2%;
+///    	margin-right: 0;
+///  }
+///  
+///  @media (min-width: 550px) {
+///    	.gridded-list {
+///    	  	float: left;
+///    	  	position: relative;
+///    	  	width: 32%;
+///    	  	margin-right: 2%;
+///    	}
+///    	.gridded-list:nth-child(2n+2) {
+///    	  	margin-right: 0;
+///    	}
+///  }
+///
+/// @example markup - HTML
+///  <div class="grid-row">
+///  	
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  	<div class="gridded-list">
+///  		<span>Grid list</span>
+///  	</div>
+///  
+///  </div>  
 
+@mixin griddedList($count,$cols:$grid-col-count,$gutter-width:$grid-gutter-width,$stackpoint:$grid-stack-point){
 
+	$width : $cols / $count;
+	$nth   :  "#{$count}n+#{$count}" ;
+
+	.gridded-list{
+
+		@include gridColumns($cols,$cols,$gutter-width);
+		margin-right:0;
+
+		@include breakPoint($stackpoint,'min'){
+		
+			@include gridColumns($width,$cols,$gutter-width);
+
+			&:nth-child(#{$nth}){
+
+				margin-right:0;
+			}
+		}
+	}
+}

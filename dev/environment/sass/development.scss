@@ -1,0 +1,11 @@
+@import "../../src/spice";
+
+
+
+
+.grid-row{
+
+	@include clearFix;
+}
+
+@include griddedList(3);

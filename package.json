@@ -1,6 +1,6 @@
 {
   "name": "spice-sass",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Add a little spice to your UI",
   "main": "src/_spice.scss",
   "repository": {
@@ -24,12 +24,15 @@
   },
   "homepage": "https://github.com/spice-sass/spice#readme",
   "devDependencies": {
+    "bootcamp": "^1.1.7",
     "express": "^4.13.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-sass": "^0.8.1",
     "gulp": "^3.9.0",
     "gulp-bump": "^1.0.0",
+    "gulp-clean": "0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-express": "^0.3.5",
-    "gulp-clean": "0.3.1",
     "gulp-sass": "^2.0.4",
     "sassdoc": "^2.1.15",
     "yargs": "^3.27.0"
