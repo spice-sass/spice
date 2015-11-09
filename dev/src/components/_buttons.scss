@@ -1436,3 +1436,105 @@
 		}
 	}
 }
+
+/// Add grid system styles to a list of elements. Arguments allow you to control the 
+/// amont of blocks to display on a row, the grid column count, the gutter width, the screen width at 
+/// which the elements will stack on top of each other.
+/// @name flatButtonGroup
+/// @group buttons
+/// @param {String} classname [] Class name for the button group
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {pixel value} fontSize [14px] Font size of the button group
+/// @param {pixel value} rounding [18px] Border radius of the button
+/// @example scss - Include
+///  @include flatButtonGroup('primary',#2671A2);
+///  
+///  @include griddedList(3);
+///
+/// @example css - Output
+///  .button-group.primary button {
+///    	display: block;
+///    	float: left;
+///    	margin: 0;
+///    	padding: 10px 15px;
+///    	border-left: 0;
+///    	border-top: 0;
+///    	border-right: 0;
+///    	background-color: #2671A2;
+///    	color: #bedcf0;
+///    	outline: none;
+///    	border-bottom: 4px solid #1f5d85;
+///    	cursor: pointer;
+///    	font-size: 14px;
+///    	font-size: 0.875rem;
+///  }
+///  
+///  .button-group.primary button:hover {
+///    	color: white;
+///    	background-color: #297aae;
+///  }
+///  
+///  .button-group.primary button.active {
+///    	color: white;
+///    	background-color: #21638d;
+///  }
+///  
+///  .button-group.primary button:first-child {
+///    	border-radius: 5px 0 0 5px;
+///  }
+///  
+///  .button-group.primary button:last-child {
+///    	border-radius: 0 5px 5px 0;
+///  }
+///
+/// @example markup - Html
+///  <div class="button-group primary">
+///  	<button>Settings</button>
+///  	<button>Data</button>
+///  	<button class="active">Dashboard</button>
+///  	<button>Users</button>
+///  </div>
+
+@mixin flatButtonGroup($className,$bgCol,$fontSize:14px,$rounding:5px){
+
+	.button-group.#{$className}{
+
+		button{
+
+			display: block;
+			float: left;
+			margin:0;
+			padding:10px 15px;
+			border-left:0;
+			border-top:0;
+			border-right:0;
+			background-color:$bgCol;
+			color: contrast($bgCol,45%);
+			outline:none;
+			border-bottom:4px solid darken($bgCol,7%);
+			cursor:pointer;
+			@include fontSize($fontSize);
+
+			&:hover{
+				color:contrast($bgCol,100%);
+				background-color:contrast($bgCol,3%);
+			}
+
+			&.active{
+				color:contrast($bgCol,100%);
+				background-color:enhance($bgCol,5%);
+			}
+
+			@if $rounding {
+
+				&:first-child{
+					border-radius:$rounding 0 0 $rounding;
+				}
+
+				&:last-child{
+					border-radius:0 $rounding $rounding 0;
+				}
+			}
+		}
+	}	
+}

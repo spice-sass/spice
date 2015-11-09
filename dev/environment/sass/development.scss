@@ -3,9 +3,4 @@
 
 
 
-.grid-row{
-
-	@include clearFix;
-}
-
-@include griddedList(3);
+@include flatButtonGroup('primary',#2671A2);
