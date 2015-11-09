@@ -8,7 +8,7 @@
 
 
 /// Add styles for an old school gradient button for that retro vibe.
-/// Arguments allow you to control colour, gradient contrast, text contrast, optional
+/// Arguments allow you to control colour, text contrast, optional
 /// icon styles and rounding.
 /// @name roundedButton
 /// @group buttons
@@ -1435,4 +1435,219 @@
 			}
 		}
 	}
+}
+
+/// Add styles for a flat ui style button group. Arguments allow you 
+/// to control colour font size and border radius.
+/// @name flatButtonGroup
+/// @group buttons
+/// @param {String} classname [] Class name for the button group
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {pixel value} fontSize [14px] Font size of the button group
+/// @param {pixel value} rounding [18px] Border radius of the button
+/// @example scss - Include
+///  @include flatButtonGroup('primary',#2671A2);
+///
+/// @example css - Output
+///  .button-group.primary button {
+///    	display: block;
+///    	float: left;
+///    	margin: 0;
+///    	padding: 10px 15px;
+///    	border-left: 0;
+///    	border-top: 0;
+///    	border-right: 0;
+///    	background-color: #2671A2;
+///    	color: #bedcf0;
+///    	outline: none;
+///    	border-bottom: 4px solid #1f5d85;
+///    	cursor: pointer;
+///    	font-size: 14px;
+///    	font-size: 0.875rem;
+///  }
+///  
+///  .button-group.primary button:hover {
+///    	color: white;
+///    	background-color: #297aae;
+///  }
+///  
+///  .button-group.primary button.active {
+///    	color: white;
+///    	background-color: #21638d;
+///  }
+///  
+///  .button-group.primary button:first-child {
+///    	border-radius: 5px 0 0 5px;
+///  }
+///  
+///  .button-group.primary button:last-child {
+///    	border-radius: 0 5px 5px 0;
+///  }
+///
+/// @example markup - Html
+///  <div class="button-group flat">
+///  	<button>Settings</button>
+///  	<button>Data</button>
+///  	<button class="active">Dashboard</button>
+///  	<button>Users</button>
+///  </div>
+
+@mixin flatButtonGroup($className,$bgCol,$fontSize:14px,$rounding:5px){
+
+	.button-group.#{$className}{
+
+		@include clearFix;
+
+		button{
+
+			display: block;
+			float: left;
+			margin:0;
+			padding:10px 15px;
+			border-left:0;
+			border-top:0;
+			border-right:0;
+			background-color:$bgCol;
+			color: contrast($bgCol,45%);
+			outline:none;
+			border-bottom:4px solid darken($bgCol,7%);
+			cursor:pointer;
+			@include fontSize($fontSize);
+
+			&:hover{
+				color:contrast($bgCol,100%);
+				background-color:contrast($bgCol,3%);
+			}
+
+			&.active{
+				color:contrast($bgCol,100%);
+				background-color:enhance($bgCol,5%);
+			}
+
+			@if $rounding {
+
+				&:first-child{
+					border-radius:$rounding 0 0 $rounding;
+				}
+
+				&:last-child{
+					border-radius:0 $rounding $rounding 0;
+				}
+			}
+		}
+	}	
+}
+
+/// Add styles for a gradient style button group. Arguments allow you 
+/// to control colour  contrast amount, font size and border radius.
+/// @name gradientButtonGroup
+/// @group buttons
+/// @param {String} classname [] Class name for the button group
+/// @param {#hex/rgba} bgCol [#d73f2b] Background colour of the button
+/// @param {pixel value} fontSize [14px] Font size of the button group
+/// @param {pixel value} rounding [18px] Border radius of the button
+/// @example scss - Include
+///  @include gradientButtonGroup('primary',#2671A2);
+///
+/// @example css - Output
+///  .button-group.primary button {
+///    	display: block;
+///    	float: left;
+///    	margin: 0;
+///    	padding: 10px 15px;
+///    	border: 0;
+///    	color: #bedcf0;
+///    	outline: none;
+///    	cursor: pointer;
+///    	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #308ecb), color-stop(100%, #1c5479));
+///      background-image: -moz-linear-gradient(#308ecb, #1c5479);
+///      background-image: -webkit-linear-gradient(#308ecb, #1c5479);
+///      background-image: linear-gradient(#308ecb #1c5479);
+///    	font-size: 14px;
+///    	font-size: 0.875rem;
+///  }
+///  
+///  .button-group.primary button:hover {
+///      color: white;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2b7fb7), color-stop(100%, #174664));
+///      background-image: -moz-linear-gradient(#2b7fb7, #174664);
+///      background-image: -webkit-linear-gradient(#2b7fb7, #174664);
+///      background-image: linear-gradient(#2b7fb7 #174664);
+///  }
+///  
+///  .button-group.primary button.active {
+///      color: white;
+///      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4299d3), color-stop(100%, #21638d));
+///      background-image: -moz-linear-gradient(#4299d3, #21638d);
+///      background-image: -webkit-linear-gradient(#4299d3, #21638d);
+///      background-image: linear-gradient(#4299d3 #21638d);
+///  }
+///  
+///  .button-group.primary button:first-child {
+///      border-radius: 5px 0 0 5px;
+///  }
+///  
+///  .button-group.primary button:last-child {
+///      border-radius: 0 5px 5px 0;
+///  }
+///
+/// @example markup - Html
+///  <div class="button-group gradient">
+///  	<button>Settings</button>
+///  	<button>Data</button>
+///  	<button class="active">Dashboard</button>
+///  	<button>Users</button>
+///  </div>
+
+@mixin gradientButtonGroup($className,$bgCol,$amount:10%,$fontSize:14px,$rounding:5px){
+
+	$top    : lighten($bgCol,$amount);
+	$bottom : darken($bgCol,$amount);
+
+	.button-group.#{$className}{
+
+		@include clearFix;
+
+		button{
+
+			display: block;
+			float: left;
+			margin:0;
+			padding:10px 15px;
+			border:0;
+			color: contrast($bgCol,45%);
+			outline:none;
+			cursor:pointer;
+			@include linearGradient($top,$bottom);
+			@include fontSize($fontSize);
+
+			&:hover{
+
+				$hovert : darken($top,5%);
+				$hoverb : darken($bottom,5%);
+
+				color:contrast($bgCol,100%);
+				@include linearGradient($hovert,$hoverb);
+			}
+
+			&.active{
+				$activet : lighten($top,5%);
+				$activeb : lighten($bottom,5%);
+
+				color:contrast($bgCol,100%);
+				@include linearGradient($activet,$activeb);
+			}
+
+			@if $rounding {
+
+				&:first-child{
+					border-radius:$rounding 0 0 $rounding;
+				}
+
+				&:last-child{
+					border-radius:0 $rounding $rounding 0;
+				}
+			}
+		}
+	}	
 }

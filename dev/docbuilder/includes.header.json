@@ -1,16 +1,17 @@
 {
 	"includesOrder" : [
-		"fonts",
+		"grid",
 		"animations",
 		"animationPresets",
-		"grid",
+		"buttons",
+		"fonts",
+		"messages",
 		"helpers",
 		"colours",
 		"icons",
 		"layout",
 		"navigation",
 		"forms",
-		"buttons",
 		"svg"
 	],
 	"stylepages" : [

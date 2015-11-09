@@ -1,19 +1,19 @@
 // Grid Settings
 // ------------------------------------------------------------------------
-$grid-col-count     : 12!default;
-$grid-gutter-width  : 2%!default;
-$grid-stack-point   : 550px!default;
-$grid-mobile-first  : true!default;
-$grid-shift-classes : true!default;
+$grid-col-count     : 12    !default;
+$grid-gutter-width  : 2%    !default;
+$grid-stack-point   : 550px !default;
+$grid-mobile-first  : true  !default;
+$grid-shift-classes : true  !default;
 
 // Colour variables
 // ------------------------------------------------------------------------
 
-$col-primary    :  #289e83 !default;
-$col-secondary  :  #1b8898 !default;
-$col-warning    :  #d7861e !default;
-$col-danger     :  #ac2828 !default;
-$col-success    :  #54A03A !default;
+$col-primary       :  #289e83 !default;
+$col-secondary     :  #1b8898 !default;
+$col-warning       :  #d7861e !default;
+$col-danger        :  #ac2828 !default;
+$col-success       :  #54A03A !default;
 
 $col-pastel-red    :  #e7534f !default;
 $col-slate         :  #1C2227 !default;
@@ -42,19 +42,19 @@ $col-asbestos      :  #7F8C8D !default;
 // Cubic Bezier easing
 // ------------------------------------------------------------------------
 $bounce     : cubic-bezier(.39,-0.35,.4,1.36) !default;
-$rush       : cubic-bezier(.12,.85,.28,1)!default;
-$snap       : cubic-bezier(.12,.85,.89,.4)!default;
-$handbrake  : cubic-bezier(.09,.98,.39,.26)!default;
-$late       : cubic-bezier(.16,-0.32,.26,.59)!default;
-$warpspeed  : cubic-bezier(.96,0,.04,1)!default;
-$decelerate : cubic-bezier(.08,1.23,.61,.53)!default;   
+$rush       : cubic-bezier(.12,.85,.28,1)     !default;
+$snap       : cubic-bezier(.12,.85,.89,.4)    !default;
+$handbrake  : cubic-bezier(.09,.98,.39,.26)   !default;
+$late       : cubic-bezier(.16,-0.32,.26,.59) !default;
+$warpspeed  : cubic-bezier(.96,0,.04,1)       !default;
+$decelerate : cubic-bezier(.08,1.23,.61,.53)  !default;   
 
 
 
 // Vendor Prefixes
 // ------------------------------------------------------------------------
-$defaultVendors   : "-webkit-" "-moz-" "" !default;
-$animationVendors : "-webkit-" "-moz-" "-o-" "" !default;
+$defaultVendors   : "-webkit-" "-moz-" ""        !default;
+$animationVendors : "-webkit-" "-moz-" "-o-" ""  !default;
 $transformVendors : "-webkit-" "-moz-" "-ms-" "" !default;	
 
 
