@@ -1,3 +1,29 @@
-.test {
-  color: #981c1c;
+.grid-row {
+  min-height: 1%;
+}
+
+.grid-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.gridded-list {
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-right: 2%;
+  margin-right: 0;
+}
+
+@media (min-width: 550px) {
+  .gridded-list {
+    float: left;
+    position: relative;
+    width: 32%;
+    margin-right: 2%;
+  }
+  .gridded-list:nth-child(3n+3) {
+    margin-right: 0;
+  }
 }

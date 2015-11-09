@@ -1,13 +1,11 @@
 @import "../../src/spice";
 
-// @include blockIcons;
-
-// @include message('info',#98DAE4);
-// @include message('success',#98E4A6);
-// @include message('warning',#FFC558); 
-// @include message('danger',#FF9191);
 
 
-.test{
-	color:contrast(#981C1C,0%);
+
+.grid-row{
+
+	@include clearFix;
 }
+
+@include griddedList(3);
