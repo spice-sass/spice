@@ -1,5 +1,11 @@
 @import "../../src/spice";
 
 @include normalise;
+@include googleFont('grand-hotel',h1);
 @include googleFont('source-sans',body);
-@include verticalNav(#333,$col-belize-hole,$col-belize-hole);
+
+
+h1{
+
+	@include fontSize(30px);
+}

@@ -1,5 +1,5 @@
 // Spice
-// Version 0.6.7
+// Version 0.6.9
 // =============
 // Spicy sass library - Add a little spice to your UI!
 // Website : http://spice-sass.github.io/
@@ -13,6 +13,7 @@
 // Spice variables helpers and utils
 // ------------------------------------------------------------------------
 @import "components/variables",
+        "components/google-fonts",
         "components/utils";
 
 // Spice core

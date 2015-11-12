@@ -96,6 +96,18 @@ blockquote {
 }
 
 @font-face {
+  font-family: Grand Hotel;
+  font-style: normal;
+  font-weight: 400;
+  src: local(Grand Hotel), local(GrandHotel-Regular), url(https://fonts.gstatic.com/s/grandhotel/v4/NrGQkrs9rbHm5EYx0Eil0ogp9Q8gbYrhqGlRav_IXfk.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.grand-hotel, h1 {
+  font-family: Grand Hotel, arial, sans-serif;
+}
+
+@font-face {
   font-family: Source Sans Pro;
   font-style: normal;
   font-weight: 200;
@@ -139,33 +151,7 @@ blockquote {
   font-family: Source Sans Pro, arial, sans-serif;
 }
 
-ul.vertical-nav li {
-  display: block;
-  position: relative;
-}
-
-ul.vertical-nav li.active a {
-  color: #2980B9;
-}
-
-ul.vertical-nav li a {
-  display: block;
-  color: #333;
-  padding: 12px 20px;
-  text-decoration: none;
-  font-size: 16px;
-  font-size: 1rem;
-}
-
-ul.vertical-nav li a:hover {
-  background-color: #2980B9;
-  color: #d2e7f5;
-}
-
-ul.vertical-nav li a i {
-  margin-right: 10px;
-}
-
-ul.vertical-nav li .subnav li a {
-  padding-left: 40px;
+h1 {
+  font-size: 30px;
+  font-size: 1.875rem;
 }

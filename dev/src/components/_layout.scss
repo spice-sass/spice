@@ -283,10 +283,10 @@
 
 /// Generates styles for an absolutely positioned sidebar scaling to the
 /// nearest relative parent's height.
-/// Arguments allow you to specify the width and position of the sidebar.
-/// Used in the
-/// 	<a href="/demo/dash">Dash demo.</a>
-/// @name sideBar
+/// Arguments allow you to specify the width and position of the sidebar and optional background colour.
+/// For an example of usage, look no further than this documentation page. The side 
+/// navigation was generated with @include sidebar and the main documentation section 
+/// was generated with @include sideBarAppend bot using the same width variable.
 /// @group Layout
 /// @param {Pixel value} width [300px] Width of the side-bar
 /// @param {String} side ['left'] Side to position the side-bar. 'left' | 'right'
@@ -336,9 +336,10 @@
 }
 
 /// This mixin can be used to absolutely position an element to fit the remainder
-/// of the screen if a sidebar has been included. Best used with the sideBar mixin, see
-/// 	<a href="/demo/dash">Dash demo</a>
-///  for an example of usage.
+/// of the screen if a sidebar has been included. Best used with the sideBar mixin.
+/// For an example of usage, look no further than this documentation page. The side 
+/// navigation was generated with @include sidebar and the main documentation section 
+/// was generated with @include sideBarAppend bot using the same width variable.
 /// @name sideBarAppend
 /// @group Layout
 /// @param {Pixel value} width [300px] Width of the side-bar
