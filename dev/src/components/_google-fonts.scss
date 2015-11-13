@@ -202,5 +202,25 @@ $googleFonts : (
 				url : 'url(https://fonts.gstatic.com/s/grandhotel/v4/NrGQkrs9rbHm5EYx0Eil0ogp9Q8gbYrhqGlRav_IXfk.woff2)'
 			)
 		)
+	),
+	satisfy : (
+		font-family: 'Satisfy',
+		weights : (
+			400:(
+				localone : 'Satisfy',
+				localtwo : 'Satisfy',
+				url : 'url(https://fonts.gstatic.com/s/satisfy/v6/0EcI1zXfvSXoNHQChcRmRwLUuEpTyoUstqEm5AMlJo4.woff2)'
+			)
+		)
+	),
+	damion : (
+		font-family: 'Damion',
+		weights : (
+			400:(
+				localone : 'Damion',
+				localtwo : 'Damion',
+				url : 'url(https://fonts.gstatic.com/s/damion/v6/ksD1WDDgZAyMd1VY75GZ6evvDin1pK8aKteLpeZ5c0A.woff2)'
+			)
+		)
 	)
 );
