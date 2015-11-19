@@ -264,52 +264,63 @@
 
 }
 
-/// Create custon scrollbars for webkit browsers
+/// Create modern looking flat UI scrollbars with this mixin. 
+///  <strong>Note:</strong> 
+/// This is supported by webkit browsers only. Un supported 
+/// browsers will fall-back to the default srcollbar. Arguments
+/// allow you to control colour, size and contrast values. To see 
+/// an example, please view this documentation page in Chrome or
+/// Safari. This mixin is being used by both the sidebar and main 
+/// documentation elements.
 /// @name scrollbar
 /// @group helpers
 /// @param {#hex/rgba} basecol [#ddd] Base colour of the scrollbar
-/// @param {Pixel value} width [16px] Width of the scrollthumb
+/// @param {Pixel value} size [10px] Thickness of the scrollbar
+/// @param {Percentage} contrast [10%] Amount of contrast to be applied to the base colour
 /// @example scss - Include
 ///  .scrollbar{
-///     @include scrollbarClass(#333,10px);
+///     @include scrollbar(#333,10px,10%);
 ///  }
 /// @example css - Output
 ///  .scrollbar {
-///    overflow: auto;
+///    	overflow: auto;
 ///  }
+///  
 ///  .scrollbar::-webkit-scrollbar {
-///    width: 10px;
-///    height: 10px;
-///    padding: 10px;
+///    	width: 10px;
+///    	height: 10px;
+///    	padding: 10px;
 ///  }
+///  
 ///  .scrollbar::-webkit-scrollbar-track {
-///    background: #666666;
+///    	background: #1a1a1a;
 ///  }
+///  
 ///  .scrollbar::-webkit-scrollbar-thumb {
-///    border-radius: 10px;
-///    background: #1a1a1a;
-///    border: 2px solid #666666;
+///    	border-radius: 10px;
+///    	background: #4d4d4d;
+///    	border: 2px solid #1a1a1a;
 ///  }
 ///
 
-@mixin scrollbar($basecol:#ddd,$width:10px){
+@mixin scrollbar($basecol:#ddd,$size:10px,$contrast:10%){
 
 		overflow: auto ;
 
 		&::-webkit-scrollbar {
-		    width: $width;
-		    height:$width;
+		    width: $size;
+		    height:$size;
 		    padding:10px;
 		}
 
 		&::-webkit-scrollbar-track {
-		    background: lighten($basecol,20%);
+		    background: enhance($basecol,$contrast);
 		}
 
 		&::-webkit-scrollbar-thumb {
 		    border-radius: 10px;
-		    background: darken($basecol,10%);
-		    border:2px solid lighten($basecol,20%);
+		    background: contrast($basecol,$contrast);
+		    border:2px solid enhance($basecol,$contrast);
 		}
 }
 

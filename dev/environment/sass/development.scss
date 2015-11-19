@@ -1,32 +1,5 @@
 @import "../../src/spice";
 
-@include normalise;
-@include googleFont('source-sans',h1);
-@include googleFont('source-sans',body);
-
-
-.examples{
-
-	padding:120px;
-
-	.tooltip{
-
-		font-style: italic;
-		color: $col-pomegranate;
-	}
+.scrollbar{
+     @include scrollbar(#333,10px,10%);
 }
-
-
-
-@include tooltip('top',20px);
-@include tooltip('bottom',20px);
-@include tooltip('left');
-@include tooltip('right');
-
-/// @param {String} direcction ["top"] Directon to position the tooltip. top | bottom | right | left
-/// @param {pixel value} shift [0px] Amount of pixels to shift away from the trigger element
-/// @param {#hex/rgba} bgCol [#222] Background colour of the tooltip
-/// @param {pixel value} fontSize [14px] The font size of the tooltip
-/// @param {pixel vlaue} width [120px] Width of the tooltip
-/// @param {pixel shorthand} padding [10px] Padding of the tooltip
-/// @param {pixel value} arrowSize [7px] Size of the arrow
