@@ -1,5 +1,4 @@
-Spice sass library 
-=====================
+[![Spice](http://spice-sass.github.io/img/spice-logo-2.svg)](http://spice-sass.github.io/)
 
 Add a little spice to your UI!
 
