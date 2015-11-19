@@ -1,7 +1,7 @@
 {
   "name": "spice-sass",
   "version": "0.7.1",
-  "description": "Add a little spice to your UI",
+  "description": "The sass library for tasty web interfaces. The idea behind it is simple - add as much spice as you like!",
   "main": "src/_spice.scss",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
     "CSS",
     "animations",
     "CSS",
+    "mixins",
     "Masonry"
   ],
   "author": "Dan Osborne",
