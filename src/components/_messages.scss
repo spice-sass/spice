@@ -116,138 +116,394 @@
 	@include fontSize($fontSize);
 }
 
-/// Add classes for a css tooltip. Argument allow you to control the colour and width
-/// of the icon and the width of the tooltip.
-/// @name iconTooltip
+/// Generate styles for a css tooltip triggered on hover. Arguments allow you 
+/// to contol the direction, shift distance from trigger element, background
+/// colour, font size, width, padding and arrow size. 
+///  <strong>Note:</strong>
+///  the font colour will be automatically generated using the 
+///   <a href="#contrast">contrast</a> 
+/// function using the background colour as it's base value. 
+/// @name tooltip
 /// @group messages, hints & alerts
-/// @param {#hex/rgba} col [] The colour of the icon an background colour of the tooltip
-/// @param {Pixel value} width [200px] Width of the tool tip
-/// @param {Pixel value} iconSize [20px] The size of the tooltip icon
+/// @param {String} direction ["top"] Directon to position the tooltip. top | bottom | right | left
+/// @param {pixel value} shift [0px] Amount of pixels to shift away from the trigger element
+/// @param {#hex/rgba} bgCol [#222] Background colour of the tooltip
+/// @param {pixel value} fontSize [14px] The font size of the tooltip
+/// @param {pixel vlaue} width [120px] Width of the tooltip
+/// @param {pixel shorthand} padding [10px] Padding of the tooltip
+/// @param {pixel value} arrowSize [7px] Size of the arrow
 /// @example scss - Include
-///  @include iconTooltip(#444,120px,20px);
-///
+///  @include tooltip('top',20px);
+///  @include tooltip('bottom',20px);
+///  @include tooltip('left');
+///  @include tooltip('right');
 /// @example css - Output
-///  .tooltip {
-///    	color: #444;
-///    	position: relative;
-///    	cursor: pointer;
-///    	width: 20px;
-///    	height: 20px;
+///  .tooltip.above {
+///      cursor: pointer;
+///      position: relative;
 ///  }
 ///  
-///  .tooltip i {
-///    	font-size: 20px;
-///    	font-size: 1.25rem;
+///  .tooltip.above .tooltip-body {
+///      opacity: 0;
+///      visibility: hidden;
+///      background-color: #222;
+///      width: 120px;
+///      padding: 10px;
+///      z-index: 999;
+///      line-height: 130%;
+///      border-radius: 5px;
+///      color: #e1e1e1;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///      -webkit-transition-duration: 0.5s;
+///      -moz-transition-duration: 0.5s;
+///      transition-duration: 0.5s;
+///      -webkit-transition-property: all;
+///      -moz-transition-property: all;
+///      transition-property: all;
+///      -webkit-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      -moz-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      bottom: 27px;
+///      margin-bottom: -40px;
+///      position: absolute;
+///      left: 50%;
+///      -webkit-transform: translateX(-50%);
+///      -moz-transform: translateX(-50%);
+///      -ms-transform: translateX(-50%);
+///      transform: translateX(-50%);
 ///  }
 ///  
-///  .tooltip .tooltip-body {
-///    	top: 40px;
-///    	color: #eaeaea;
-///    	padding: 10px;
-///    	background-color: #444;
-///    	border-radius: 5px;
-///    	width: 120px;
-///    	opacity: 0;
-///    	visibility: hidden;
-///    	font-size: 14px;
-///    	font-size: 0.875rem;
-///    	position: absolute;
-///    	left: 50%;
-///    	-webkit-transform: translateX(-50%);
-///    	-moz-transform: translateX(-50%);
-///    	-ms-transform: translateX(-50%);
-///    	transform: translateX(-50%);
-///    	-webkit-transition-duration: 0.5s;
-///    	-moz-transition-duration: 0.5s;
-///    	transition-duration: 0.5s;
-///    	-webkit-transition-property: all;
-///    	-moz-transition-property: all;
-///    	transition-property: all;
-///    	-webkit-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
-///    	-moz-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
-///    	transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///  .tooltip.above .tooltip-body:after {
+///      content: "";
+///      bottom: -7px;
+///      position: absolute;
+///      left: 50%;
+///      -webkit-transform: translateX(-50%);
+///      -moz-transform: translateX(-50%);
+///      -ms-transform: translateX(-50%);
+///      transform: translateX(-50%);
+///      width: 0;
+///      height: 0;
+///      border-left: 7px solid transparent;
+///      border-right: 7px solid transparent;
+///      border-top: 7px solid #222;
 ///  }
 ///  
-///  .tooltip .tooltip-body:before {
-///    	content: "";
-///    	display: block;
-///    	top: -5px;
-///    	position: absolute;
-///    	left: 50%;
-///    	-webkit-transform: translateX(-50%);
-///    	-moz-transform: translateX(-50%);
-///    	-ms-transform: translateX(-50%);
-///    	transform: translateX(-50%);
-///    	width: 0;
-///    	height: 0;
-///    	border-left: 5px solid transparent;
-///    	border-right: 5px solid transparent;
-///    	border-bottom: 5px solid #444;
+///  .tooltip.above:hover .tooltip-body {
+///      margin: 0;
+///      opacity: 1;
+///      visibility: visible;
 ///  }
 ///  
-///  .tooltip:hover .tooltip-body {
-///    	top: 30px;
-///    	opacity: 1;
-///    	visibility: visible;
+///  .tooltip.below {
+///      cursor: pointer;
+///      position: relative;
 ///  }
 ///  
-///  .tooltip {
-///    	margin: 200px;
+///  .tooltip.below .tooltip-body {
+///      opacity: 0;
+///      visibility: hidden;
+///      background-color: #222;
+///      width: 120px;
+///      padding: 10px;
+///      z-index: 999;
+///      line-height: 130%;
+///      border-radius: 5px;
+///      color: #e1e1e1;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///      -webkit-transition-duration: 0.5s;
+///      -moz-transition-duration: 0.5s;
+///      transition-duration: 0.5s;
+///      -webkit-transition-property: all;
+///      -moz-transition-property: all;
+///      transition-property: all;
+///      -webkit-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      -moz-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      top: 27px;
+///      margin-top: 40px;
+///      position: absolute;
+///      left: 50%;
+///      -webkit-transform: translateX(-50%);
+///      -moz-transform: translateX(-50%);
+///      -ms-transform: translateX(-50%);
+///      transform: translateX(-50%);
 ///  }
-/// @example markup - html
-///  <div class="tooltip">
-///  	<i class="block-icon-info-with-circle"></i>
-///  	<div class="tooltip-body">
-///  		This is an example of a tool tip.
-///  	</div>
-///  </div>
-///
+///  
+///  .tooltip.below .tooltip-body:after {
+///      content: "";
+///      top: -7px;
+///      position: absolute;
+///      left: 50%;
+///      -webkit-transform: translateX(-50%);
+///      -moz-transform: translateX(-50%);
+///      -ms-transform: translateX(-50%);
+///      transform: translateX(-50%);
+///      width: 0;
+///      height: 0;
+///      border-left: 7px solid transparent;
+///      border-right: 7px solid transparent;
+///      border-bottom: 7px solid #222;
+///  }
+///  
+///  .tooltip.below:hover .tooltip-body {
+///      margin: 0;
+///      opacity: 1;
+///      visibility: visible;
+///  }
+///  
+///  .tooltip.left {
+///      cursor: pointer;
+///      position: relative;
+///  }
+///  
+///  .tooltip.left .tooltip-body {
+///      opacity: 0;
+///      visibility: hidden;
+///      background-color: #222;
+///      width: 120px;
+///      padding: 10px;
+///      z-index: 999;
+///      line-height: 130%;
+///      border-radius: 5px;
+///      color: #e1e1e1;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///      -webkit-transition-duration: 0.5s;
+///      -moz-transition-duration: 0.5s;
+///      transition-duration: 0.5s;
+///      -webkit-transition-property: all;
+///      -moz-transition-property: all;
+///      transition-property: all;
+///      -webkit-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      -moz-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      left: -127px;
+///      margin-left: -40px;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///  }
+///  
+///  .tooltip.left .tooltip-body:after {
+///      content: "";
+///      right: -7px;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///      width: 0;
+///      height: 0;
+///      border-top: 7px solid transparent;
+///      border-bottom: 7px solid transparent;
+///      border-left: 7px solid #222;
+///  }
+///  
+///  .tooltip.left:hover .tooltip-body {
+///      margin: 0;
+///      opacity: 1;
+///      visibility: visible;
+///  }
+///  
+///  .tooltip.right {
+///      cursor: pointer;
+///      position: relative;
+///  }
+///  
+///  .tooltip.right .tooltip-body {
+///      opacity: 0;
+///      visibility: hidden;
+///      background-color: #222;
+///      width: 120px;
+///      padding: 10px;
+///      z-index: 999;
+///      line-height: 130%;
+///      border-radius: 5px;
+///      color: #e1e1e1;
+///      font-size: 14px;
+///      font-size: 0.875rem;
+///      -webkit-transition-duration: 0.5s;
+///      -moz-transition-duration: 0.5s;
+///      transition-duration: 0.5s;
+///      -webkit-transition-property: all;
+///      -moz-transition-property: all;
+///      transition-property: all;
+///      -webkit-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      -moz-transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      transition-timing-function: cubic-bezier(0.12, 0.85, 0.28, 1);
+///      right: -127px;
+///      margin-right: -40px;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///  }
+///  
+///  .tooltip.right .tooltip-body:after {
+///      content: "";
+///      left: -7px;
+///      position: absolute;
+///      top: 50%;
+///      -webkit-transform: translateY(-50%);
+///      -moz-transform: translateY(-50%);
+///      -ms-transform: translateY(-50%);
+///      transform: translateY(-50%);
+///      width: 0;
+///      height: 0;
+///      border-top: 7px solid transparent;
+///      border-bottom: 7px solid transparent;
+///      border-right: 7px solid #222;
+///  }
+///  
+///  .tooltip.right:hover .tooltip-body {
+///      margin: 0;
+///      opacity: 1;
+///      visibility: visible;
+///  }
+/// @example markup - HTML
+///  <p>
+///  	Lorem ipsum dolor sit amet.  
+///  
+///  	<span class="tooltip top">
+///  		<span>This text triggers a tooltip above. </span>
+///  		<span class="tooltip-body">Tooltip body text Lorem ipsum dolor sit amet.</span>
+///  	</span>
+///  
+///  	Lorem ipsum dolor sit amet.  
+///  
+///  	<span class="tooltip bottom">
+///  		<span>This text triggers a tooltip below. </span>
+///  		<span class="tooltip-body">Tooltip body text Lorem ipsum dolor sit amet.</span>
+///  	</span>
+///  
+///  	Lorem ipsum dolor sit amet.  
+///  
+///  	<span class="tooltip right">
+///  		<span>This text triggers a tooltip to the right. </span>
+///  		<span class="tooltip-body">Tooltip body text Lorem ipsum dolor sit amet.</span>
+///  	</span>
+///  
+///  	Lorem ipsum dolor sit amet. 
+///  
+///  	<span class="tooltip left">
+///  		<span>This text triggers a tooltip to the left. </span>
+///  		<span class="tooltip-body">Tooltip body text Lorem ipsum dolor sit amet.</span>
+///  	</span>
+///  
+///  	Lorem ipsum dolor sit amet. 
+///  
+///  </p>
 
-@mixin iconTooltip($col,$width:200px,$iconSize:20px){
+@mixin tooltip($direction:"top",$shift:0px,$bgCol:#222,$fontSize:14px,$width:120px,$padding:10px,$arrowSize:7px){
 
-	.tooltip{
+	$Type : to-lower-case($direction);
 
-		color: $col;
-		position:relative;
-		cursor: pointer;
-		width:$iconSize;
-		height: $iconSize;
+	@if $Type == "top" or $Type == "bottom" or $Type == "left" or $Type == "right" {
 
-		i{
-			@include fontSize($iconSize);
-		}
+		.tooltip.#{$Type}{
 
-		.tooltip-body{
+			cursor: pointer;
+			position: relative;
 
-			top:$iconSize*2;
-			color: contrast($col,65%);
-			padding:10px;
-			background-color: $col;
-			border-radius: 5px;
-			width:$width;
-			opacity: 0;
-			visibility: hidden;
-			@include fontSize(14px);
-			@include centre(x);
-			@include vendorPrefix(transition-duration,0.5s);
-			@include vendorPrefix(transition-property,'all');
-			@include vendorPrefix(transition-timing-function,$rush);
+			.tooltip-body{
 
-			&:before{
+				opacity: 0;
+				visibility: hidden;
+				background-color: $bgCol;
+				width:$width;
+				padding:$padding;
+				z-index: 999;
+				line-height: 130%;
+				border-radius: 5px;
+				color:contrast($bgCol,75%);
+				@include fontSize($fontSize);
+				@include vendorPrefix(transition-duration,0.5s);
+				@include vendorPrefix(transition-property,'all');
+				@include vendorPrefix(transition-timing-function,$rush);
 
-				content: "";
-				display: block;
-				top:-5px;
-				@include centre(x);
-				@include arrow(5px,"up",$col,1);
+				@if $Type == "top" {
+				
+					bottom:$shift+$arrowSize;
+					margin-bottom: -40px;
+					@include centre(x);
+
+					&:after{
+
+						content:"";
+						bottom:-$arrowSize;
+						@include centre(x);
+						@include arrow($arrowSize,"down",$bgCol,1);
+					}
+				}
+
+				@if $Type == "bottom" {
+					
+					top:$shift+$arrowSize;
+					margin-top: 40px;
+					@include centre(x);
+
+					&:after{
+
+						content:"";
+						top:-$arrowSize;
+						@include centre(x);
+						@include arrow($arrowSize,"up",$bgCol,1);
+					}
+				}
+
+				@if $Type == "left" {
+						
+					left:-($width+$shift+$arrowSize);
+					margin-left:-40px;
+					@include centre(y);
+
+					&:after{
+
+						content:"";
+						right:-$arrowSize;
+						@include centre(y);
+						@include arrow($arrowSize,"right",$bgCol,1);
+					}
+				}
+
+				@if $Type == "right" {
+					
+					right:-($width+$shift+$arrowSize);
+					margin-right:-40px;
+					@include centre(y);
+
+					&:after{
+
+						content:"";
+						left:-$arrowSize;
+						@include centre(y);
+						@include arrow($arrowSize,"left",$bgCol,1);
+					}
+				}
+			}
+
+			&:hover{
+
+				.tooltip-body{
+
+					margin:0;
+					opacity: 1;
+					visibility: visible;
+				}
 			}
 		}
+	}
 
-		&:hover .tooltip-body{
-
-			top:$iconSize*1.5;
-			opacity: 1;
-			visibility: visible;
-		}
+	@else {
+		@error "#{$direction} is not a valid value for 'direction.' Please use 'top' | 'bottom' | 'left' | 'right'"
 	}
 }
