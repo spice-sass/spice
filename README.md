@@ -1,6 +1,6 @@
 [![Spice](http://spice-sass.github.io/img/spice-logo-2.svg)](http://spice-sass.github.io/)
 
-Add a little spice to your UI!
+The sass library for tasty web interfaces. The idea behind it is simple - add as much spice as you like!
 
 [![Build Status](https://travis-ci.org/spice-sass/spice.svg)](https://travis-ci.org/spice-sass/spice)
 
