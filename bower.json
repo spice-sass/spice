@@ -10,6 +10,7 @@
     "node_modules",
     "*.md",
     "gulpfile.js",
-    "package.json"
+    "package.json",
+    "index.js"
   ]
 }
