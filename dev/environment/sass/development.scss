@@ -1,5 +1,20 @@
 @import "../../src/spice";
 
-.scrollbar{
-     @include scrollbar(#333,10px,10%);
+#example{
+
+	padding:200px;
 }
+
+.anim-block{
+
+	display: inline-block;
+	width:100px;
+	height:40px;
+	background:#ddd;
+	padding:20px;
+	margin:30px;
+
+}
+
+$bounce : cubic-bezier(.39,-0.35,.4,1.36);	
+@include rotateIn(-30,$bounce,0.6s,5);
