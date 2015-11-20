@@ -2,7 +2,7 @@
   "name": "spice-sass",
   "version": "0.7.5",
   "description": "The sass library for tasty web interfaces. The idea behind it is simple - add as much spice as you like!",
-  "main": "src/_spice.scss",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spice-sass/spice.git"
