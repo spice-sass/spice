@@ -23,54 +23,67 @@
 /// @param {Integer} count [false] Animation iteration count
 /// @example scss - Include
 ///  .fade-in{
-////     @include animation(fadeIn,ease,0.5s,5);
+////     @include animation('fade-in',ease,0.6s,5,0.08s);
 ///  }
 /// @example css - Output
-///  .fade-in {
-///    	-webkit-animation-name: fadeIn;
-///    	animation-name: fadeIn;
-///    	-webkit-animation-fill-mode: both;
-///    	animation-fill-mode: both;
-///    	-webkit-animation-timing-function: ease;
-///    	animation-timing-function: ease;
-///    	-webkit-animation-duration: 0.5s;
-///    	animation-duration: 0.5s;
+///  .animation {
+///      -webkit-animation-name: fade-in;
+///      -moz-animation-name: fade-in;
+///      -o-animation-name: fade-in;
+///      animation-name: fade-in;
+///      -webkit-animation-fill-mode: both;
+///      -moz-animation-fill-mode: both;
+///      -o-animation-fill-mode: both;
+///      animation-fill-mode: both;
+///      -webkit-animation-timing-function: ease;
+///      -moz-animation-timing-function: ease;
+///      -o-animation-timing-function: ease;
+///      animation-timing-function: ease;
+///      -webkit-animation-duration: 0.6s;
+///      -moz-animation-duration: 0.6s;
+///      -o-animation-duration: 0.6s;
+///      animation-duration: 0.6s;
 ///  }
 ///  
-///  .fade-in:nth-child(2) {
-///    	-webkit-animation-delay: 0.1s;
-///    	animation-delay: 0.1s;
+///  .animation:nth-child(2) {
+///      -webkit-animation-delay: 0.08s;
+///      -moz-animation-delay: 0.08s;
+///      -o-animation-delay: 0.08s;
+///      animation-delay: 0.08s;
 ///  }
 ///  
-///  .fade-in:nth-child(3) {
-///    	-webkit-animation-delay: 0.2s;
-///    	animation-delay: 0.2s;
+///  .animation:nth-child(3) {
+///      -webkit-animation-delay: 0.16s;
+///      -moz-animation-delay: 0.16s;
+///      -o-animation-delay: 0.16s;
+///      animation-delay: 0.16s;
 ///  }
 ///  
-///  .fade-in:nth-child(4) {
-///    	-webkit-animation-delay: 0.3s;
-///    	animation-delay: 0.3s;
+///  .animation:nth-child(4) {
+///      -webkit-animation-delay: 0.24s;
+///      -moz-animation-delay: 0.24s;
+///      -o-animation-delay: 0.24s;
+///      animation-delay: 0.24s;
 ///  }
 ///  
-///  .fade-in:nth-child(5) {
-///    	-webkit-animation-delay: 0.4s;
-///    	animation-delay: 0.4s;
+///  .animation:nth-child(5) {
+///      -webkit-animation-delay: 0.32s;
+///      -moz-animation-delay: 0.32s;
+///      -o-animation-delay: 0.32s;
+///      animation-delay: 0.32s;
 ///  }
 
 
 
 @mixin animation($name, $timingFunction:ease, $duration:1s,$stagger:0,$delay:false, $count:false){
-	-webkit-animation-name: $name;
-	animation-name: $name;	
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	-webkit-animation-timing-function:$timingFunction;
-	animation-timing-function:$timingFunction;
-	-webkit-animation-duration: $duration;
-	animation-duration: $duration;	
+
+	@include vendorPrefix(animation-name,$name,$animationVendors);
+	@include vendorPrefix(animation-fill-mode,both,$animationVendors);
+	@include vendorPrefix(animation-timing-function,$timingFunction,$animationVendors);	
+	@include vendorPrefix(animation-duration,$duration,$animationVendors);
+
 	@if $count {
-		-webkit-animation-iteration-count: $count;
-		animation-iteration-count: $count;
+		@include vendorPrefix(animation-iteration-count,$count,$animationVendors);
 	}
 	@if $stagger > 0{
 		@if not $delay {
@@ -78,14 +91,12 @@
 		}
 		@for $i from 2 through $stagger {
 		    &:nth-child(#{$i}) {
-		    	-webkit-animation-delay: $delay * ($i - 1);
-		        animation-delay: $delay * ($i - 1);
+		        @include vendorPrefix(animation-delay,($delay * ($i - 1)),$animationVendors);
 		    }
 		}
 	} @else {
 		@if $delay {
-			-webkit-animation-delay: $delay;
-			animation-delay: $delay;
+			@include vendorPrefix(animation-delay,$delay,$animationVendors);
 		}
 	}
 }
