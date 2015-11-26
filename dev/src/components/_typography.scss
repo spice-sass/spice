@@ -6,6 +6,136 @@
 @import "variables";
 @import "utils";
 
+/// Generate styles for a consistant vertical rhythm for text with this mixin. Arguments
+/// allow you to control the base font size, line & margin height and the size of headings.
+/// Heading siszes can be entered as an array of pixel values, e.g: 
+///  <strong>40px 36px 32px 28px 24px 20px</strong>
+/// corresponds to 
+///  <strong>h1 h2 h3 h4 h5 h6</strong>
+/// elements respectively. You can alternatively use a single value for the 
+///  <strong>h1</strong>
+/// and all other heading font sizes will be programmatically calculated.
+/// @name verticalRhythm
+/// @group fonts
+/// @param {Pixel value} fontSize [16px] Body text size
+/// @param {Pixel value} lineHeight [28px] Line and margin size
+/// @param {Pixel value/Pixel value array} headers [40px] Size of h1/heading elements
+/// @example scss - Include
+///     @include verticalRhythm(16px,30px,40px);
+///
+/// @example css - Output
+///  body {
+///    line-height: 30px;
+///    line-height: 1.875rem;
+///    font-size: 16px;
+///    font-size: 1rem;
+///  }
+///  
+///  p, h1, h2, h3, h4, h5, h6 {
+///    margin-bottom: 30px;
+///    margin-bottom: 1.875rem;
+///  }
+///  
+///  h1 {
+///    line-height: 60px;
+///    line-height: 3.75rem;
+///    font-size: 40px;
+///    font-size: 2.5rem;
+///  }
+///  
+///  h2 {
+///    line-height: 60px;
+///    line-height: 3.75rem;
+///    font-size: 36px;
+///    font-size: 2.25rem;
+///  }
+///  
+///  h3 {
+///    line-height: 60px;
+///    line-height: 3.75rem;
+///    font-size: 32px;
+///    font-size: 2rem;
+///  }
+///  
+///  h4 {
+///    line-height: 30px;
+///    line-height: 1.875rem;
+///    font-size: 28px;
+///    font-size: 1.75rem;
+///  }
+///  
+///  h5 {
+///    line-height: 30px;
+///    line-height: 1.875rem;
+///    font-size: 24px;
+///    font-size: 1.5rem;
+///  }
+///  
+///  h6 {
+///    line-height: 30px;
+///    line-height: 1.875rem;
+///    font-size: 20px;
+///    font-size: 1.25rem;
+///  }
+
+@mixin verticalRhythm($fontSize:$baseFontSize,$lineHeight:$baseLineHeight,$headers:40px){
+
+    body{
+        
+        line-height: $lineHeight;
+        line-height: calculateRem($lineHeight);
+        @include fontSize($fontSize);
+    }
+
+    p,h1,h2,h3,h4,h5,h6{
+        margin-bottom: $lineHeight;
+        margin-bottom: calculateRem($lineHeight);
+    }
+
+    @if length($headers) > 1 {
+
+        @for $i from 1 through length($headers){
+
+            $size     : nth($headers,$i);
+            $multiple : ceil($size/$lineHeight);
+            $line     : $lineHeight * $multiple;
+
+            h#{$i}{
+                
+                line-height: $line;
+                line-height: calculateRem($line);
+                @include fontSize($size);
+            }
+        }
+    } 
+
+    @else{
+
+        $h6       : $fontSize;
+        $range    : $headers - $h6;
+        $interval : $range / 6;     
+        $string   : inspect($h6);
+        $index    : str-index($string, 'px');
+        $val      : str-slice($string, 1, $index - 1);
+        $numb     : Number($val);
+
+        @for $i from 1 through 6{
+
+            $amt  : 6 - ($i - 1);   
+            $size : $numb + round($interval) * $amt;
+            $multiple : ceil($size/$lineHeight);
+            $line     : $lineHeight * $multiple;
+
+            h#{$i}{
+                
+                line-height: $line;
+                line-height: calculateRem($line);
+                @include fontSize($size);
+            }
+        }
+    }
+}
+
 /// Programmatically calculate the sizes of your heading elements. This mixin uses the @include
 /// fontSize mixin in order to calulate both rem and pixel value fallbacks.
 /// by passing in the ceiling(h1) and floor(h6) size values. These integers
