@@ -183,29 +183,6 @@
 		@include vendorPrefix(box-sizing,border-box);
 	}
 
-	body{
-
-		font-family: "arial", sans-serif;
-	}
-
-	h1,h2,h3,h4,h5,h6,p,blockquote{
-
-		margin-bottom: 1.2em
-	}
-
-	p{
-
-		font-size:1em;
-		line-height:160%;
-	}
-
-	blockquote{
-
-		font:{
-			size:1.2em;
-		}
-	}
-
 	.justify{
 		text-align:justify;
 	}
