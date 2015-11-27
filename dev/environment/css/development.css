@@ -85,59 +85,76 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 @font-face {
-  font-family: Open Sans;
+  font-family: Source Sans Pro;
   font-style: normal;
-  font-weight: 400;
-  src: local(Open Sans), local(OpenSans), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff2");
+  font-weight: 200;
+  src: local(Source Sans Pro ExtraLight), local(SourceSansPro-ExtraLight), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGCVh0V6fR69OLaFLklYbiSk.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 @font-face {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: 600;
-  src: local(Open Sans Semibold), local(OpenSans-Semibold), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-@font-face {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: 800;
-  src: local(Open Sans Extrabold), local(OpenSans-Extrabold), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-.open-sans, body {
-  font-family: Open Sans, arial, sans-serif;
-}
-
-@font-face {
-  font-family: Roboto Slab;
+  font-family: Source Sans Pro;
   font-style: normal;
   font-weight: 300;
-  src: local(Roboto Slab Light), local(RobotoSlab-Light), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJR_xHqYgAV9Bl_ZQbYUxnQU.woff) format("woff2");
+  src: local(Source Sans Pro Light), local(SourceSansPro-Light), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGOode0-EuMkY--TSyExeINg.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 @font-face {
-  font-family: Roboto Slab;
+  font-family: Source Sans Pro;
   font-style: normal;
   font-weight: 400;
-  src: local(Roboto Slab Regular), local(RobotoSlab-Regular), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/y7lebkjgREBJK96VQi37ZobN6UDyHWBl620a-IRfuBk.woff) format("woff2");
+  src: local(Source Sans Pro), local(SourceSansPro-Regular), url(http://fonts.gstatic.com/s/sourcesanspro/v9/ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 @font-face {
-  font-family: Roboto Slab;
+  font-family: Source Sans Pro;
   font-style: normal;
-  font-weight: 700;
-  src: local(Roboto Slab Bold), local(RobotoSlab-Bold), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v3/dazS1PrQQuCxC3iOAJFEJTqR_3kx9_hJXbbyU8S6IN0.woff) format("woff2");
+  font-weight: 600;
+  src: local(Source Sans Pro Semibold), local(SourceSansPro-Semibold), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGCOFnW3Jk0f09zW_Yln67Ac.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-.roboto-slab, h1, h2, h3, h4, h5, h6 {
-  font-family: Roboto Slab, arial, sans-serif;
+@font-face {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 700;
+  src: local(Source Sans Pro Bold), local(SourceSansPro-Bold), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.source-sans, body {
+  font-family: Source Sans Pro, arial, sans-serif;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  src: local(Roboto Light), local(Roboto-Light), url(http://themes.googleusercontent.com/static/fonts/roboto/v11/Hgo13k-tfSpn0qi1SFdUfT8E0i7KZn-EPnyo3HZu7kw.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  src: local(Roboto Regular), local(Roboto-Regular), url(http://themes.googleusercontent.com/static/fonts/roboto/v11/2UX7WLTfW3W8TclTUvlFyQ.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  src: local(Roboto Bold), local(Roboto-Bold), url(http://themes.googleusercontent.com/static/fonts/roboto/v11/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.roboto, h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto, arial, sans-serif;
   font-weight: 600;
 }
 
@@ -158,6 +175,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .baselines b {
   display: block;
+  height: 25px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .columns {
@@ -191,56 +212,63 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #3c3c3c;
+  background: -webkit-linear-gradient(#777, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 body {
-  line-height: 30px;
-  line-height: 1.875rem;
+  line-height: 25px;
+  line-height: 1.5625rem;
   font-size: 16px;
   font-size: 1rem;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 30px;
-  margin-bottom: 1.875rem;
+  margin-bottom: 25px;
+  margin-bottom: 1.5625rem;
 }
 
 h1 {
-  line-height: 60px;
-  line-height: 3.75rem;
-  font-size: 40px;
-  font-size: 2.5rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  font-size: 46px;
+  font-size: 2.875rem;
 }
 
 h2 {
-  line-height: 60px;
-  line-height: 3.75rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  font-size: 41px;
+  font-size: 2.5625rem;
+}
+
+h3 {
+  line-height: 50px;
+  line-height: 3.125rem;
   font-size: 36px;
   font-size: 2.25rem;
 }
 
-h3 {
-  line-height: 60px;
-  line-height: 3.75rem;
-  font-size: 32px;
-  font-size: 2rem;
-}
-
 h4 {
-  line-height: 30px;
-  line-height: 1.875rem;
-  font-size: 28px;
-  font-size: 1.75rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  font-size: 31px;
+  font-size: 1.9375rem;
 }
 
 h5 {
-  line-height: 30px;
-  line-height: 1.875rem;
-  font-size: 24px;
-  font-size: 1.5rem;
+  line-height: 50px;
+  line-height: 3.125rem;
+  font-size: 26px;
+  font-size: 1.625rem;
 }
 
 h6 {
-  line-height: 30px;
-  line-height: 1.875rem;
-  font-size: 20px;
-  font-size: 1.25rem;
+  line-height: 25px;
+  line-height: 1.5625rem;
+  font-size: 21px;
+  font-size: 1.3125rem;
 }
