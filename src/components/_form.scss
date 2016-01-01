@@ -326,7 +326,9 @@
 /// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
 /// @param {Pixel value} font-size [18px] Font size converted to rem values
 /// @example scss - Include
-///  @include formRounded(12px);
+///  form.rounded{
+///  	@include formRounded(12px);
+///  }
 ///
 /// @example css - Output
 ///  form.rounded label {
@@ -409,63 +411,61 @@
 	
 	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
 
-	form.rounded{
+	label{
 
-		label{
+		display: block;
+		margin: 0 0 15px 5px;
+		@include fontSize($font-size);
+	}
 
-			display: block;
-			margin: 0 0 15px 5px;
-			@include fontSize($font-size);
+	textarea {
+
+		width:100%;
+		max-width:100%;
+		margin:0;
+		outline: none;
+		margin-bottom: 20px;
+		padding: $padding;
+		border-style: solid;
+		border-width:1px;
+		@include fontSize($font-size);
+
+		@if $rounding != 0px {
+
+			border-radius : #{$rounding};
 		}
+	}
 
-		textarea {
-
-			width:100%;
-			max-width:100%;
-			margin:0;
-			outline: none;
-			margin-bottom: 20px;
-			padding: $padding;
-			border-style: solid;
-			border-width:1px;
-			@include fontSize($font-size);
-
-			@if $rounding != 0px {
-
-				border-radius : #{$rounding};
-			}
-		}
-
-		input{
-			
-			@each $input in $inputs {
-				&[type=#{$input}]{
-					@extend textarea;
-				}
-			}
-
-			&.text{
+	input{
+		
+		@each $input in $inputs {
+			&[type=#{$input}]{
 				@extend textarea;
 			}
-
-			&:focus{
-
-				outline: none;
-			}
-
 		}
 
-		select{
-
+		&.text{
 			@extend textarea;
 		}
 
-		fieldset{
+		&:focus{
 
-			width:100%;
+			outline: none;
 		}
 
 	}
+
+	select{
+
+		@extend textarea;
+	}
+
+	fieldset{
+
+		width:100%;
+	}
+
+
 }
 
 // ------------------------------------------------------
@@ -478,7 +478,9 @@
 /// @param {Css pixel shorthand} padding [10px 20px] Rounding in pixels
 /// @param {Pixel value} font-size [18px] Font size converted to rem values
 /// @example scss - Include
-///  @include formLined(6px,15px 20px,18);
+///  form.lined{
+///  	@include formLined(6px,15px 20px,18);
+///  }
 ///
 /// @example css - Output
 ///  form.lined label {
@@ -565,61 +567,58 @@
 
 	$inputs : "text" "email" "password" "url" "tel" "search" "date" "time" "number";
 	
-	form.lined{
+	label{
 
-		label{
+		display: block;
+		margin: 0 0 15px 0;
+		@include fontSize($font-size);
+	}
 
-			display: block;
-			margin: 0 0 15px 0;
-			@include fontSize($font-size);
-		}
+	textarea {
 
-		textarea {
+		width:100%;
+		max-width:100%;
+		margin:0;
+		outline: none;
+		margin-bottom: 20px;
+		padding: $padding;
+		border-bottom-style: solid;
+		border-bottom-width:$thickness;
+		border-top: none;
+		border-left:none;
+		border-right:none;
+		@include fontSize($font-size);
+	}
 
-			width:100%;
-			max-width:100%;
-			margin:0;
-			outline: none;
-			margin-bottom: 20px;
-			padding: $padding;
-			border-bottom-style: solid;
-			border-bottom-width:$thickness;
-			border-top: none;
-			border-left:none;
-			border-right:none;
-			@include fontSize($font-size);
-		}
-
-		input{
-			
-			@each $input in $inputs {
-				&[type=#{$input}]{
-					@extend textarea;
-				}
-			}
-
-			&.text{
+	input{
+		
+		@each $input in $inputs {
+			&[type=#{$input}]{
 				@extend textarea;
 			}
-
-			&:focus{
-
-				outline: none;
-			}
-
 		}
 
-		select{
-
+		&.text{
 			@extend textarea;
 		}
 
-		fieldset{
+		&:focus{
 
-			width:100%;
+			outline: none;
 		}
 
 	}
+
+	select{
+
+		@extend textarea;
+	}
+
+	fieldset{
+
+		width:100%;
+	}
+
 }
 
 // ------------------------------------------------------
