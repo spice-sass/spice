@@ -6,8 +6,5 @@
 //@include headerSizes(40,20);
 
 
-.list{
-	@include gridColumns(3);
-	@include gridRowLimit(4);
-}
-
+@include flatButton('flat',$col-alizarin);
+@include gradientButton('gradient',$col-river-blue);
