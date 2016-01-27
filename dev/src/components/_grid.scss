@@ -645,3 +645,32 @@
 		}
 	}
 }
+
+/// When using grid classes this mixin will allow you to specify a limit 
+/// for the amount of elements in a row.
+/// @name gridRowLimit
+/// @group grid
+/// @param {Integer} limit [] The amout of elements to limit to a single row
+/// @example scss - Include
+///  .list{
+///  	
+///  	@include gridColumns(3);
+///  	@include gridRowLimit(4);
+///  }
+/// @example css - Output
+///  .list {
+///  	float: left;
+///  	position: relative;
+///  	width: 23.5%;
+///  	margin-right: 2%;
+///  }
+///  
+///  .list:nth-child(4n + 4) {
+///    	margin-right: 0;
+///  }
+
+@mixin gridRowLimit($limit){
+	&:nth-child(#{$limit}n + #{$limit}){
+		margin-right:0;
+	}
+}

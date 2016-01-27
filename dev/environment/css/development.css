@@ -158,100 +158,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 600;
 }
 
-textarea, select, input[type=text], input[type=email], input[type=password], input[type=url], input[type=tel], input[type=search], input[type=date], input[type=time], input[type=number], input.text, form.rounded input[type=text], form.rounded input[type=email], form.rounded input[type=password], form.rounded input[type=url], form.rounded input[type=tel], form.rounded input[type=search], form.rounded input[type=date], form.rounded input[type=time], form.rounded input[type=number], form.rounded input.text, form.rounded select {
-  background-color: #e9e9e9;
-  border-color: #d0d0d0;
-  color: #333;
+.list {
+  float: left;
+  position: relative;
+  width: 23.5%;
+  margin-right: 2%;
 }
 
-textarea:hover, select:hover, input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, input[type=url]:hover, input[type=tel]:hover, input[type=search]:hover, input[type=date]:hover, input[type=time]:hover, input[type=number]:hover, input.text:hover, form.rounded input[type=text]:hover, form.rounded input[type=email]:hover, form.rounded input[type=password]:hover, form.rounded input[type=url]:hover, form.rounded input[type=tel]:hover, form.rounded input[type=search]:hover, form.rounded input[type=date]:hover, form.rounded input[type=time]:hover, form.rounded input[type=number]:hover, form.rounded input.text:hover, form.rounded select:hover {
-  border-color: #b6b6b6;
-}
-
-textarea:focus, select:focus, input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=url]:focus, input[type=tel]:focus, input[type=search]:focus, input[type=date]:focus, input[type=time]:focus, input[type=number]:focus, input.text:focus, form.rounded input[type=text]:focus, form.rounded input[type=email]:focus, form.rounded input[type=password]:focus, form.rounded input[type=url]:focus, form.rounded input[type=tel]:focus, form.rounded input[type=search]:focus, form.rounded input[type=date]:focus, form.rounded input[type=time]:focus, form.rounded input[type=number]:focus, form.rounded input.text:focus, form.rounded select:focus {
-  color: black;
-  border-color: #407b2c;
-}
-
-form.rounded label {
-  display: block;
-  margin: 0 0 15px 5px;
-  font-size: 18px;
-  font-size: 1.125rem;
-}
-
-form.rounded textarea, form.rounded input[type=text], form.rounded input[type=email], form.rounded input[type=password], form.rounded input[type=url], form.rounded input[type=tel], form.rounded input[type=search], form.rounded input[type=date], form.rounded input[type=time], form.rounded input[type=number], form.rounded input.text, form.rounded select {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  outline: none;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  border-style: solid;
-  border-width: 1px;
-  font-size: 18px;
-  font-size: 1.125rem;
-  border-radius: 12px;
-}
-
-form.rounded input:focus {
-  outline: none;
-}
-
-form.rounded fieldset {
-  width: 100%;
-}
-
-body {
-  line-height: 25px;
-  line-height: 1.5625rem;
-  font-size: 16px;
-  font-size: 1rem;
-}
-
-p, h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 25px;
-  margin-bottom: 1.5625rem;
-}
-
-h1 {
-  line-height: 50px;
-  line-height: 3.125rem;
-  font-size: 46px;
-  font-size: 2.875rem;
-}
-
-h2 {
-  line-height: 50px;
-  line-height: 3.125rem;
-  font-size: 41px;
-  font-size: 2.5625rem;
-}
-
-h3 {
-  line-height: 50px;
-  line-height: 3.125rem;
-  font-size: 36px;
-  font-size: 2.25rem;
-}
-
-h4 {
-  line-height: 50px;
-  line-height: 3.125rem;
-  font-size: 31px;
-  font-size: 1.9375rem;
-}
-
-h5 {
-  line-height: 50px;
-  line-height: 3.125rem;
-  font-size: 26px;
-  font-size: 1.625rem;
-}
-
-h6 {
-  line-height: 25px;
-  line-height: 1.5625rem;
-  font-size: 21px;
-  font-size: 1.3125rem;
+.list:nth-child(4n + 4) {
+  margin-right: 0;
 }
