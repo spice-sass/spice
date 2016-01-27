@@ -446,9 +446,11 @@
 
 		&:active{
 
-			border-bottom-width:1px;
-			margin-bottom: 2px;
-			top: 3px;
+			$hovert : darken($top,8%);
+			$hoverb : darken($bottom,8%);
+			
+			color: contrast($bgCol,($contrast * 1.5));
+			@include linearGradient($hovert,$hoverb);
 		}
 
 		@if($icons){
@@ -925,9 +927,8 @@
 
 		&:active{
 
-			border-bottom-width:1px;
-			margin-bottom: 2px;
-			top: 3px;
+			color: contrast($bgCol,($contrast * 1.5));
+			background-color:darken($bgCol,10%);
 		}
 
 		@if($icons){
