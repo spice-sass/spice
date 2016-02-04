@@ -21,71 +21,71 @@
 /// @param {Pixel value} lineHeight [28px] Line and margin size
 /// @param {Pixel value/Pixel value array} headers [40px] Size of h1/heading elements
 /// @example scss - Include
-///     @include verticalRhythm(16px,30px,40px);
+///  body{
+///  
+///      @include verticalRhythm;
+///  }
 ///
 /// @example css - Output
 ///  body {
-///    line-height: 30px;
-///    line-height: 1.875rem;
-///    font-size: 16px;
-///    font-size: 1rem;
+///      line-height: 28px;
+///      line-height: 1.75rem;
+///      font-size: 16px;
+///      font-size: 1rem;
 ///  }
 ///  
-///  p, h1, h2, h3, h4, h5, h6 {
-///    margin-bottom: 30px;
-///    margin-bottom: 1.875rem;
+///  body p, body h1, body h2, body h3, body h4, body h5, body h6 {
+///      margin-bottom: 28px;
+///      margin-bottom: 1.75rem;
 ///  }
 ///  
-///  h1 {
-///    line-height: 60px;
-///    line-height: 3.75rem;
-///    font-size: 40px;
-///    font-size: 2.5rem;
+///  body h1 {
+///      line-height: 56px;
+///      line-height: 3.5rem;
+///      font-size: 40px;
+///      font-size: 2.5rem;
 ///  }
 ///  
-///  h2 {
-///    line-height: 60px;
-///    line-height: 3.75rem;
-///    font-size: 36px;
-///    font-size: 2.25rem;
+///  body h2 {
+///      line-height: 56px;
+///      line-height: 3.5rem;
+///      font-size: 36px;
+///      font-size: 2.25rem;
 ///  }
 ///  
-///  h3 {
-///    line-height: 60px;
-///    line-height: 3.75rem;
-///    font-size: 32px;
-///    font-size: 2rem;
+///  body h3 {
+///      line-height: 56px;
+///      line-height: 3.5rem;
+///      font-size: 32px;
+///      font-size: 2rem;
 ///  }
 ///  
-///  h4 {
-///    line-height: 30px;
-///    line-height: 1.875rem;
-///    font-size: 28px;
-///    font-size: 1.75rem;
+///  body h4 {
+///      line-height: 28px;
+///      line-height: 1.75rem;
+///      font-size: 28px;
+///      font-size: 1.75rem;
 ///  }
 ///  
-///  h5 {
-///    line-height: 30px;
-///    line-height: 1.875rem;
-///    font-size: 24px;
-///    font-size: 1.5rem;
+///  body h5 {
+///      line-height: 28px;
+///      line-height: 1.75rem;
+///      font-size: 24px;
+///      font-size: 1.5rem;
 ///  }
 ///  
-///  h6 {
-///    line-height: 30px;
-///    line-height: 1.875rem;
-///    font-size: 20px;
-///    font-size: 1.25rem;
+///  body h6 {
+///      line-height: 28px;
+///      line-height: 1.75rem;
+///      font-size: 20px;
+///      font-size: 1.25rem;
 ///  }
 
 @mixin verticalRhythm($fontSize:$baseFontSize,$lineHeight:$baseLineHeight,$headers:40px){
-
-    body{
-        
-        line-height: $lineHeight;
-        line-height: calculateRem($lineHeight);
-        @include fontSize($fontSize);
-    }
+  
+    line-height: $lineHeight;
+    line-height: calculateRem($lineHeight);
+    @include fontSize($fontSize);
 
     p,h1,h2,h3,h4,h5,h6{
         margin-bottom: $lineHeight;

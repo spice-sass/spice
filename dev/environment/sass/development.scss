@@ -6,5 +6,7 @@
 //@include headerSizes(40,20);
 
 
-@include flatButton('flat',$col-alizarin);
-@include gradientButton('gradient',$col-river-blue);
+body{
+
+	@include verticalRhythm;
+}

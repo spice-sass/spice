@@ -158,164 +158,56 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 600;
 }
 
-button.flat, .button.flat {
-  display: inline-block;
-  outline: none;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  color: #370b07;
-  position: relative;
-  background-color: #E74C3C;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 5px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom-color: #d62c1a;
-  font-weight: 600;
-  line-height: inherit;
-  font-family: inherit;
+body {
+  line-height: 28px;
+  line-height: 1.75rem;
   font-size: 16px;
   font-size: 1rem;
 }
 
-button.flat.large, .button.flat.large {
-  padding: 12px 25px;
+body p, body h1, body h2, body h3, body h4, body h5, body h6 {
+  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
+}
+
+body h1 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+}
+
+body h2 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 36px;
+  font-size: 2.25rem;
+}
+
+body h3 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 32px;
+  font-size: 2rem;
+}
+
+body h4 {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 28px;
+  font-size: 1.75rem;
+}
+
+body h5 {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+body h6 {
+  line-height: 28px;
+  line-height: 1.75rem;
   font-size: 20px;
   font-size: 1.25rem;
-}
-
-button.flat.small, .button.flat.small {
-  padding: 5px 10px;
-  font-size: 14px;
-  font-size: 0.875rem;
-}
-
-button.flat:hover, button.flat:focus, .button.flat:hover, .button.flat:focus {
-  color: black;
-  background-color: #e43725;
-}
-
-button.flat:active, .button.flat:active {
-  color: black;
-  background-color: #d62c1a;
-}
-
-button.flat[class^="block-icon-"]:before, button.flat[class*=" block-icon-"]:before, .button.flat[class^="block-icon-"]:before, .button.flat[class*=" block-icon-"]:before {
-  font-family: 'block-icon-set';
-}
-
-button.flat[class^="line-icon-"]:before, button.flat[class*=" line-icon-"]:before, .button.flat[class^="line-icon-"]:before, .button.flat[class*=" line-icon-"]:before {
-  font-family: 'line-icon-set';
-}
-
-button.flat[class^="block-icon-"], button.flat[class*=" block-icon-"], button.flat[class^="line-icon-"], button.flat[class*=" line-icon-"], .button.flat[class^="block-icon-"], .button.flat[class*=" block-icon-"], .button.flat[class^="line-icon-"], .button.flat[class*=" line-icon-"] {
-  padding-right: 50px;
-}
-
-button.flat[class^="block-icon-"]:before, button.flat[class*=" block-icon-"]:before, button.flat[class^="line-icon-"]:before, button.flat[class*=" line-icon-"]:before, .button.flat[class^="block-icon-"]:before, .button.flat[class*=" block-icon-"]:before, .button.flat[class^="line-icon-"]:before, .button.flat[class*=" line-icon-"]:before {
-  text-transform: none;
-  line-height: 1;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -10px;
-  font-weight: normal;
-  font-size: 18px;
-  font-size: 1.125rem;
-}
-
-button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:after, button.flat[class^="line-icon-"]:after, button.flat[class*=" line-icon-"]:after, .button.flat[class^="block-icon-"]:after, .button.flat[class*=" block-icon-"]:after, .button.flat[class^="line-icon-"]:after, .button.flat[class*=" line-icon-"]:after {
-  content: "";
-  position: absolute;
-  width: 1px;
-  background: #d62c1a;
-  right: 35px;
-  top: 0;
-  bottom: 0;
-}
-
-button.gradient, .button.gradient {
-  display: inline-block;
-  outline: none;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  color: #061823;
-  position: relative;
-  border-radius: 3px;
-  border: 1px solid #217dbb;
-  font-weight: 600;
-  line-height: inherit;
-  font-family: inherit;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5faee3), color-stop(100%, #217dbb));
-  background-image: -moz-linear-gradient(#5faee3, #217dbb);
-  background-image: -webkit-linear-gradient(#5faee3, #217dbb);
-  background-image: linear-gradient(#5faee3 #217dbb);
-  font-size: 16px;
-  font-size: 1rem;
-}
-
-button.gradient.large, .button.gradient.large {
-  padding: 12px 25px;
-  font-size: 20px;
-  font-size: 1.25rem;
-}
-
-button.gradient.small, .button.gradient.small {
-  padding: 5px 10px;
-  font-size: 14px;
-  font-size: 0.875rem;
-}
-
-button.gradient:hover, button.gradient:focus, .button.gradient:hover, .button.gradient:focus {
-  color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4aa3df), color-stop(100%, #1d6fa5));
-  background-image: -moz-linear-gradient(#4aa3df, #1d6fa5);
-  background-image: -webkit-linear-gradient(#4aa3df, #1d6fa5);
-  background-image: linear-gradient(#4aa3df #1d6fa5);
-}
-
-button.gradient:active, .button.gradient:active {
-  color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3d9cdd), color-stop(100%, #1b6698));
-  background-image: -moz-linear-gradient(#3d9cdd, #1b6698);
-  background-image: -webkit-linear-gradient(#3d9cdd, #1b6698);
-  background-image: linear-gradient(#3d9cdd #1b6698);
-}
-
-button.gradient[class^="block-icon-"]:before, button.gradient[class*=" block-icon-"]:before, .button.gradient[class^="block-icon-"]:before, .button.gradient[class*=" block-icon-"]:before {
-  font-family: 'block-icon-set';
-}
-
-button.gradient[class^="line-icon-"]:before, button.gradient[class*=" line-icon-"]:before, .button.gradient[class^="line-icon-"]:before, .button.gradient[class*=" line-icon-"]:before {
-  font-family: 'line-icon-set';
-}
-
-button.gradient[class^="block-icon-"], button.gradient[class*=" block-icon-"], button.gradient[class^="line-icon-"], button.gradient[class*=" line-icon-"], .button.gradient[class^="block-icon-"], .button.gradient[class*=" block-icon-"], .button.gradient[class^="line-icon-"], .button.gradient[class*=" line-icon-"] {
-  padding-right: 50px;
-}
-
-button.gradient[class^="block-icon-"]:before, button.gradient[class*=" block-icon-"]:before, button.gradient[class^="line-icon-"]:before, button.gradient[class*=" line-icon-"]:before, .button.gradient[class^="block-icon-"]:before, .button.gradient[class*=" block-icon-"]:before, .button.gradient[class^="line-icon-"]:before, .button.gradient[class*=" line-icon-"]:before {
-  text-transform: none;
-  line-height: 1;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -10px;
-  font-weight: normal;
-  font-size: 18px;
-  font-size: 1.125rem;
-}
-
-button.gradient[class^="block-icon-"]:after, button.gradient[class*=" block-icon-"]:after, button.gradient[class^="line-icon-"]:after, button.gradient[class*=" line-icon-"]:after, .button.gradient[class^="block-icon-"]:after, .button.gradient[class*=" block-icon-"]:after, .button.gradient[class^="line-icon-"]:after, .button.gradient[class*=" line-icon-"]:after {
-  content: "";
-  position: absolute;
-  width: 1px;
-  background: #217dbb;
-  right: 35px;
-  top: 0;
-  bottom: 0;
 }
