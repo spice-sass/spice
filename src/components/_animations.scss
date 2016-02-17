@@ -1245,6 +1245,171 @@
 	@include transformKeyframes(elastic,$elastic-stops);
 }
 
+/// Predefined class and keyframes for a looping sway animation. Can be used 
+/// as a subtle attention grabber for buttons or other elements.
+/// @name sway
+/// @group animations
+/// @param {Integer} amount [15] Amount in degrees to sway the element
+/// @param {String} easing [ease] Easing
+/// @param {Seconds value} duration [2.5s] Duration of the animation
+/// @param {Integer} staggerCount [5] The amount of nth-child selectors add stagger effect to
+/// @example scss - Include
+///  @include sway(10,ease-in-out,1s);
+/// @example css - Output
+///  .sway {
+///    -webkit-animation-name: sway;
+///    -moz-animation-name: sway;
+///    -o-animation-name: sway;
+///    animation-name: sway;
+///    -webkit-animation-fill-mode: both;
+///    -moz-animation-fill-mode: both;
+///    -o-animation-fill-mode: both;
+///    animation-fill-mode: both;
+///    -webkit-animation-timing-function: ease-in-out;
+///    -moz-animation-timing-function: ease-in-out;
+///    -o-animation-timing-function: ease-in-out;
+///    animation-timing-function: ease-in-out;
+///    -webkit-animation-duration: 1s;
+///    -moz-animation-duration: 1s;
+///    -o-animation-duration: 1s;
+///    animation-duration: 1s;
+///    -webkit-animation-iteration-count: infinite;
+///    -moz-animation-iteration-count: infinite;
+///    -o-animation-iteration-count: infinite;
+///    animation-iteration-count: infinite;
+///  }
+///  
+///  .sway:nth-child(2) {
+///    -webkit-animation-delay: 0.08s;
+///    -moz-animation-delay: 0.08s;
+///    -o-animation-delay: 0.08s;
+///    animation-delay: 0.08s;
+///  }
+///  
+///  .sway:nth-child(3) {
+///    -webkit-animation-delay: 0.16s;
+///    -moz-animation-delay: 0.16s;
+///    -o-animation-delay: 0.16s;
+///    animation-delay: 0.16s;
+///  }
+///  
+///  .sway:nth-child(4) {
+///    -webkit-animation-delay: 0.24s;
+///    -moz-animation-delay: 0.24s;
+///    -o-animation-delay: 0.24s;
+///    animation-delay: 0.24s;
+///  }
+///  
+///  .sway:nth-child(5) {
+///    -webkit-animation-delay: 0.32s;
+///    -moz-animation-delay: 0.32s;
+///    -o-animation-delay: 0.32s;
+///    animation-delay: 0.32s;
+///  }
+///  
+///  @-webkit-keyframes sway {
+///    0% {
+///      -webkit-transform: rotate(0deg) translateX(0);
+///    }
+///    20% {
+///      -webkit-transform: rotate(0deg) translateX(0);
+///    }
+///    40% {
+///      -webkit-transform: rotate(10deg)  translateX(-10%);
+///    }
+///    60% {
+///      -webkit-transform: rotate(-10deg) translateX(10%);
+///    }
+///    80% {
+///      -webkit-transform: rotate(0deg) translateX(0);
+///    }
+///    100% {
+///      -webkit-transform: rotate(0deg) translateX(0);
+///    }
+///  }
+///  
+///  @-moz-keyframes sway {
+///    0% {
+///      -moz-transform: rotate(0deg) translateX(0);
+///    }
+///    20% {
+///      -moz-transform: rotate(0deg) translateX(0);
+///    }
+///    40% {
+///      -moz-transform: rotate(10deg)  translateX(-10%);
+///    }
+///    60% {
+///      -moz-transform: rotate(-10deg) translateX(10%);
+///    }
+///    80% {
+///      -moz-transform: rotate(0deg) translateX(0);
+///    }
+///    100% {
+///      -moz-transform: rotate(0deg) translateX(0);
+///    }
+///  }
+///  
+///  @-o-keyframes sway {
+///    0% {
+///      -o-transform: rotate(0deg) translateX(0);
+///    }
+///    20% {
+///      -o-transform: rotate(0deg) translateX(0);
+///    }
+///    40% {
+///      -o-transform: rotate(10deg)  translateX(-10%);
+///    }
+///    60% {
+///      -o-transform: rotate(-10deg) translateX(10%);
+///    }
+///    80% {
+///      -o-transform: rotate(0deg) translateX(0);
+///    }
+///    100% {
+///      -o-transform: rotate(0deg) translateX(0);
+///    }
+///  }
+///  
+///  @keyframes sway {
+///    0% {
+///      transform: rotate(0deg) translateX(0);
+///    }
+///    20% {
+///      transform: rotate(0deg) translateX(0);
+///    }
+///    40% {
+///      transform: rotate(10deg)  translateX(-10%);
+///    }
+///    60% {
+///      transform: rotate(-10deg) translateX(10%);
+///    }
+///    80% {
+///      transform: rotate(0deg) translateX(0);
+///    }
+///    100% {
+///      transform: rotate(0deg) translateX(0);
+///    }
+///  }
+
+@mixin sway($amount:15,$easing:ease,$duration:2.5s,$staggerCount:5) {
+
+	.sway{
+
+		@include animation(sway,$easing,$duration,$staggerCount,0.08s,infinite);
+	}
+
+	$sway-stops : (
+		0%   : "rotate(0deg) translateX(0)",
+		20%  : "rotate(0deg) translateX(0)",
+		40%  : "rotate(#{$amount}deg)  translateX(-#{$amount}%)",
+		60%  : "rotate(-#{$amount}deg) translateX(#{$amount}%)",
+		80%  : "rotate(0deg) translateX(0)",
+		100% : "rotate(0deg) translateX(0)"
+	);
+
+	@include transformKeyframes(sway,$sway-stops);
+}
+
 /// Add classes for a flipping card effect.
 /// Argumants allow you to control the flip axis and duration of the animation.
 /// @name flipClass

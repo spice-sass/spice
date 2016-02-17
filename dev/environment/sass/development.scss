@@ -1,12 +1,5 @@
 @import "../../src/spice";
-@include normalise;
-@include containerClass(1100px);
-@include googleFont('source-sans',body,300);
-@include googleFont('roboto',h1 h2 h3 h4 h5 h6,600);
-//@include headerSizes(40,20);
 
 
-body{
-
-	@include verticalRhythm;
-}
+@include flatButton('flat',$col-pomegranate);
+@include sway(10,ease-in-out,1s);
