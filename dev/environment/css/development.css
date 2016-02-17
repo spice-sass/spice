@@ -130,10 +130,10 @@ button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:afte
 
 @-webkit-keyframes sway {
   0% {
-    -webkit-transform: rotate(0deg)   translateX(0);
+    -webkit-transform: rotate(0deg) translateX(0);
   }
   20% {
-    -webkit-transform: rotate(0deg)   translateX(0);
+    -webkit-transform: rotate(0deg) translateX(0);
   }
   40% {
     -webkit-transform: rotate(10deg)  translateX(-10%);
@@ -142,19 +142,19 @@ button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:afte
     -webkit-transform: rotate(-10deg) translateX(10%);
   }
   80% {
-    -webkit-transform: rotate(0deg)   translateX(0);
+    -webkit-transform: rotate(0deg) translateX(0);
   }
   100% {
-    -webkit-transform: rotate(0deg)   translateX(0);
+    -webkit-transform: rotate(0deg) translateX(0);
   }
 }
 
 @-moz-keyframes sway {
   0% {
-    -moz-transform: rotate(0deg)   translateX(0);
+    -moz-transform: rotate(0deg) translateX(0);
   }
   20% {
-    -moz-transform: rotate(0deg)   translateX(0);
+    -moz-transform: rotate(0deg) translateX(0);
   }
   40% {
     -moz-transform: rotate(10deg)  translateX(-10%);
@@ -163,19 +163,19 @@ button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:afte
     -moz-transform: rotate(-10deg) translateX(10%);
   }
   80% {
-    -moz-transform: rotate(0deg)   translateX(0);
+    -moz-transform: rotate(0deg) translateX(0);
   }
   100% {
-    -moz-transform: rotate(0deg)   translateX(0);
+    -moz-transform: rotate(0deg) translateX(0);
   }
 }
 
 @-o-keyframes sway {
   0% {
-    -o-transform: rotate(0deg)   translateX(0);
+    -o-transform: rotate(0deg) translateX(0);
   }
   20% {
-    -o-transform: rotate(0deg)   translateX(0);
+    -o-transform: rotate(0deg) translateX(0);
   }
   40% {
     -o-transform: rotate(10deg)  translateX(-10%);
@@ -184,19 +184,19 @@ button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:afte
     -o-transform: rotate(-10deg) translateX(10%);
   }
   80% {
-    -o-transform: rotate(0deg)   translateX(0);
+    -o-transform: rotate(0deg) translateX(0);
   }
   100% {
-    -o-transform: rotate(0deg)   translateX(0);
+    -o-transform: rotate(0deg) translateX(0);
   }
 }
 
 @keyframes sway {
   0% {
-    transform: rotate(0deg)   translateX(0);
+    transform: rotate(0deg) translateX(0);
   }
   20% {
-    transform: rotate(0deg)   translateX(0);
+    transform: rotate(0deg) translateX(0);
   }
   40% {
     transform: rotate(10deg)  translateX(-10%);
@@ -205,9 +205,9 @@ button.flat[class^="block-icon-"]:after, button.flat[class*=" block-icon-"]:afte
     transform: rotate(-10deg) translateX(10%);
   }
   80% {
-    transform: rotate(0deg)   translateX(0);
+    transform: rotate(0deg) translateX(0);
   }
   100% {
-    transform: rotate(0deg)   translateX(0);
+    transform: rotate(0deg) translateX(0);
   }
 }
