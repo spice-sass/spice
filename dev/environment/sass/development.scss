@@ -1,5 +1,17 @@
 @import "../../src/spice";
+@include normalise; 
 
+body{
+
+	padding-top:300px;
+	@include fullScreen;
+}
+
+#example{
+	@include centre;
+}
 
 @include flatButton('flat',$col-pomegranate);
-@include sway(10,ease-in-out,1s);
+@include bounceFlip();
+@include sway();
+
