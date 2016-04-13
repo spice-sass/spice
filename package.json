@@ -27,8 +27,6 @@
   "devDependencies": {
     "bootcamp": "^1.1.7",
     "express": "^4.13.3",
-    "grunt": "^0.4.5",
-    "grunt-contrib-sass": "^0.8.1",
     "gulp": "^3.9.0",
     "gulp-bump": "^1.0.0",
     "gulp-clean": "0.3.1",
