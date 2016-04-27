@@ -244,6 +244,19 @@ $palette: (
 	}
 }
 
+@function socialMedia($colour) {
+
+	@if map-has-key($socialColours, $colour) {
+	    $colour: map-get($socialColours, $colour);
+	} @else {
+	    @if type-of($colour) != colour {
+	      	@error "Invalid colour name: `#{$colour}`.";
+	    }
+ 	}
+
+  @return $colour;
+}
+
 
 
 
