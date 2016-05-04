@@ -244,17 +244,36 @@ $palette: (
 	}
 }
 
-@function socialMedia($colour) {
 
-	@if map-has-key($socialColours, $colour) {
-	    $colour: map-get($socialColours, $colour);
+// ------------------------------------------------------
+
+/// Function for adding brand colur hex values for commonly used social platforms.
+/// @name socialMedia
+/// @group colours
+/// @param {String} platform [] The social media brand colour e.g. 'facebook' 
+/// @example scss - function
+///  button.facebook{
+///  	color:white;
+///  	background-color : socialMedia('facebook');
+///  }
+/// @example css - Output
+///  button.facebook {
+///    color: white;
+///    background-color: #3b5998;
+///  }
+
+
+@function socialMedia($platform) {
+
+	@if map-has-key($socialColours, $platform) {
+	    $platform: map-get($socialColours, $platform);
 	} @else {
-	    @if type-of($colour) != colour {
-	      	@error "Invalid colour name: `#{$colour}`.";
+	    @if type-of($platform) != colour {
+	      	@error "Invalid colour name: `#{$platform}`.";
 	    }
  	}
 
-  @return $colour;
+  @return $platform;
 }
 
 

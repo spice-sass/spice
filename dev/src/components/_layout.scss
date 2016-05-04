@@ -188,7 +188,6 @@
 }
 
 
-
 // ------------------------------------------------------
 
 /// Absolutely position an element to the nearest releatively positioned ancestor with this mixin.
@@ -198,6 +197,7 @@
 /// @name fitContainer
 /// @group Layout
 /// @param {css box model} boxmodel [0px] Css box model shorthand
+/// @param {String} position [absolute] Position property | absolute | fixed
 /// @example scss - Include
 ///  .main{
 ///
@@ -227,56 +227,63 @@
 ///      left: 0px;
 ///  }
 
-@mixin fitContainer($boxmodel:0px){
+@mixin fitContainer($boxmodel:0px,$position:absolute){
 
-	position:absolute;
+	
+	@if $position == 'absolute' or $position == 'fixed'{
+		
+		position:$position;
 
-	@if length($boxmodel) == 1{
+		@if length($boxmodel) == 1{
 
-		top:#{$boxmodel};
-		right:#{$boxmodel};
-		bottom:#{$boxmodel};
-		left:#{$boxmodel};
-	}
-
-	@if length($boxmodel) == 2{
-
-		top:nth($boxmodel,1);
-		right:nth($boxmodel,2);
-		bottom:nth($boxmodel,1);
-		left:nth($boxmodel,2);
-	}
-
-	@if length($boxmodel) == 3{
-
-		top:nth($boxmodel,1);
-		right:nth($boxmodel,2);
-		bottom:nth($boxmodel,3);
-		left:nth($boxmodel,2);
-	}
-
-	@if length($boxmodel) == 4{
-
-		top:nth($boxmodel,1);
-		right:nth($boxmodel,2);
-		bottom:nth($boxmodel,3);
-		left:nth($boxmodel,4);
-	}
-
-	@if length($boxmodel) > 4{
-		@error "too many values passed as arguments for the box model - 4 value maximun array. e.g. 10px 20px 30px 10px."
-	}
-
-	@for $i from 1 through length($boxmodel){
-
-		$entry : nth($boxmodel,$i);
-
-		@if type-of($entry) != number and $entry != "auto" {
-			@error "#{$entry} is not a valid value for the fitContainer box model. Please use a pixel, percentage or em value.";
+			top:#{$boxmodel};
+			right:#{$boxmodel};
+			bottom:#{$boxmodel};
+			left:#{$boxmodel};
 		}
+
+		@if length($boxmodel) == 2{
+
+			top:nth($boxmodel,1);
+			right:nth($boxmodel,2);
+			bottom:nth($boxmodel,1);
+			left:nth($boxmodel,2);
+		}
+
+		@if length($boxmodel) == 3{
+
+			top:nth($boxmodel,1);
+			right:nth($boxmodel,2);
+			bottom:nth($boxmodel,3);
+			left:nth($boxmodel,2);
+		}
+
+		@if length($boxmodel) == 4{
+
+			top:nth($boxmodel,1);
+			right:nth($boxmodel,2);
+			bottom:nth($boxmodel,3);
+			left:nth($boxmodel,4);
+		}
+
+		@if length($boxmodel) > 4{
+			@error "too many values passed as arguments for the box model - 4 value maximun array. e.g. 10px 20px 30px 10px."
+		}
+
+		@for $i from 1 through length($boxmodel){
+
+			$entry : nth($boxmodel,$i);
+
+			@if type-of($entry) != number and $entry != "auto" {
+				@error "#{$entry} is not a valid value for the fitContainer box model. Please use a pixel, percentage or em value.";
+			}
+		}
+
+	}
+	@else {
+		@error "#{$position} is not a valid value for 'position.' please use absolute or fixed"
 	}
 }
-
 
 
 // ------------------------------------------------------

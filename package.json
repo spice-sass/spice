@@ -1,6 +1,6 @@
 {
   "name": "spice-sass",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The sass library for tasty web interfaces. The idea behind it is simple - add as much spice as you like!",
   "main": "index.js",
   "repository": {
