@@ -5,11 +5,19 @@ body{
 
 	padding-top:300px;
 	@include fullScreen;
-	color : socialMedia('facebook');
+}
+
+button{
+	color : contrast(socialMedia('facebook'),45%);
+	background-color : socialMedia('facebook');
 }
 
 #example{
-	@include centre;
+	@include fitContainer(0 0 0 0,fixed);
 }
 
 
+button.facebook{
+	color:white;
+	background-color : socialMedia('facebook');
+}

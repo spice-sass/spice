@@ -198,6 +198,7 @@
 /// @name fitContainer
 /// @group Layout
 /// @param {css box model} boxmodel [0px] Css box model shorthand
+/// @param {String} position [absolute] Position property | absolute | fixed
 /// @example scss - Include
 ///  .main{
 ///
@@ -227,9 +228,14 @@
 ///      left: 0px;
 ///  }
 
-@mixin fitContainer($boxmodel:0px){
+@mixin fitContainer($boxmodel:0px,$position:absolute){
 
-	position:absolute;
+	
+	@if $position not 'absolute' or $position not 'fixed'{
+		@error "#{$position} is not a valid value for 'position.' please use 'absolute' or 'fixed'"
+	}
+
+	position:$position;
 
 	@if length($boxmodel) == 1{
 
