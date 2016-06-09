@@ -676,7 +676,7 @@
 }
 
 @mixin gridAddMargin($n,$gutter-width:$grid-gutter-width){
-	&:nth-child(#{$limit}n + #{$limit}){
+	&:nth-child(#{$n}n + #{$n}){
 		margin-right:$gutter-width;
 	}
 }
