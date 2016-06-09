@@ -674,3 +674,9 @@
 		margin-right:0;
 	}
 }
+
+@mixin gridAddMargin($n,$gutter-width:$grid-gutter-width){
+	&:nth-child(#{$limit}n + #{$limit}){
+		margin-right:$gutter-width;
+	}
+}
