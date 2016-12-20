@@ -3,7 +3,7 @@ var express = require('express'),
 	fs      = require('fs');    
 
 var app = express();
-var port = 3000;
+var port = 4000;
 var server = app.listen(port);
 
 
@@ -14,7 +14,7 @@ var server = app.listen(port);
 
 
 app.get('/', function(req, res) {
-	res.sendfile('./dev/environment/index.html');
+	res.sendFile('./dev/environment/index.html');
 });
 
 
