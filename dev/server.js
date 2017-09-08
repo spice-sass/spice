@@ -14,7 +14,7 @@ var server = app.listen(port);
 
 
 app.get('/', function(req, res) {
-	res.sendFile('./dev/environment/index.html');
+	res.sendFile(__dirname+'/environment/index.html');
 });
 
 

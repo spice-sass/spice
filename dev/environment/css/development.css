@@ -78,27 +78,56 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 0 auto;
 }
 
-body {
-  padding-top: 300px;
-  position: relative;
-  width: 100%;
-  height: 100vh;
+body.light-theme {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
-button {
-  color: #cdd7ec;
-  background-color: #3b5998;
+body.light-theme p, body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme h4, body.light-theme h5, body.light-theme h6 {
+  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
 }
 
-#example {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+body.light-theme h1 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 40px;
+  font-size: 2.5rem;
 }
 
-button.facebook {
-  color: white;
-  background-color: #3b5998;
+body.light-theme h2 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 36px;
+  font-size: 2.25rem;
+}
+
+body.light-theme h3 {
+  line-height: 56px;
+  line-height: 3.5rem;
+  font-size: 32px;
+  font-size: 2rem;
+}
+
+body.light-theme h4 {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 28px;
+  font-size: 1.75rem;
+}
+
+body.light-theme h5 {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+body.light-theme h6 {
+  line-height: 28px;
+  line-height: 1.75rem;
+  font-size: 20px;
+  font-size: 1.25rem;
 }

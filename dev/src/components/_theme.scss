@@ -277,5 +277,10 @@ $palette: (
 }
 
 
+@mixin lightTheme() {
+	@include normalise;
 
-
+	body.light-theme {
+		@include verticalRhythm;
+	}
+}
