@@ -123,15 +123,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-.open-sans, body, light-theme, textarea, input, button {
+.open-sans, body, light-theme, textarea, body.light-theme select, body.light-theme input[type=text], body.light-theme input[type=email], body.light-theme input[type=password], body.light-theme input[type=url], body.light-theme input[type=tel], body.light-theme input[type=search], body.light-theme input[type=date], body.light-theme input[type=time], body.light-theme input[type=number], body.light-theme input.text, body.light-theme form input[type=text], body.light-theme form input[type=email], body.light-theme form input[type=password], body.light-theme form input[type=url], body.light-theme form input[type=tel], body.light-theme form input[type=search], body.light-theme form input[type=date], body.light-theme form input[type=time], body.light-theme form input[type=number], body.light-theme form input.text, body.light-theme form select, input, button {
   font-family: Open Sans, arial, sans-serif;
 }
 
 body.light-theme {
+  color: #808080;
+  background-color: #e9e9e9;
   line-height: 28px;
   line-height: 1.75rem;
   font-size: 16px;
   font-size: 1rem;
+}
+
+body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme h4, body.light-theme h5, body.light-theme h6 {
+  color: #444;
 }
 
 body.light-theme p, body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme h4, body.light-theme h5, body.light-theme h6 {
@@ -192,27 +198,150 @@ body.light-theme a {
 }
 
 body.light-theme a:link {
-  color: #333;
+  color: #C0392B;
 }
 
 body.light-theme a:visited {
-  color: #FFF;
+  color: #2C3E50;
 }
 
 body.light-theme a:hover {
-  color: #289e83;
+  color: #E74C3C;
 }
 
 body.light-theme a:active {
-  color: #1b8898;
+  color: #E74C3C;
 }
 
-.centre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+body.light-theme .primary {
+  color: #C0392B;
+}
+
+body.light-theme .primary-bg {
+  background-color: #C0392B;
+}
+
+body.light-theme .primary-border {
+  border-color: #C0392B;
+}
+
+body.light-theme .primary-contrast {
+  color: #f7ddda;
+}
+
+body.light-theme .secondary {
+  color: #2C3E50;
+}
+
+body.light-theme .secondary-bg {
+  background-color: #2C3E50;
+}
+
+body.light-theme .secondary-border {
+  border-color: #2C3E50;
+}
+
+body.light-theme .secondary-contrast {
+  color: #9ab1c7;
+}
+
+body.light-theme table, body.light-theme caption, body.light-theme tbody, body.light-theme tfoot, body.light-theme thead, body.light-theme tr, body.light-theme th, body.light-theme td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body.light-theme table {
+  width: 100%;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+body.light-theme table th, body.light-theme table td {
+  margin: 0;
+  padding: 10px;
+  line-height: 1.5;
+  vertical-align: top;
+  display: table-cell;
+}
+
+body.light-theme table tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+body.light-theme table tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+body.light-theme table th {
+  font-weight: 600;
+  color: #1a1a1a;
+  border-color: #dfdfdf;
+}
+
+body.light-theme table td {
+  border-top-width: 1px;
+  border-style: solid;
+  color: #333;
+  border-color: #dfdfdf;
+}
+
+body.light-theme table tbody tr:nth-child(odd) {
+  background-color: #fdfdfd;
+}
+
+body.light-theme textarea, body.light-theme select, body.light-theme input[type=text], body.light-theme input[type=email], body.light-theme input[type=password], body.light-theme input[type=url], body.light-theme input[type=tel], body.light-theme input[type=search], body.light-theme input[type=date], body.light-theme input[type=time], body.light-theme input[type=number], body.light-theme input.text, body.light-theme form input[type=text], body.light-theme form input[type=email], body.light-theme form input[type=password], body.light-theme form input[type=url], body.light-theme form input[type=tel], body.light-theme form input[type=search], body.light-theme form input[type=date], body.light-theme form input[type=time], body.light-theme form input[type=number], body.light-theme form input.text, body.light-theme form select {
+  background-color: #f8f8f8;
+  border-color: #dfdfdf;
+  color: #333;
+}
+
+body.light-theme textarea:hover, body.light-theme select:hover, body.light-theme input[type=text]:hover, body.light-theme input[type=email]:hover, body.light-theme input[type=password]:hover, body.light-theme input[type=url]:hover, body.light-theme input[type=tel]:hover, body.light-theme input[type=search]:hover, body.light-theme input[type=date]:hover, body.light-theme input[type=time]:hover, body.light-theme input[type=number]:hover, body.light-theme input.text:hover {
+  border-color: #c5c5c5;
+}
+
+body.light-theme textarea:focus, body.light-theme select:focus, body.light-theme input[type=text]:focus, body.light-theme input[type=email]:focus, body.light-theme input[type=password]:focus, body.light-theme input[type=url]:focus, body.light-theme input[type=tel]:focus, body.light-theme input[type=search]:focus, body.light-theme input[type=date]:focus, body.light-theme input[type=time]:focus, body.light-theme input[type=number]:focus, body.light-theme input.text:focus {
+  color: black;
+  border-color: #C0392B;
+}
+
+body.light-theme form label {
+  display: block;
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+body.light-theme form textarea, body.light-theme form input[type=text], body.light-theme form input[type=email], body.light-theme form input[type=password], body.light-theme form input[type=url], body.light-theme form input[type=tel], body.light-theme form input[type=search], body.light-theme form input[type=date], body.light-theme form input[type=time], body.light-theme form input[type=number], body.light-theme form input.text, body.light-theme form select {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  outline: none;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+body.light-theme form input:focus {
+  outline: none;
+}
+
+body.light-theme form fieldset {
+  width: 100%;
 }
