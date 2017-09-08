@@ -7,12 +7,663 @@
 
 	<body class="light-theme">
 		
-		<div id="example" class="container">
+		<article class="container">
+		<header>
+		<h1>oli.jp style guide</h1>
 
-		  	<button class="flat bounce-flip">click</button>
-		  	<button class="flat sway">click</button>
+		<ul class="meta semantic-list">
+		<li><time datetime="2011-03-31T11:23:02+09:00" pubdate>March 31, <a href="/2011/">2011</a></time></li>
 
+		</ul>
+		</header>
+
+
+
+		<nav id="nav" class="in-page">
+		<h2>In-Page links <a class="permalink" href="#nav">#</a></h2>
+		<ol>
+		<li><a href="#intro">Introduction</a></li>
+		<li><a href="#setup">Assumptions <abbr title="and">&amp;</abbr> Setup</a></li>
+		<li><a href="#block">Class-based block styles</a>
+		<ol>
+		<li><a href="#callouts">Callouts</a></li>
+		<li><a href="#code">Code</a></li>
+		<li><a href="#sidenote">Marginalia</a></li>
+		<li><a href="#browser-support">Browser support table</a></li>
+		<li><a href="#columns">Columns</a></li>
+		<li><a href="#positioning">Block positioning</a></li>
+		</ol>
+		</li>
+		<li><a href="#default-styles">Default element styles</a>
+		<ol>
+		<li><a href="#headings">Headings</a></li>
+		<li><a href="#table">Tables</a></li>
+		<li><a href="#img">Images</a></li>
+		<li><a href="#figure">Figures</a></li>
+		<li><a href="#dl">Definition lists</a></li>
+		<li><a href="#phrasing">Phrasing elements</a></li>
+		</ol>
+		</li>
+		<li><a href="#other">Other styles</a>
+		<ol>
+		<li><a href="#in-page-nav">In-page navigation</a></li>
+		<li><a href="#metadata">Metadata</a></li>
+		<li><a href="#insdel">Changed blocks</a></li>
+		</ol>
+		</li>
+		</ol>
+		</nav>
+
+		<section id="intro">
+		<h2>Introduction <a class="permalink" href="#intro">#</a></h2>
+
+		<p>This is a personal style guide for <a href="http://oli.jp/" title="">oli.jp</a>. I’m publishing it to share and for feedback, and also because I <code>&lt;strong&gt;</code>ly believe <strong>you should build a style guide for <em>every</em> site you make</strong>. Hopefully this one will give you a head start.</p>
+		<p>→ <a href="http://oli.jp/css/main.css">My CSS stylesheet is here</a>.</p>
+		</section><!-- /#intro -->
+
+		<section id="setup">
+		<h2>Assumptions <abbr title="and">&amp;</abbr> Setup <a class="permalink" href="#setup">#</a></h2>
+
+		<ul>
+		<li>add extra styling directly to head <code>&lt;style&gt;</code>, or add per block, targeted by id and in <code>&lt;style scoped&gt;</code> e.g <code>&lt;table&gt;</code> code like <code>#testing-results .col1, #testing-results .col2 {width: 33%;}</code></li>
+		<li>UTF8 and attributes quoted so only these characters need to be entities: “&amp;” <code>&amp;amp;</code> and “&lt;” <code>&amp;lt;</code> (I do “>” <code>&amp;gt;</code> as well via snippets)</li>
+		<li>main content is inside <code>&lt;article&gt;</code></li>
+		<li>the center column is 60%, with min-width = 400px (667px total), and max-width = 672px (1120px total)</li>
+		<li>the baseline grid is based on 24px, which = line-height (16px/1.5 default font size)</li>
+		<li>My RadiantCMS weblog uses these custom tags
+		<ul><li><code>&lt;r:comment&gt;…&lt;/r:comment&gt;</code> — comments that won’t be in HTML source</li>
+		<li><code>&lt;r:code&gt;…&lt;/r:code&gt;</code> — for blocks of code so I don’t have to work with entitied code samples (also where formatting comes from). Not for inline code samples.</li>
+		</ul>
+		</li>
+		<li><code>@font-face</code> in effect for headings and code (hopefully won’t be too slow). Deliberately not using for body copy until <a href="https://bugs.webkit.org/show_bug.cgi?id=25207">WebKit fixes bug 25207</a></li>
+		</ul>
+		</section><!-- /#setup -->
+
+		<section id="block">
+		<h2>Class-based block styles <a class="permalink" href="#block">#</a></h2>
+
+		<section id="callouts">
+		<h3>Callouts <a class="permalink" href="#callouts">#</a></h3>
+
+		<p>These are highlighted (block-level) sections of content:</p>
+
+		<ul>
+		<li><code>class="callout"</code> — white box for long asides or content that’s not suitable for marginalia, but not important enough for <code>callout highlight-block</code>; use for diversions/backstory</li>
+		<li><code>class="callout highlight-block"</code> — white box with gold border; use for vital content such as a main points summary or disambiguation guide, kind of like a block-level <code>&lt;strong&gt;</code></li>
+		<li><code>class="callout note-block"</code> — pinkish box with pink border and italics; use for author notes when drafting (remove before publishing) as a visual todo reminder</li>
+		<li><code>class="callout warning-block"</code> — white box with red border; use for serious warnings</li>
+		<li>Note <code>&lt;blockquote&gt;</code>, <code>&lt;table&gt;</code> and <code>&lt;img&gt;</code> have similar styles by default (add <code>.clean</code> to container to turn off block <code>&lt;img&gt;</code> styling, and <code>.cleaner</code> to disable border and padding)</li>
+		</ul>
+
+		<section id="callout" class="callout">
+		<h4><code>class="callout"</code> <a class="permalink" href="#callout">#</a></h4>
+		<p>In general, use <code>callout highlight-block</code> instead. This style can be used for an aside that’s more important than or too long for marginalia, but not something in need of emphasis.</p>
+		<ol>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		</ol>
+		</section>
+
+		<section id="highlight" class="callout highlight-block">
+		<h4><code>class="callout highlight-block"</code> <a class="permalink" href="#highlight">#</a></h4>
+		<p>Use this style to emphasise crucial blocks of content (ref: <a href="http://oli.jp/2009/html5-structure1/#choosing" title="HTML5 structure—div, section &amp; article ❧ Oli.jp (@boblet)">choosing between <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;div&gt;</code></a>, Chapter 3)</p>
+		<ul>
+		<li>Able</li>
+		<li>Miss Baker</li>
+		<li>Laika</li>
+		</ul>
+		</section>
+
+		<section id="note" class="callout note-block">
+		<h4><code>class="callout note-block"</code> <a class="permalink" href="#note">#</a></h4>
+		<p>Use this style for author notes — text is italicised by default</p>
+		</section>
+
+		<section id="warning" class="callout warning-block">
+		<h4><code>class="callout warning-block"</code> <a class="permalink" href="#warning">#</a></h4>
+		<p>Use this style to warn the reader about serious problems</p>
+		<table>
+			<caption>An example table</caption>
+			<thead>
+				<tr>
+					<th scope="col">Column header</th>
+					<th scope="col">Another header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Row header</th>
+					<td>Some data</td>
+				</tr>
+			</tbody>
+		</table>
+		</section>
+
+		<blockquote id="blockquote">
+		<h4><code>&lt;blockquote&gt;</code> <a class="permalink" href="#blockquote">#</a></h4>
+		<p>Use <code>&lt;blockquote&gt;</code> for including long-form content from other sources. Highlight important text using <code>&lt;mark&gt;</code>. In addition to text in <code>&lt;p&gt;</code>, blockquotes can contain lists, tables etc. Add a citation using <code>&lt;footer&gt;&lt;cite&gt;&lt;a href="link"&gt;Citation source&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;</code></p>
+		<footer><cite><a href="http://oli.jp/2011/style-guide.html" title="Style Guide ❧ Oli.jp (@boblet)">oli.jp style guide</a></cite></footer>
+		</blockquote>
+		</section><!-- /#callout -->
+
+		<section id="code">
+		<h3>Code <a class="permalink" href="#code">#</a></h3>
+
+		<p>Use a 2 space-per-tab indent. Use <code>&lt;mark&gt;</code> to indicate relevant text (formatted as bold). This is what a standard code block looks like (<code>&lt;pre&gt;&lt;code&gt;</code>)</p>
+
+		<pre><code>&lt;p&gt;This is what a standard code block looks like (<mark>&lt;pre&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;</mark>)&lt;/p&gt;</code></pre>
+
+		<p>This is the same block with <code>.callout</code> applied</p>
+
+		<pre class="callout"><code>&lt;p&gt;This is what a standard code block with .callout looks like (&lt;pre <mark>class="callout"</mark>&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;)&lt;/p&gt;</code></pre>
+
+		<p>The formatting plugin (<code>&lt;r:code&gt;</code>) makes code look like this (no need to escape anything, but no ability to use <code>&lt;mark&gt;</code> in <code>&lt;code&gt;</code>, which is styled bold outside the code formatting plugin.)</p>
+
+		<img src="/img/styleguide/formatted-code.png" alt="Formatted Code">
+
+		<p>On oli.jp the following sample will be auto-formatted:</p>
+
+		<code><pre class="pastels_on_dark"><span class="HtmlTag"><span class="HtmlTag">&lt;</span><span class="HtmlTag">p</span><span class="HtmlTag">&gt;</span></span>This is what a standard code block using the formatting plugin looks like (<span class="HtmlTag"><span class="HtmlTag">&lt;</span><span class="HtmlTag">code</span><span class="HtmlTag">&gt;</span></span>r:code<span class="HtmlTag"><span class="HtmlTag">&lt;/</span><span class="HtmlTag">code</span><span class="HtmlTag">&gt;</span></span>)<span class="HtmlTag"><span class="HtmlTag">&lt;/</span><span class="HtmlTag">p</span><span class="HtmlTag">&gt;</span></span>
+		</pre></code>
+
+		</section><!-- /#code -->
+
+		<section id="sidenote">
+		<h3>Aside — <code>sidenote</code> marginalia <a class="permalink" href="#sidenote">#</a></h3>
+
+		<aside class="sidenote"><p>Example <code>&lt;aside class="sidenote"&gt;</code></p></aside>
+		<p>An <code>&lt;aside&gt;</code> in the right margin for minor content, notes, definitions, reminders or any other short piece of text that’s an addendum and not main content. For longer runs of text consider <code>&lt;aside class="callout"&gt;</code>, which appears in the main column.</p>
+		<pre><code>&lt;aside class=&quot;sidenote&quot;&gt;&lt;p&gt;…&lt;/p&gt;&lt;/aside&gt;</code></pre>
+		<p>I place it in the source before the thing I want to describe so it’s level once floated right</p>
+		</section><!-- /#sidenote -->
+
+		<section id="browser-support">
+		<h3>Browser support table (and vendor prefix code) <a class="permalink" href="#browser-support">#</a></h3>
+
+		<p>Basically just a table (aping <a href="http://caniuse.com/" title="When can I use... Support tables for HTML5, CSS3, etc">caniuse.com</a>: check <a href="https://developer.mozilla.org/En">Mozilla Developer Network</a> links for first added dates), but adding the class <code>table.browser-support</code> formats vendor prefixes. Use <code>.warning</code> on <code>&lt;td&gt;</code> to color version number red, then add table note numbers with <code>&lt;sup&gt;1&lt;/sup&gt;</code> etc manually. Combine these with <code>&lt;ol class="key"&gt;</code> and make sure your <code>&lt;li&gt;</code> order matches the table notes ;-) These table notes should refer/link to further explanation. I’m using &lt;abbr title="not supported"&gt;-&lt;/abbr&gt; for the unsupported dash. Finally I’ve made <code>&lt;th&gt;</code> 30% wide (to stop <code>&lt;td&gt;</code> from wrapping for no reason), and <code>&lt;code&gt;</code> in <code>&lt;th&gt;</code> has <code>no-wrap</code>.</p>
+
+		<p>There’s also an aside style <code>.vendor-prefix</code> for a copy-paste code block to the right of the table (needed?).</p>
+
+		<aside class="vendor-prefix"><pre><code>-webkit-box-sizing: border-box;</code>
+		<code>-moz-box-sizing: border-box;</code>
+		<code>box-sizing: border-box;</code></pre></aside>
+
+		<table class="browser-support">
+		<caption>Table 2: Browser support for <code>box-sizing</code></caption>
+		<thead>
+		<tr>
+			<th scope="col"><abbr title="Internet Explorer">IE</abbr></th>
+			<th scope="col">Mozilla</th>
+			<th scope="col">Safari</th>
+			<th scope="col">Chrome</th>
+			<th scope="col">Opera</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td class="warning">8.0<sup>1</sup> <code>-ms-</code></td>
+			<td>1.0 <code>-moz-</code><br />4.0ß</td>
+			<td>3.0 <code>-webkit-</code></td>
+			<td>5.0 <code>-webkit-</code></td>
+			<td>7.0 <code>-o-</code></td>
+		</tr>
+		</tbody>
+		</table>
+
+		<ol class="key">
+		<li>IE 8 only supports discombobulation, not full transubstantiation. See <a>Black magicks</a> (relative link) for more info.</li>
+		</ol>
+
+		<p>Example table for multi-column layout information:</p>
+
+		<table class="browser-support wide">
+		<caption>Table 3: this table has the classes <code>.browser-support.wide</code></caption>
+		<thead>
+		<tr>
+			<th scope="col">Property</th>
+			<th scope="col"><abbr title="Internet Explorer">IE</abbr></th>
+			<th scope="col">Mozilla</th>
+			<th scope="col">Safari</th>
+			<th scope="col">Chrome</th>
+			<th scope="col">Opera</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row"><code>column-width</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td>1.5 <code>-moz-</code></td>
+			<td>3.0 <code>-webkit-</code></td>
+			<td>5.0 <code>-webkit-</code></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		<tr>
+			<th scope="row"><code>column-count</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td>1.5 <code>-moz-</code></td>
+			<td>3.0 <code>-webkit-</code></td>
+			<td>5.0 <code>-webkit-</code></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		<tr>
+			<th scope="row"><code>columns</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td><abbr title="not supported">-</abbr></td>
+			<td>3.0 <code>-webkit-</code></td>
+			<td>5.0 <code>-webkit-</code></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		<tr>
+			<th scope="row"><code>column-gap</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td>1.5 <code>-moz-</code></td>
+			<td>3.0 <code>-webkit-</code></td>
+			<td>5.0 <code>-webkit-</code></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		<tr>
+			<th scope="row"><code>column-rule</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td>3.5 <code>-moz-</code></td>
+			<td class="warning">3.0<sup>1</sup> <code>-webkit-</code></td>
+			<td class="warning">5.0<sup>1</sup> <code>-webkit-</code></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		<tr>
+			<th scope="row"><code>column-span</code></th>
+			<td><abbr title="not supported">-</abbr></td>
+			<td><abbr title="not supported">-</abbr></td>
+			<td><abbr title="not supported">-</abbr></td>
+			<td><abbr title="not supported">-</abbr></td>
+			<td><abbr title="not supported">-</abbr></td>
+		</tr>
+		</tbody>
+		</table>
+
+		<ol class="key">
+		<li>WebKit browsers (Safari and Chrome) don’t display a <code>column-rule</code> that’s wider than <code>column-gap</code> (<a href="https://bugs.webkit.org/show_bug.cgi?id=15553">ref</a>).</li>
+		</ol>
+
+		</section><!-- /#browser-support -->
+
+
+		<section id="columns">
+		<h3>Columns <a class="permalink" href="#columns">#</a></h3>
+
+		<p>If you’d like to do multicolumn text (I used it for a list of short terms); <code>class="column"</code> = 2 columns, <code>class="columns"</code> = 3 columns. They can also be used with <code>.callout</code> if you want.</p>
+
+		<ul class="column callout">
+		<li>one</li>
+		<li><strong>two columns</strong></li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+		</ul>
+
+		<ol class="columns">
+		<li>one</li>
+		<li>two</li>
+		<li><strong>three columns</strong></li>
+		<li>four</li>
+		<li>five</li>
+		</ol>
+
+		<ul class="columns callout">
+		<li>one</li>
+		<li>two</li>
+		<li><strong>three columns</strong></li>
+		<li>four</li>
+		<li>five</li>
+		</ul>
+		</section><!-- /#columns -->
+
+		<section id="positioning">
+		<h3>Basic block positioning <a class="permalink" href="#positioning">#</a></h3>
+
+		<p>Combine these basic classes to add images or examples into text</p>
+
+		<ul>
+		<li><code>.left</code> — float: left</li>
+		<li><code>.right</code> — float: right</li>
+		<li><code>.half</code> — width: 45%</li>
+		<li><code>.right.half</code> — automatically add a border on the left to separate</li>
+		<li><code>.aside.img</code> — float: right and clear: both</li>
+		<li><code>.group</code> — clearfix</li>
+		</ul>
+
+		<section id="positioning-ex">
+		<h4>Example — list plus image floated right inside <code>&lt;div class="group"&gt;</code> <a href="http://oli.jp/2009/html5-structure4/#article-page" title="HTML5 structure—HTML 4 and XHTML 1 to HTML5 ❧ Oli.jp (@boblet)">*</a> <a class="permalink" href="#positioning-ex">#</a></h4>
+		<div class="group">
+		<div id="article-page-layout" class="aside img">
+		<img src="/img/styleguide/article-page-layout.png" width="311" height="343" alt="Visual example of the semantic element nesting in the following list">
 		</div>
+
+		<ul>
+		<li>Page header (site name, logo, search…)</li>
+		<li>Main navigation</li>
+		<li>Main content (wrapper)
+		<ul>
+		<li>Article (main column)
+		<ul>
+		<li>Article title</li>
+		<li>Article metadata</li>
+		<li>Article content…</li>
+		<li>Article footer</li>
+		</ul>
+		</li>
+		<li>Sidebar
+		<ul>
+		<li>Sidebar title</li>
+		<li>Sidebar content…</li>
+		</ul>
+		</li>
+		</ul>
+		</li>
+		<li>Page Footer</li>
+		</ul>
+		</div>
+		</section><!-- /#positioning-ex -->
+
+		</section><!-- /#positioning -->
+
+		</section><!-- /#block -->
+
+		<section id="default-styles">
+		<h2>Default element styles <a class="permalink" href="#default-styles">#</a></h2>
+
+		<section id="headings">
+		<h3>Headings <a class="permalink" href="#headings">#</a></h3>
+
+		<p>Default sizes are:</p>
+
+		<ol class="semantic-list">
+		<li><code>&lt;h1&gt;</code> — 2em Museo Slab</li>
+		<li><code>&lt;h2&gt;</code> — 1.5em Museo Slab</li>
+		<li><code>&lt;h3&gt;</code> — 1.25em Museo Slab</li>
+		<li><code>&lt;h4&gt;</code> — 1.125em Helvetica Neue</li>
+		<li><code>&lt;h5&gt;</code> — 1em Helvetica Neue bold</li>
+		<li><code>&lt;h6&gt;</code> — 1em Helvetica Neue</li>
+		</ol>
+
+		<figure>
+		<h1><code>&lt;h1&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h1>
+		<p>text</p>
+		<h2><code>&lt;h2&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h2>
+		<p>text</p>
+		<h3><code>&lt;h3&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h3>
+		<p>text</p>
+		<h4><code>&lt;h4&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h4>
+		<p>text</p>
+		<h5><code>&lt;h5&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h5>
+		<p>text</p>
+		<h6><code>&lt;h6&gt;</code> level heading title (<i>italic</i>, <b>bold</b>)</h6>
+		<p>text</p>
+		</figure>
+
+		<p>Note that while I load Museo Sans and Museo Sans italic, I don’t use bold or bold italic fonts (to cut down page weight and because I don’t need them) — don’t use or they may be faked poorly by the browser.</p>
+		</section><!-- /#headings -->
+
+		<section id="table">
+		<h3>Default table style <a class="permalink" href="#table">#</a></h3>
+
+		<p>Tables are centered and based on the width of the content by default. For forcing full column width, or for larger tables that also use the margins, you can use:</p>
+		<ol class="semantic-list">
+		<li><code>.wide</code> — center column full width</li>
+		<li><code>.wider</code> — center column plus right margin</li>
+		<li><code>.widest</code> — center column plus both margins</li>
+		</ol>
+
+		<p>Note that <code>.wider</code> and <code>.widest</code> kill <code>.sidenote</code>, and all three will break <code>.callout</code> boxes. Don’t forget <code>&lt;thead&gt;</code>! Bonus points for using <code>scope="col|row"</code> ;-)</p>
+
+
+		<table>
+		<caption>Table with no width class applied</caption>
+		<thead>
+		<tr>
+		<th scope="col" class="pattern">Pattern</th>
+		<th scope="col" class="meaning">Meaning</th>
+		<th scope="col" class="described">Described in section</th>
+		<th scope="col" class="origin">CSS</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<th scope="row" class="pattern">*</th>
+		<td class="meaning">any element</td>
+		<td class="described"><a href="http://www.w3.org/TR/css3-selectors/#universal-selector">Universal selector</a></td>
+		<td class="origin">2</td>
+		</tr>
+		</tbody>
+		</table>
+
+		<table>
+		<caption>Table with no width class applied, but lots of content</caption>
+		<thead>
+		<tr>
+		<th scope="col" class="pattern">Pattern</th>
+		<th scope="col" class="meaning">Meaning</th>
+		<th scope="col" class="described">Described in section</th>
+		<th scope="col" class="origin">CSS</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<th scope="row" class="pattern">*</th>
+		<td class="meaning">any element</td>
+		<td class="described"><a href="http://www.w3.org/TR/css3-selectors/#universal-selector">Universal selector</a> Some extra text to demonstrate how table width works when there’s more than one line of content in a table cell</td>
+		<td class="origin">2</td>
+		</tr>
+		</tbody>
+		</table>
+
+
+		<table class="wide">
+		<caption>Table with <code>.wide</code></caption>
+		<thead>
+		<tr>
+		<th scope="col" class="pattern">Pattern</th>
+		<th scope="col" class="meaning">Meaning</th>
+		<th scope="col" class="described">Described in section</th>
+		<th scope="col" class="origin">CSS</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<th scope="row" class="pattern">*</th>
+		<td class="meaning">any element</td>
+		<td class="described"><a href="http://www.w3.org/TR/css3-selectors/#universal-selector">Universal selector</a></td>
+		<td class="origin">2</td>
+		</tr>
+		</tbody>
+		</table>
+
+		<table class="wider">
+		<caption>Table with <code>.wider</code></caption>
+		<thead>
+		<tr>
+		<th scope="col" class="pattern">Pattern</th>
+		<th scope="col" class="meaning">Meaning</th>
+		<th scope="col" class="described">Described in section</th>
+		<th scope="col" class="origin">CSS</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<th scope="row" class="pattern">*</th>
+		<td class="meaning">any element</td>
+		<td class="described"><a href="http://www.w3.org/TR/css3-selectors/#universal-selector">Universal selector</a></td>
+		<td class="origin">2</td>
+		</tr>
+		</tbody>
+		</table>
+
+		<table class="widest">
+		<caption>Table with <code>.widest</code></caption>
+		<thead>
+		<tr>
+		<th scope="col" class="pattern">Pattern</th>
+		<th scope="col" class="meaning">Meaning</th>
+		<th scope="col" class="described">Described in section</th>
+		<th scope="col" class="origin">CSS</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<th scope="row" class="pattern">*</th>
+		<td class="meaning">any element</td>
+		<td class="described"><a href="http://www.w3.org/TR/css3-selectors/#universal-selector">Universal selector</a></td>
+		<td class="origin">2</td>
+		</tr>
+		</tbody>
+		</table>
+
+		<p>Using document or scoped styles you can also control column widths, eg <code>#testing-results .col1, #testing-results .col2 {width: 33%;}</code></p>
+		</section><!-- /#table -->
+
+		<section id="img">
+		<h3>Default image style <a class="permalink" href="#img">#</a></h3>
+
+		<img src="/img/styleguide/hanami.jpg" width="500" height="350" alt="Hanami — cherry blossom viewing">
+		<p>block-level <code>&lt;img&gt;</code></p>
+
+		<img class="clean" src="/img/styleguide/hanami.jpg" width="125" alt="Hanami — cherry blossom viewing">
+		<p><code>&lt;img class="clean"&gt;</code> (no box shadow)</p>
+
+		<img class="cleaner" src="/img/styleguide/hanami.jpg" width="125" alt="Hanami — cherry blossom viewing">
+		<p><code>&lt;img class="cleaner"&gt;</code> — <code>.cleaner</code> removes border and padding</p>
+
+		<img class="cleaner wide" src="/img/styleguide/figure_9-28a.png" alt="Example image that’s wide enough to break the layout">
+		<p><code>&lt;img class="cleaner wide"&gt;</code> — <code>.wide</code> removes <code>max-width</code> (to <code>width: auto;</code>) so images larger than the content column won’t be scaled down</p>
+
+		<p><img src="/img/styleguide/hanami.jpg" width="125" alt="Hanami — cherry blossom viewing"> inline image (inside <code>&lt;p&gt;</code>)</p>
+
+
+		</section><!-- /#img -->
+
+		<section id="figure">
+		<h3>Default figure style <a class="permalink" href="#figure">#</a></h3>
+
+		<figure>
+		<img src="/img/styleguide/hanami.jpg" width="500" height="350">
+		<figcaption><i lang="ja-latn">Hanami</i> — cherry blossom viewing</figcaption>
+		</figure>
+
+		<p>Currently images are left-aligned by default, and images in figures are centered by default.</p>
+		</section><!-- /#figure -->
+
+		<section id="dl">
+		<h3>Definition lists <a class="permalink" href="#dl">#</a></h3>
+
+		<dl>
+		<dt>Albert</dt>
+		<dd>A Rhesus monkey who, riding on a V2 rocket to over 63 km on June 11, 1948, became the first monkey astronaut</dd>
+		<dt>Albert II</dt>
+		<dd>Attained the altitude of 134 km on June 14, 1949, becoming USA’s first space monkey</dd>
+		<dd>The Kármán line of 100 km is considered the beginning of space</dd>
+		</dl>
+		</section><!-- /#dl -->
+
+		<section id="phrasing">
+		<h3>Phrasing styles <abbr title="and">&amp;</abbr> sundry items <a class="permalink" href="#phrasing">#</a></h3>
+
+		<ul>
+		<li><code>.amp</code> or <code>&lt;abbr title="and"&gt;&amp;amp;&lt;/abbr&gt;</code> — <a href="http://simplebits.com/notebook/2008/08/14/ampersands-2/" title="SimpleBits  / Use the Best Available Ampersand">@simplebits ampersand</a> (<abbr title="and">&amp;</abbr>) (for headings; I use <code>&lt;abbr&gt;</code> ;-)</li>
+		<li><code>.semantic-list</code> — this suppresses bullets/numbering (eg if you want a list without them)</li>
+		</ul>
+
+		<section id="phrasing-default">
+		<h4>Default phrasing styles <a class="permalink" href="#phrasing-default">#</a></h4>
+
+		<p>First <a href="#">this is a link</a>. Going alphabetically we have <abbr title="abbr">an abbreviation</abbr>, then <b>the <code>&lt;b&gt;</code> element</b>, followed by a line break<br/> next a <cite>cite element (browser default)</cite>, then an inline <code>code example (<mark>&lt;code&gt;</mark>)</code> containing <code>&lt;mark&gt;</code>. Next <del>some deleted text</del>, followed by a <dfn>definition (no special styling)</dfn>. <em>Emphasised text</em> is semantically different from <i>italicised text</i>. Images inside <code>&lt;p&gt;</code> are automatically inline <img src="/img/styleguide/no.png" width="24" height="24" alt="" /> (outside they’re block). Some <ins>inserted text</ins> precedes text the user should enter (“enter the password <kbd>kronos</kbd>”) via the keyboard (<code>&lt;kbd&gt;</code>), and <mark>marked text (<code>&lt;mark&gt;</code>)</mark>. We then have <output>programming output using <code>&lt;output&gt;</code></output>, an <q>inline quote using <code>&lt;q&gt;</code>,</q> some <small>legalese using <code>&lt;small&gt;</code></small>, and <span>a <code>&lt;span&gt;</code> of text (obviously unstyled)</span>. For <strong>important content there’s <code>&lt;strong&gt;</code></strong>. Subscript text (<code>&lt;sub&gt;</code>) like H<sub>2</sub>O and superscript text (<code>&lt;sup&gt;</code>) such as M<sup>me</sup> Baker won’t break the measure. Mathematic variables (<code>&lt;var&gt;</code>) like <var>$monkey</var> use the default style. Finally there’s the poorly-supported <code>&lt;wbr&gt;</code> element for indicating acceptable break points in long words. It’s most useful in code samples, for example:</p>
+
+		<ul>
+		<li>Without <code>&lt;wbr&gt;</code>: <code>&lt;a href="http://www.whatwg.org/specs/webapps/currentwork/multipage/contentmodels.html#phrasingcontent0"&gt;</code></li>
+		<li>With <code>&lt;wbr&gt;</code>: <code>&lt;a href="http://www.whatwg.org/<wbr>specs/webapps/currentwork/<wbr>multipage/contentmodels.html<wbr>#phrasingcontent0"&gt;</code></li>
+		</ul>
+		</section><!-- /#phrasing-default -->
+
+		</section><!-- /#phrasing -->
+
+		</section><!-- /#default-styles -->
+
+		<section id="other">
+		<h2>Other bits (just in case) <a class="permalink" href="#other">#</a></h2>
+
+		<section id="permalinks">
+		<h3>Making the rollover section links <a class="permalink" href="#permalinks">#</a></h3>
+		<p><code>&lt;a class="permalink" href=&quot;#section-id&quot;&gt;#&lt;/a&gt;</code> — I add this snippet to the ends of the heading of each section, to give a quick way to refer to the section (eg for feedback via email). I made a TextMate snippet to do this.</p>
+
+		<figure>
+		<blockquote>
+		<h3>My example section <a class="permalink" href="#example-section">#</a></h3>
+		</blockquote>
+		<pre class="callout"><code>&lt;section id=&quot;example-section&quot;&gt;
+		&lt;h4&gt;My example section &lt;a class="permalink" href=&quot;#example-section&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+		…
+		&lt;/section&gt;&lt;!-- /#example-section --&gt;</code></pre>
+		</figure>
+
+		<p>I was using</p>
+		<pre class="callout warning-block"><code>&lt;mark&gt;&lt;a href="#example-section"&gt;#&lt;/a&gt;&lt;/mark&gt;</code></pre>
+		<p>but that was an incorrect use of <code>&lt;mark&gt;</code> :)</p>
+		</section>
+
+		<section id="in-page-nav">
+		<h3>In-article table of contents <a class="permalink" href="#nav">#</a></h3>
+
+		<nav class="in-page">
+		<h2>In-page nav</h2>
+		<ol>
+		<li><a href="#">Link 1</a></li>
+		<li><a href="#">Link 2</a></li>
+		<li><a href="#">Link 3</a></li>
+		</ol>
+		</nav>
+
+		<p>This makes a 1/2 width box floated right, intended to contain in-article links (linking to the ids that I added for the <code>.permalink</code> effect). Use <code>&lt;nav class="in-page"&gt;</code>, with <code>&lt;h2&gt;</code> for the title. It only has styles for two levels of nesting.</p>
+		</section><!-- /#nav -->
+
+		<section id="metadata">
+		<h3>Metadata <a class="permalink" href="#metadata">#</a></h3>
+
+		<div class="relative">
+		<p>Similar to <code>.sidenote</code>, the class <code>.meta</code> moves things to the left margin. Currently I only use it for article metadata.</p>
+		<p>The <code>meta</code> style works differently to <code>.sidenote</code> — it’s absolutely positioned using the containing flow element (add <code>.relative</code> to give the containing element <code>position:relative</code>)</p>
+		<aside class="meta"><p><code>meta</code> is a bit lower than container block atm — will fix if I get around to using it)</p></aside>
+		</div>
+		</section><!-- /#metadata -->
+
+		<section id="insdel">
+		<h3>Changed blocks (<code>&lt;ins&gt;</code> &amp; <code>&lt;del&gt;</code>) <a class="permalink" href="#insdel">#</a></h3>
+
+		<p>This isn’t an issue at the moment, but there are also styles for inline and block-level inserted content, and inline deleted content.</p>
+
+		<p class="callout changed-block">An inserted block (<code>.callout.changed-block</code>) containing <ins>some inserted text (<code>&lt;ins&gt;</code>)</ins>. I don’t use this style for now <del>but I could if I preferred green over gold for the highlighted blocks (<code>&lt;del&gt;</code>)</del>.</p>
+		</section><!-- /#insdel -->
+		</section><!-- /#other -->
+
+
+		<aside class="twitter sharing"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="boblet">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></aside>
+
+		<footer>
+		<section id="feedback">
+		<h2>Feedback <a class="permalink" href="#feedback">#</a></h2>
+		<p>If you have any feedback, please <a href="http://twitter.com/home?status=.%40boblet%20re%3A%20http%3A%2F%2Foli.jp%2F2011%2Fstyle-guide%20" title="via the Twitter homepage">let me know via Twitter</a> (<a href="http://twitter.com/boblet">@boblet</a>).</p>
+		</section>
+
+		<section id="changes">
+		<h2>Changes <a class="permalink" href="#changes">#</a></h2>
+		<ol>
+		<li><time datetime="2011-04-06T11:04:09+09:00">2011-04-06</time> Added heading permalinks (on hover) and fixed a bad in-page link. Also fixed a typo in discussing <code>img.wide</code>.</li>
+		<li><time datetime="2011-05-11T09:06:06-07:00">2011-05-11</time> Added a link to the stylesheet (d’oh) and an introductory paragraph.</li>
+		</ol>
+		</section>
+		</footer>
+
+		</article>
+
+
 
 	</body>
 	

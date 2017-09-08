@@ -78,6 +78,55 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 0 auto;
 }
 
+@font-face {
+  font-family: Arvo;
+  font-style: normal;
+  font-weight: 400;
+  src: local(Arvo), local(Arvo), url(http://fonts.gstatic.com/s/arvo/v8/J0GYVYTizO1mjpT3aOcSbQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: Arvo;
+  font-style: normal;
+  font-weight: 700;
+  src: local(Arvo Bold), local(Arvo-Bold), url(http://fonts.gstatic.com/s/arvo/v8/Ya11CJGBCnKoJHvb8B2EOw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.arvo, h1, h2, h3, h4, h5, h6 {
+  font-family: Arvo, arial, sans-serif;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 400;
+  src: local(Open Sans), local(OpenSans), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  src: local(Open Sans Semibold), local(OpenSans-Semibold), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 800;
+  src: local(Open Sans Extrabold), local(OpenSans-Extrabold), url(http://themes.googleusercontent.com/static/fonts/opensans/v8/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+.open-sans, body, light-theme, textarea, input, button {
+  font-family: Open Sans, arial, sans-serif;
+}
+
 body.light-theme {
   line-height: 28px;
   line-height: 1.75rem;
@@ -130,4 +179,40 @@ body.light-theme h6 {
   line-height: 1.75rem;
   font-size: 20px;
   font-size: 1.25rem;
+}
+
+body.light-theme .container {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 20px;
+}
+
+body.light-theme a {
+  text-decoration: none;
+}
+
+body.light-theme a:link {
+  color: #333;
+}
+
+body.light-theme a:visited {
+  color: #FFF;
+}
+
+body.light-theme a:hover {
+  color: #289e83;
+}
+
+body.light-theme a:active {
+  color: #1b8898;
+}
+
+.centre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

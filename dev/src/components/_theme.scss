@@ -278,9 +278,35 @@ $palette: (
 
 
 @mixin lightTheme() {
+
+	$theme-linkcols : (
+		'link'    : #333,
+		'visited' : #FFF,
+		'hover'   : #289e83,
+		'active'  : #1b8898
+	);
+
+	$theme-palette: (
+		'primary'   : #289e83,
+		'secondary' : #1b8898,
+		'danger'    : #d7861e,
+		'warning'   : #ac2828,
+		'submit'    : #54A03A
+	);
+
 	@include normalise;
 
+	@include googleFont('arvo',h1 h2 h3 h4 h5 h6,bold);
+	@include googleFont('open-sans',body light-theme textarea input button);
+
+	// Core theme specific classes
 	body.light-theme {
 		@include verticalRhythm;
+		@include containerClass;
+		@include linkColours;
+	}
+
+	.centre{
+		@include centre;
 	}
 }
