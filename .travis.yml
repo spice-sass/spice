@@ -1,9 +1,9 @@
-# before_script:
-#   - npm install -g gulp
-#   - npm install
+before_script:
+  - npm install -g gulp
+  - npm install
 
 language: node_js
 node_js:
-  - "0.10"
+  - "6.9.2"
 
-# script: gulp sasstest
+script: gulp sasstest
