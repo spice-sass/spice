@@ -1,23 +1,2 @@
 @import "../../src/spice";
-@include normalise; 
-
-body{
-
-	padding-top:300px;
-	@include fullScreen;
-}
-
-button{
-	color : contrast(socialMedia('facebook'),45%);
-	background-color : socialMedia('facebook');
-}
-
-#example{
-	@include fitContainer(0 0 0 0,fixed);
-}
-
-
-button.facebook{
-	color:white;
-	background-color : socialMedia('facebook');
-}
+@include lightTheme();
