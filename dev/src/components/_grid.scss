@@ -680,3 +680,61 @@
 		margin-right:$gutter-width;
 	}
 }
+
+@mixin flexGridColumns($amount,$col-count:$grid-col-count,$gutter-width:$grid-gutter-width){
+	
+	
+		$amount : Num($amount);
+		$col-count : Num($col-count);
+	
+		$gutter-total : ($col-count - 1) * $gutter-width;
+		$remainder  : 100% - $gutter-total;
+		$fill : ($amount - 1)*$gutter-width;
+		$unit : $remainder / $col-count;
+	
+		width:$unit*$amount+$fill;
+
+	}
+
+
+@mixin flexGrid($col-count:$grid-col-count, $gutter-width:$grid-gutter-width, $stack-point:$grid-stack-point, $shift:$grid-shift-classes) {
+	.flex-grid-row {
+		display: inline;
+	}
+
+
+	@include breakPoint($stack-point,"min"){
+
+		.flex-grid-row {
+			display: flex;
+		}
+		
+		@for $i from 1 through $col-count{
+
+			.flex-grid-col-#{$i}{
+				@include flexGridColumns($i,$col-count,$gutter-width);
+			}
+
+			@if $shift and $i != $col-count{
+				
+				.flex-grid-col-indent-#{$i}{
+					@include gridIndent($i,$col-count,$gutter-width)
+				}
+
+				.flex-grid-col-outdent-#{$i}{
+					@include gridOutdent($i,$col-count,$gutter-width)
+				}
+
+			}
+
+		}
+		
+		[class*="flex-grid-col"] {
+			margin-right: $grid-gutter-width;
+	
+			&:last-child {
+				margin-right:0;
+			}
+		}
+	}
+}
