@@ -1,2 +1,15 @@
 @import "../../src/spice";
-@include lightTheme();
+// @include lightTheme();
+@include normalise;
+@include containerClass;
+// @include gridClasses;
+@include flexGrid;
+
+.grid-example [class^=flex-grid-col] {
+    border: 1px solid #cfd9db;
+    background-color: #fbfcfc;
+    color: #94aab0;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}

@@ -276,6 +276,53 @@ $palette: (
   @return $platform;
 }
 
+@mixin lightTheme() {
 
+	$theme-colours : (
+		'main' : (
+			'body' : #e9e9e9,
+			'p' : #808080,
+			'h' :#444,
+		),
+		'links' : (
+			'link'    : $col-pomegranate,
+			'visited' : $col-midnight-blue,
+			'hover'   : $col-alizarin,
+			'active'  : $col-alizarin
+		),
+		'palette' : (
+			'primary'   : $col-pomegranate,
+			'secondary' : $col-midnight-blue
+		)
+	);
 
+	$main-colours: map-get($theme-colours,'main');
+	$link-colours: map-get($theme-colours,'links');
+	$palette-colours: map-get($theme-colours,'palette');
 
+	@include normalise;
+	@include googleFont('arvo',h1 h2 h3 h4 h5 h6,bold);
+	@include googleFont('open-sans',body light-theme textarea input button);
+
+	// Core theme specific classes
+	body.light-theme {
+
+		color: map-get($main-colours, 'p');
+		background-color: map-get($main-colours, 'body');
+
+		h1, h2, h3, h4, h5, h6, {
+			color: map-get($main-colours, 'h'); 
+		}
+
+		@include verticalRhythm;
+		@include containerClass;
+		@include linkColours(map-get($theme-colours,'links'));
+		@include palette(map-get($theme-colours,'palette'));
+		@include flatTables(#333, #f8f8f8);
+		@include formsTheme(#333, #f8f8f8, map-get($palette-colours,'primary'));
+
+		form {
+			@include formLined;
+		}
+	}
+}
