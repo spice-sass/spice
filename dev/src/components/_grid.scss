@@ -485,7 +485,6 @@
 					.grid-col-outdent-#{$i}{
 						@include gridOutdent($i,$col-count,$gutter-width)
 					}
-
 				}
 			}
 
@@ -696,12 +695,237 @@
 
 	}
 
+// ------------------------------------------------------
+
+/// This mixin genrates classes for a flex-box grid system. Arguments allow you to define
+/// the amount of columns you want, the guttering, the screen width at
+/// which you want elements to stack and optional outdent/indent classes.
+/// Default settings can be overwritten to suit your template. 
+///
+/// **Default Settings:**
+/// - $grid-col-count     : 12;
+/// - $grid-gutter-width  : 2%;
+/// - $grid-stack-point   : 550px;
+/// - $grid-shift-classes : true;
+/// @name flexGrid
+/// @group grid
+/// @param {Integer} col-count [12] Amount of grid columns
+/// @param {Percentage} gutter-width [2%] Gutter width (must be a percentage)
+/// @param {Pixel value} stack-point [550px] Breakpoint at which to stack columns
+/// @param {Bool} mobile-first [true] Determines whether or not the grid is mobile first
+/// @param {Bool} shift [true] Adds indent/outdent classes if true
+/// @example scss - Include
+///  @include flexGrid(12,2%,450px);
+///
+/// @example css - Output
+/// .flex-grid-row {
+/// 	display: inline;
+///   }
+///   
+///   @media (min-width: 550px) {
+/// 	.flex-grid-row {
+/// 	  display: flex;
+/// 	}
+/// 	.flex-grid-col-1 {
+/// 	  width: 6.5%;
+/// 	}
+/// 	.flex-grid-col-indent-1 {
+/// 	  margin-left: 8.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-1 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 8.5% !important;
+/// 	}
+/// 	.flex-grid-col-2 {
+/// 	  width: 15%;
+/// 	}
+/// 	.flex-grid-col-indent-2 {
+/// 	  margin-left: 17%;
+/// 	}
+/// 	.flex-grid-col-outdent-2 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 17% !important;
+/// 	}
+/// 	.flex-grid-col-3 {
+/// 	  width: 23.5%;
+/// 	}
+/// 	.flex-grid-col-indent-3 {
+/// 	  margin-left: 25.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-3 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 25.5% !important;
+/// 	}
+/// 	.flex-grid-col-4 {
+/// 	  width: 32%;
+/// 	}
+/// 	.flex-grid-col-indent-4 {
+/// 	  margin-left: 34%;
+/// 	}
+/// 	.flex-grid-col-outdent-4 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 34% !important;
+/// 	}
+/// 	.flex-grid-col-5 {
+/// 	  width: 40.5%;
+/// 	}
+/// 	.flex-grid-col-indent-5 {
+/// 	  margin-left: 42.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-5 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 42.5% !important;
+/// 	}
+/// 	.flex-grid-col-6 {
+/// 	  width: 49%;
+/// 	}
+/// 	.flex-grid-col-indent-6 {
+/// 	  margin-left: 51%;
+/// 	}
+/// 	.flex-grid-col-outdent-6 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 51% !important;
+/// 	}
+/// 	.flex-grid-col-7 {
+/// 	  width: 57.5%;
+/// 	}
+/// 	.flex-grid-col-indent-7 {
+/// 	  margin-left: 59.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-7 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 59.5% !important;
+/// 	}
+/// 	.flex-grid-col-8 {
+/// 	  width: 66%;
+/// 	}
+/// 	.flex-grid-col-indent-8 {
+/// 	  margin-left: 68%;
+/// 	}
+/// 	.flex-grid-col-outdent-8 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 68% !important;
+/// 	}
+/// 	.flex-grid-col-9 {
+/// 	  width: 74.5%;
+/// 	}
+/// 	.flex-grid-col-indent-9 {
+/// 	  margin-left: 76.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-9 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 76.5% !important;
+/// 	}
+/// 	.flex-grid-col-10 {
+/// 	  width: 83%;
+/// 	}
+/// 	.flex-grid-col-indent-10 {
+/// 	  margin-left: 85%;
+/// 	}
+/// 	.flex-grid-col-outdent-10 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 85% !important;
+/// 	}
+/// 	.flex-grid-col-11 {
+/// 	  width: 91.5%;
+/// 	}
+/// 	.flex-grid-col-indent-11 {
+/// 	  margin-left: 93.5%;
+/// 	}
+/// 	.flex-grid-col-outdent-11 {
+/// 	  margin-left: auto;
+/// 	  margin-right: 93.5% !important;
+/// 	}
+/// 	.flex-grid-col-12 {
+/// 	  width: 100%;
+/// 	}
+/// 	[class*="flex-grid-col"] {
+/// 	  margin-right: 2%;
+/// 	}
+/// 	[class*="flex-grid-col"]:last-child {
+/// 	  margin-right: 0;
+/// 	}
+///   }
+///  
+/// @example markup - HTML
+///  <div class="flex-grid-row grid-example">
+///  
+///  	<div class="flex-grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  
+///  <div class="flex-grid-row grid-example">
+///  
+///  	<div class="flex-grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-4">
+///  		<span>Grid 4</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  <div class="flex-grid-row grid-example">
+///  
+///  	<div class="flex-grid-col-2">
+///  		<span>Grid 2</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-7">
+///  		<span>Grid 7</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-3">
+///  		<span>Grid 3</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  
+///  <div class="flex-grid-row grid-example">
+///  
+///  	<div class="flex-grid-col-12">
+///  		<span>Grid 12</span>
+///  	</div>
+///  
+///  </div>
+///  
+///  <div class="flex-grid-row grid-example">
+///  
+///  	<div class="flex-grid-col-4 flex-grid-col-indent-2">
+///  		<span>Grid 4 | push 2</span>
+///  	</div>
+///  
+///  	<div class="flex-grid-col-4 flex-grid-col-outdent-2">
+///  		<span>Grid 4 | pull 2</span>
+///  	</div>
+///  
+///  </div>
 
 @mixin flexGrid($col-count:$grid-col-count, $gutter-width:$grid-gutter-width, $stack-point:$grid-stack-point, $shift:$grid-shift-classes) {
 	.flex-grid-row {
 		display: inline;
 	}
-
 
 	@include breakPoint($stack-point,"min"){
 
@@ -718,15 +942,13 @@
 			@if $shift and $i != $col-count{
 				
 				.flex-grid-col-indent-#{$i}{
-					@include gridIndent($i,$col-count,$gutter-width)
+					@include gridIndent($i,$col-count,$gutter-width);
 				}
 
 				.flex-grid-col-outdent-#{$i}{
-					@include gridOutdent($i,$col-count,$gutter-width)
+					@include gridOutdent($i,$col-count,$gutter-width);
 				}
-
 			}
-
 		}
 		
 		[class*="flex-grid-col"] {
